@@ -15,7 +15,9 @@ import android.widget.Toast
 import com.google.firebase.Timestamp
 import com.example.cerrajeria24horas.data.EstadoServicio
 import com.example.cerrajeria24horas.data.FirestoreAPI
+import com.example.cerrajeria24horas.data.RolUsuario
 import com.example.cerrajeria24horas.data.Servicio
+import com.example.cerrajeria24horas.data.Usuario
 import com.example.cerrajeria24horas.util.FacturaPdf
 import com.example.cerrajeria24horas.util.Formato
 import com.example.cerrajeria24horas.util.Interaccion
@@ -32,7 +34,12 @@ class ServicioDetalleActivity : BaseActivity() {
     private lateinit var tvEstado: TextView
     private lateinit var tvValor: TextView
     private lateinit var pbServicioDetalle: ProgressBar
+    private lateinit var spAsignado: Spinner
+    private lateinit var cardAsignacion: View
+    private lateinit var btnAsignar: Button
     private var servicioActual: Servicio? = null
+    private var esAdmin = false
+    private var cerrajeros: List<Usuario> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,9 @@ class ServicioDetalleActivity : BaseActivity() {
         tvEstado = findViewById(R.id.tvSEstado)
         tvValor = findViewById(R.id.tvSValor)
         pbServicioDetalle = findViewById(R.id.pbServicioDetalle)
+        spAsignado = findViewById(R.id.spAsignado)
+        cardAsignacion = findViewById(R.id.cardAsignacion)
+        btnAsignar = findViewById(R.id.btnAsignar)
 
         spEstado.adapter = ArrayAdapter(
             this,
@@ -54,6 +64,7 @@ class ServicioDetalleActivity : BaseActivity() {
 
         findViewById<Button>(R.id.btnCambiarEstado).setOnClickListener { cambiarEstado() }
         findViewById<Button>(R.id.btnFactura).setOnClickListener { descargarFactura() }
+        btnAsignar.setOnClickListener { asignar() }
 
         val servicioId = intent.getStringExtra(EXTRA_SERVICIO_ID).orEmpty()
         if (servicioId.isEmpty()) {
@@ -62,6 +73,7 @@ class ServicioDetalleActivity : BaseActivity() {
             return
         }
 
+        cargarRol()
         cargarServicio(servicioId)
     }
 
@@ -117,6 +129,56 @@ class ServicioDetalleActivity : BaseActivity() {
         val indice = EstadoServicio.values().indexOf(servicio.estado)
         spEstado.setSelection(indice)
         pintarLineaTiempo(servicio)
+        aplicarAsignacion()
+    }
+
+    private fun cargarRol() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        FirestoreAPI.obtenerUsuario(uid)
+            .addOnSuccessListener { doc ->
+                esAdmin = doc.getString("rol") != RolUsuario.CERRAJERO.valor
+                if (esAdmin) cargarCerrajeros(uid) else cardAsignacion.visibility = View.GONE
+            }
+    }
+
+    private fun cargarCerrajeros(tallerId: String) {
+        FirestoreAPI.obtenerUsuariosDelTaller(tallerId)
+            .addOnSuccessListener { snapshot ->
+                cerrajeros = snapshot.documents
+                    .mapNotNull { Usuario.fromSnapshot(it) }
+                    .filter { it.rol == RolUsuario.CERRAJERO }
+                    .sortedBy { it.nombre.lowercase() }
+                aplicarAsignacion()
+            }
+    }
+
+    private fun aplicarAsignacion() {
+        val servicio = servicioActual ?: return
+        if (!esAdmin) return
+        val opciones = mutableListOf(getString(R.string.sin_asignar))
+        opciones += cerrajeros.map { it.nombre.ifBlank { it.correo } }
+        spAsignado.adapter = ArrayAdapter(this, R.layout.item_selector, opciones).apply {
+            setDropDownViewResource(R.layout.item_selector_opcion)
+        }
+        val indice = cerrajeros.indexOfFirst { it.uid == servicio.asignadoA }
+        spAsignado.setSelection(if (indice >= 0) indice + 1 else 0)
+        cardAsignacion.visibility = View.VISIBLE
+    }
+
+    private fun asignar() {
+        val servicio = servicioActual ?: return
+        val posicion = spAsignado.selectedItemPosition
+        val uidAsignar = if (posicion <= 0) "" else cerrajeros[posicion - 1].uid
+        btnAsignar.isEnabled = false
+        FirestoreAPI.asignarServicio(servicio.id, uidAsignar)
+            .addOnSuccessListener {
+                servicioActual = servicio.copy(asignadoA = uidAsignar)
+                Toast.makeText(this, R.string.servicio_asignado, Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, UI.mensajeErrorFirestore(this, e), Toast.LENGTH_LONG).show()
+            }
+            .addOnCompleteListener { btnAsignar.isEnabled = true }
     }
 
     /** Línea de tiempo construida con las fechas disponibles del servicio. */

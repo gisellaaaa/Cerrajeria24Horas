@@ -52,7 +52,7 @@ class GananciasFragment : Fragment(R.layout.fragment_ganancias) {
         val pbGanancias = raiz.findViewById<ProgressBar>(R.id.pbGanancias)
         pbGanancias.visibility = View.VISIBLE
 
-        FirestoreAPI.obtenerServicios(uid)
+        FirestoreAPI.obtenerServiciosSegunRol(uid)
             .addOnSuccessListener { snapshot ->
                 val servicios = snapshot.documents
                     .mapNotNull { Servicio.fromSnapshot(it) }

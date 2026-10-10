@@ -137,6 +137,16 @@ object FirestoreAPI {
     fun asignarServicio(servicioId: String, cerrajeroUid: String): Task<Void> =
         db.collection(COL_SERVICIOS).document(servicioId).update(CAMPO_ASIGNADO_A, cerrajeroUid)
 
+    /**
+     * Servicios que corresponden al usuario según su rol: el administrador ve todo su taller y el
+     * cerrajero solo los servicios que tiene asignados.
+     */
+    fun obtenerServiciosSegunRol(uid: String): Task<QuerySnapshot> =
+        obtenerUsuario(uid).continueWithTask { tarea ->
+            val esCerrajero = tarea.result.getString("rol") == RolUsuario.CERRAJERO.valor
+            if (esCerrajero) obtenerServiciosAsignados(uid) else obtenerServicios(uid)
+        }
+
     fun ordenarServicios(lista: List<Servicio>): List<Servicio> =
         lista.sortedByDescending { it.fecha?.toDate()?.time ?: 0L }
 

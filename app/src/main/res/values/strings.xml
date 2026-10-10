@@ -266,6 +266,7 @@
     <string name="rol_administrador">Administrador</string>
     <string name="rol_cerrajero">Cerrajero</string>
     <string name="asignar_cerrajero">Asignar cerrajero</string>
+    <string name="asignar">Asignar</string>
     <string name="sin_asignar">Sin asignar</string>
     <string name="asignado_a">Asignado a</string>
     <string name="servicio_asignado">Servicio asignado.</string>

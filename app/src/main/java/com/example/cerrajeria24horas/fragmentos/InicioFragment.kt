@@ -56,7 +56,7 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
 
     private fun cargarDatos() {
         val uid = auth.currentUser?.uid ?: return
-        FirestoreAPI.obtenerServicios(uid)
+        FirestoreAPI.obtenerServiciosSegunRol(uid)
             .addOnSuccessListener { snapshot ->
                 val servicios = FirestoreAPI.ordenarServicios(
                     snapshot.documents

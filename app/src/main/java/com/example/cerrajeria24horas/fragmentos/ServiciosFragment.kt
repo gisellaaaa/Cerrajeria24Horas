@@ -15,6 +15,7 @@ import com.example.cerrajeria24horas.adapters.FilaServicios
 import com.example.cerrajeria24horas.adapters.ServiciosAdapter
 import com.example.cerrajeria24horas.data.EstadoServicio
 import com.example.cerrajeria24horas.data.FirestoreAPI
+import com.example.cerrajeria24horas.data.RolUsuario
 import com.example.cerrajeria24horas.data.Servicio
 import com.example.cerrajeria24horas.util.UI
 import com.google.android.material.button.MaterialButton
@@ -70,23 +71,39 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
         emptyView.visibility = View.GONE
         pbServicios.visibility = View.VISIBLE
 
-        FirestoreAPI.obtenerServicios(uid)
-            .addOnSuccessListener { snapshot ->
-                servicios = FirestoreAPI.ordenarServicios(
-                    snapshot.documents
-                        .mapNotNull { Servicio.fromSnapshot(it) }
-                        .filterNot { it.id.isEmpty() }
-                )
-                cargado = true
-                aplicar()
+        FirestoreAPI.obtenerUsuario(uid)
+            .addOnSuccessListener { doc ->
+                val esCerrajero = doc.getString("rol") == RolUsuario.CERRAJERO.valor
+                view?.findViewById<MaterialButton>(R.id.btnRegistrarServicio)?.visibility =
+                    if (esCerrajero) View.GONE else View.VISIBLE
+                val consulta = if (esCerrajero) {
+                    FirestoreAPI.obtenerServiciosAsignados(uid)
+                } else {
+                    FirestoreAPI.obtenerServicios(uid)
+                }
+                consulta
+                    .addOnSuccessListener { snapshot ->
+                        servicios = FirestoreAPI.ordenarServicios(
+                            snapshot.documents
+                                .mapNotNull { Servicio.fromSnapshot(it) }
+                                .filterNot { it.id.isEmpty() }
+                        )
+                        cargado = true
+                        aplicar()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
+                        emptyView.visibility = View.VISIBLE
+                    }
+                    .addOnCompleteListener {
+                        pbServicios.visibility = View.GONE
+                        rvServicios.visibility = View.VISIBLE
+                    }
             }
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
-                emptyView.visibility = View.VISIBLE
-            }
-            .addOnCompleteListener {
                 pbServicios.visibility = View.GONE
-                rvServicios.visibility = View.VISIBLE
+                emptyView.visibility = View.VISIBLE
             }
     }
 
