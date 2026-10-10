@@ -73,6 +73,7 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
 
         FirestoreAPI.obtenerUsuario(uid)
             .addOnSuccessListener { doc ->
+                if (view == null) return@addOnSuccessListener
                 val esCerrajero = doc.getString("rol") == RolUsuario.CERRAJERO.valor
                 view?.findViewById<MaterialButton>(R.id.btnRegistrarServicio)?.visibility =
                     if (esCerrajero) View.GONE else View.VISIBLE
@@ -83,6 +84,7 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
                 }
                 consulta
                     .addOnSuccessListener { snapshot ->
+                        if (view == null) return@addOnSuccessListener
                         servicios = FirestoreAPI.ordenarServicios(
                             snapshot.documents
                                 .mapNotNull { Servicio.fromSnapshot(it) }
@@ -92,16 +94,19 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
                         aplicar()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
+                        val contexto = context ?: return@addOnFailureListener
+                        Toast.makeText(contexto, UI.mensajeErrorFirestore(contexto, e), Toast.LENGTH_LONG).show()
                         emptyView.visibility = View.VISIBLE
                     }
                     .addOnCompleteListener {
+                        if (view == null) return@addOnCompleteListener
                         pbServicios.visibility = View.GONE
                         rvServicios.visibility = View.VISIBLE
                     }
             }
             .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
+                val contexto = context ?: return@addOnFailureListener
+                Toast.makeText(contexto, UI.mensajeErrorFirestore(contexto, e), Toast.LENGTH_LONG).show()
                 pbServicios.visibility = View.GONE
                 emptyView.visibility = View.VISIBLE
             }

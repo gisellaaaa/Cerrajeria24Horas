@@ -49,13 +49,14 @@ class BienvenidaActivity : BaseActivity() {
         indicador = findViewById(R.id.indicadorBienvenida)
         adaptador = BienvenidaServiciosAdapter()
         pager.adapter = adaptador
-        pager.offscreenPageLimit = 3
+        pager.offscreenPageLimit = 1
         pager.setPageTransformer { pagina, posicion ->
+            val contenido = pagina.findViewById<View>(R.id.carContenido) ?: pagina
             val cercania = 1f - kotlin.math.abs(posicion).coerceAtMost(1f)
-            val escala = 0.82f + 0.18f * cercania
-            pagina.scaleX = escala
-            pagina.scaleY = escala
-            pagina.alpha = 0.3f + 0.7f * cercania
+            val escala = 0.86f + 0.14f * cercania
+            contenido.scaleX = escala
+            contenido.scaleY = escala
+            contenido.alpha = 0.35f + 0.65f * cercania
         }
         crearPuntos(indicador, adaptador.total)
 

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Página del carrusel: imagen cuadrada del servicio, título y descripción.
-     El ScrollView evita que el texto se corte en pantallas bajas; si sobra espacio, centra. -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     Sin ScrollView: así ViewPager2 mide correctamente todas las páginas y puede deslizarlas. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:overScrollMode="never"
-    android:scrollbars="none">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingStart="@dimen/margen_formulario"
+    android:paddingEnd="@dimen/margen_formulario"
+    android:paddingTop="@dimen/espacio_8"
+    android:paddingBottom="@dimen/espacio_8">
 
     <LinearLayout
+        android:id="@+id/carContenido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:paddingStart="@dimen/margen_formulario"
-        android:paddingEnd="@dimen/margen_formulario"
-        android:paddingTop="@dimen/espacio_8"
-        android:paddingBottom="@dimen/espacio_8">
+        android:gravity="center">
 
         <FrameLayout
             android:id="@+id/carCuadro"
@@ -57,4 +57,4 @@
             android:fontFamily="@font/dm_sans_regular"
             android:lineSpacingExtra="2dp" />
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

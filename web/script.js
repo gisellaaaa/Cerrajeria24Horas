@@ -53,7 +53,7 @@
   }
 
   /* Aparición suave de bloques al hacer scroll */
-  var bloques = document.querySelectorAll(".seccion, .servicio-item, .video-tarjeta, .pie__col");
+  var bloques = document.querySelectorAll(".seccion, .servicio-item, .servicio-media, .pie__col");
   if ("IntersectionObserver" in window && bloques.length) {
     var observador = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (entrada) {
@@ -126,60 +126,4 @@
       }
     });
   }
-
-  /* Videos demostrativos: reproducir al pulsar la portada */
-  var tarjetas = document.querySelectorAll(".video-tarjeta");
-
-  Array.prototype.forEach.call(tarjetas, function (tarjeta) {
-    var video = tarjeta.querySelector("video");
-    var overlay = tarjeta.querySelector(".video-overlay");
-
-    if (!video || !overlay) {
-      return;
-    }
-
-    video.controls = false;
-
-    overlay.addEventListener("click", function () {
-      if (!video.paused) {
-        return;
-      }
-
-      Array.prototype.forEach.call(document.querySelectorAll("video"), function (otro) {
-        if (otro !== video && !otro.paused) {
-          otro.pause();
-          otro.controls = false;
-          var contenedor = otro.closest(".video-tarjeta");
-          if (contenedor) {
-            contenedor.classList.remove("reproduciendo");
-          }
-        }
-      });
-
-      var reproduccion = video.play();
-      if (reproduccion && typeof reproduccion.then === "function") {
-        reproduccion.then(function () {
-          video.controls = true;
-          tarjeta.classList.add("reproduciendo");
-        }).catch(function () {
-          video.muted = true;
-          video.play().then(function () {
-            video.controls = true;
-            tarjeta.classList.add("reproduciendo");
-          });
-        });
-      } else {
-        video.controls = true;
-        tarjeta.classList.add("reproduciendo");
-      }
-    });
-
-    var detener = function () {
-      tarjeta.classList.remove("reproduciendo");
-      video.controls = false;
-    };
-
-    video.addEventListener("pause", detener);
-    video.addEventListener("ended", detener);
-  });
 })();

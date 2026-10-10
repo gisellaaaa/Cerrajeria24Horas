@@ -49,14 +49,16 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
         val usuario = auth.currentUser ?: return
         FirestoreAPI.obtenerUsuario(usuario.uid)
             .addOnSuccessListener { doc ->
+                val contexto = context ?: return@addOnSuccessListener
+                val vista = view ?: return@addOnSuccessListener
                 val nombre = doc.getString("nombre").orEmpty()
-                raiz.findViewById<TextView>(R.id.tvBienvenido).text = nombre
+                vista.findViewById<TextView>(R.id.tvBienvenido).text = nombre
                 usuario.email?.let { correo ->
-                    Preferencias.guardarCuenta(requireContext(), correo, nombre.ifBlank { correo })
+                    Preferencias.guardarCuenta(contexto, correo, nombre.ifBlank { correo })
                 }
             }
             .addOnFailureListener {
-                raiz.findViewById<TextView>(R.id.tvBienvenido).text = ""
+                view?.findViewById<TextView>(R.id.tvBienvenido)?.text = ""
             }
     }
 
@@ -64,6 +66,7 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
         val uid = auth.currentUser?.uid ?: return
         FirestoreAPI.obtenerServiciosSegunRol(uid)
             .addOnSuccessListener { snapshot ->
+                if (view == null) return@addOnSuccessListener
                 val servicios = FirestoreAPI.ordenarServicios(
                     snapshot.documents
                         .mapNotNull { Servicio.fromSnapshot(it) }
@@ -73,11 +76,13 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
                 cargarNombre()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
+                val contexto = context ?: return@addOnFailureListener
+                Toast.makeText(contexto, UI.mensajeErrorFirestore(contexto, e), Toast.LENGTH_LONG).show()
             }
     }
 
     private fun mostrarResumen(servicios: List<Servicio>) {
+        if (!isAdded) return
         val pendientes = Calculos.contarPorEstado(servicios, EstadoServicio.PENDIENTE)
         val enProceso = Calculos.contarPorEstado(servicios, EstadoServicio.EN_PROCESO)
         val realizados = Calculos.contarPorEstado(servicios, EstadoServicio.REALIZADO)
