@@ -5,9 +5,12 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.commit
 import com.example.cerrajeria24horas.fragmentos.ClientesFragment
+import com.example.cerrajeria24horas.fragmentos.EquipoFragment
 import com.example.cerrajeria24horas.fragmentos.GananciasFragment
 import com.example.cerrajeria24horas.fragmentos.InicioFragment
 import com.example.cerrajeria24horas.fragmentos.ServiciosFragment
+import com.example.cerrajeria24horas.data.FirestoreAPI
+import com.example.cerrajeria24horas.data.RolUsuario
 import com.example.cerrajeria24horas.util.BarraNavegacionFlotante
 import com.example.cerrajeria24horas.util.BarraNavegacionFlotante.Destino
 import com.example.cerrajeria24horas.util.Preferencias
@@ -34,6 +37,8 @@ class MainActivity : BaseActivity() {
 
         barra.alSeleccionar = { destino -> cambiarFragmento(destino) }
         barra.alAccionCentral = { abrirActividad(ServicioFormActivity::class.java) }
+
+        aplicarRol()
 
         if (savedInstanceState == null) {
             cambiarFragmento(Destino.INICIO)
@@ -64,12 +69,25 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    /** Ajusta lo que ve cada rol: el cerrajero no gestiona clientes, equipo ni crea servicios. */
+    private fun aplicarRol() {
+        val uid = auth.currentUser?.uid ?: return
+        FirestoreAPI.obtenerUsuario(uid).addOnSuccessListener { doc ->
+            if (doc.getString("rol") == RolUsuario.CERRAJERO.valor) {
+                barra.mostrarItem(Destino.CLIENTES, false)
+                barra.mostrarItem(Destino.EQUIPO, false)
+                barra.mostrarAccionCentral(false)
+            }
+        }
+    }
+
     private fun cambiarFragmento(destino: Destino) {
         val fragmento = when (destino) {
             Destino.INICIO -> InicioFragment()
             Destino.SERVICIOS -> ServiciosFragment()
             Destino.CLIENTES -> ClientesFragment()
             Destino.GANANCIAS -> GananciasFragment()
+            Destino.EQUIPO -> EquipoFragment()
         }
         supportFragmentManager.commit {
             setReorderingAllowed(true)

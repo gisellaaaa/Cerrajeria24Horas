@@ -25,11 +25,12 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    enum class Destino(val etiquetaRes: Int) {
-        INICIO(R.string.menu_inicio),
-        SERVICIOS(R.string.menu_servicios),
-        CLIENTES(R.string.menu_clientes),
-        GANANCIAS(R.string.menu_ganancias)
+    enum class Destino(val etiquetaRes: Int, val iconoRes: Int) {
+        INICIO(R.string.menu_inicio, R.drawable.ic_inicio),
+        SERVICIOS(R.string.menu_servicios, R.drawable.ic_llave_doble),
+        CLIENTES(R.string.menu_clientes, R.drawable.ic_person),
+        GANANCIAS(R.string.menu_ganancias, R.drawable.ic_grafico),
+        EQUIPO(R.string.menu_equipo, R.drawable.ic_equipo)
     }
 
     var alSeleccionar: ((Destino) -> Unit)? = null
@@ -63,6 +64,7 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
         enlazar(R.id.navServicios, Destino.SERVICIOS)
         enlazar(R.id.navClientes, Destino.CLIENTES)
         enlazar(R.id.navGanancias, Destino.GANANCIAS)
+        enlazar(R.id.navEquipo, Destino.EQUIPO)
 
         findViewById<ImageView>(R.id.btnCentral).apply {
             imageTintList = ColorStateList.valueOf(colorAcento)
@@ -76,6 +78,7 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
         val vista = findViewById<LinearLayout>(id)
         items[destino] = vista
         vista.contentDescription = context.getString(destino.etiquetaRes)
+        vista.findViewById<ImageView>(R.id.navIcono).setImageResource(destino.iconoRes)
         vista.findViewById<TextView>(R.id.navTexto).setText(destino.etiquetaRes)
         vista.setOnClickListener {
             if (destinoActual != destino) {
@@ -83,6 +86,16 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
                 alSeleccionar?.invoke(destino)
             }
         }
+    }
+
+    /** Muestra u oculta una pestaña según el rol del usuario (por ejemplo, Equipo solo para el admin). */
+    fun mostrarItem(destino: Destino, visible: Boolean) {
+        items[destino]?.visibility = if (visible) View.VISIBLE else View.GONE
+    }
+
+    /** Muestra u oculta el botón central de "Nuevo servicio". */
+    fun mostrarAccionCentral(visible: Boolean) {
+        findViewById<ImageView>(R.id.btnCentral).visibility = if (visible) View.VISIBLE else View.GONE
     }
 
     /** Permite que la pantalla anfitriona cambie de pestaña (por ejemplo, al volver atrás). */

@@ -56,6 +56,7 @@
     <string name="menu_clientes">Clientes</string>
     <string name="menu_servicios">Servicios</string>
     <string name="menu_ganancias">Ganancias</string>
+    <string name="menu_equipo">Equipo</string>
     <string name="mi_perfil">Mi perfil</string>
     <string name="nuevo_servicio">Nuevo servicio</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
@@ -253,4 +254,21 @@
     <string name="onboarding_saltar">Saltar</string>
     <string name="onboarding_siguiente">Siguiente</string>
     <string name="onboarding_comenzar">Comenzar</string>
+    <!-- Equipo -->
+    <string name="equipo_ayuda">Crea las cuentas de tus cerrajeros y asígnales servicios.</string>
+    <string name="agregar_cerrajero">Agregar cerrajero</string>
+    <string name="crear_cerrajero">Crear cuenta</string>
+    <string name="sin_miembros">Aún no hay cerrajeros en tu equipo.</string>
+    <string name="miembro_contrasena">Contraseña temporal</string>
+    <string name="miembro_contrasena_ayuda">El cerrajero puede cambiarla después desde su perfil.</string>
+    <string name="cerrajero_creado">Cuenta de cerrajero creada.</string>
+    <string name="error_crear_cerrajero">No fue posible crear la cuenta. Revisa el correo y la contraseña.</string>
+    <string name="rol_administrador">Administrador</string>
+    <string name="rol_cerrajero">Cerrajero</string>
+    <string name="asignar_cerrajero">Asignar cerrajero</string>
+    <string name="sin_asignar">Sin asignar</string>
+    <string name="asignado_a">Asignado a</string>
+    <string name="servicio_asignado">Servicio asignado.</string>
+    <string name="error_asignar">No fue posible asignar el servicio.</string>
+    <string name="correo_ya_registrado">Ya existe una cuenta con ese correo.</string>
 </resources>

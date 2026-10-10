@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/espacio_contenido_barra">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/margen_pantalla"
+        android:paddingEnd="@dimen/margen_pantalla"
+        android:paddingTop="@dimen/margen_pantalla"
+        android:paddingBottom="@dimen/espacio_8"
+        android:text="@string/equipo_ayuda"
+        android:textColor="@color/texto_secundario"
+        android:textSize="14sp"
+        android:fontFamily="@font/dm_sans_regular" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/margen_pantalla"
+            android:paddingEnd="@dimen/margen_pantalla"
+            android:paddingTop="@dimen/espacio_8"
+            android:paddingBottom="@dimen/espacio_16"
+            android:clipToPadding="false" />
+
+        <LinearLayout
+            android:id="@+id/emptyEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_equipo"
+                app:tint="@color/azul_acento"
+                android:background="@drawable/bg_acento_suave"
+                android:padding="16dp"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/sin_miembros"
+                android:textColor="@color/texto_secundario"
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pbEquipo"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminateTint="@color/azul_acento" />
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAgregarCerrajero"
+        style="@style/Cerrajeria24Horas.BotonPrimario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margen_pantalla"
+        android:layout_marginEnd="@dimen/margen_pantalla"
+        android:layout_marginBottom="@dimen/espacio_12"
+        android:text="@string/agregar_cerrajero"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_mas" />
+</LinearLayout>

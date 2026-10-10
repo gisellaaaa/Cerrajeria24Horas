@@ -35,6 +35,7 @@
     <dimen name="margen_barra_navegacion">16dp</dimen>
     <dimen name="icono_barra_navegacion">24dp</dimen>
     <dimen name="espacio_contenido_barra">116dp</dimen>
+    <dimen name="hueco_barra_navegacion">76dp</dimen>
     <!-- Bienvenida inicial. -->
     <dimen name="icono_onboarding">132dp</dimen>
     <dimen name="punto_onboarding">8dp</dimen>
