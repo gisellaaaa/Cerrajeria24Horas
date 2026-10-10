@@ -17,3 +17,4 @@ local.properties
 # Migración de datos
 firebase-migracion/node_modules
 firebase-migracion/*.json
+!firebase-migracion/package.json

@@ -1,0 +1,13 @@
+{
+  "name": "cerrajeria24horas-migracion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Script de migración de datos para habilitar el modelo de equipo (tallerId, rol, asignadoA).",
+  "scripts": {
+    "migrar": "node migrar_equipo.js",
+    "migrar:aplicar": "node migrar_equipo.js --apply"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  }
+}
