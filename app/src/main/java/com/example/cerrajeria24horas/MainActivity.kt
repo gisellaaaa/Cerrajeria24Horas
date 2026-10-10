@@ -2,6 +2,7 @@ package com.example.cerrajeria24horas
 
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.commit
 import com.example.cerrajeria24horas.fragmentos.ClientesFragment
@@ -15,6 +16,7 @@ import com.example.cerrajeria24horas.util.BarraNavegacionFlotante
 import com.example.cerrajeria24horas.util.BarraNavegacionFlotante.Destino
 import com.example.cerrajeria24horas.util.Preferencias
 import com.example.cerrajeria24horas.util.UI
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : BaseActivity() {
@@ -45,7 +47,9 @@ class MainActivity : BaseActivity() {
         if (savedInstanceState == null) {
             cambiarFragmento(Destino.INICIO)
         } else {
-            barra.mostrar(destinoDesdeTag())
+            val destino = destinoDesdeTag()
+            barra.mostrar(destino)
+            ajustarFab(destino)
         }
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -83,14 +87,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    /** Cambia de pestaña desde un fragmento (por ejemplo, los accesos rápidos del panel). */
-    fun abrirDestino(destino: Destino) {
-        if (barra.destinoActual == destino) return
-        barra.mostrar(destino)
-        cambiarFragmento(destino)
-    }
-
     private fun cambiarFragmento(destino: Destino) {
+        ajustarFab(destino)
         val fragmento = when (destino) {
             Destino.INICIO -> InicioFragment()
             Destino.SERVICIOS -> ServiciosFragment()
@@ -101,6 +99,25 @@ class MainActivity : BaseActivity() {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
             replace(R.id.contenedorFragmentos, fragmento, destino.name)
+        }
+    }
+
+    /**
+     * En Servicios y Clientes hay un botón de registro como barra inferior, así que el
+     * botón "+" debe flotar por encima de él. En el resto de pestañas queda en la esquina.
+     */
+    private fun ajustarFab(destino: Destino) {
+        val fab = findViewById<FloatingActionButton>(R.id.btnNuevoServicio)
+        val margenRes = if (destino == Destino.SERVICIOS || destino == Destino.CLIENTES) {
+            R.dimen.margen_fab_sobre_boton
+        } else {
+            R.dimen.margen_fab_navegacion
+        }
+        val lp = fab.layoutParams as FrameLayout.LayoutParams
+        val nuevo = resources.getDimensionPixelSize(margenRes)
+        if (lp.bottomMargin != nuevo) {
+            lp.bottomMargin = nuevo
+            fab.layoutParams = lp
         }
     }
 

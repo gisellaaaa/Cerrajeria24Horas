@@ -5,8 +5,11 @@
     <dimen name="ancho_maximo_contenido">840dp</dimen>
     <dimen name="ancho_maximo_formulario">600dp</dimen>
     <dimen name="ancho_maximo_acceso">520dp</dimen>
-    <dimen name="logo_acceso">104dp</dimen>
-    <dimen name="espacio_acceso_superior">12dp</dimen>
+    <dimen name="logo_acceso">88dp</dimen>
+    <dimen name="espacio_acceso_superior">8dp</dimen>
+    <!-- Bienvenida (portada con carrusel de servicios). -->
+    <dimen name="logo_bienvenida">84dp</dimen>
+    <dimen name="circulo_bienvenida">112dp</dimen>
     <dimen name="alto_minimo_boton">56dp</dimen>
     <dimen name="zona_tactil">48dp</dimen>
     <dimen name="circulo_icono">44dp</dimen>
@@ -20,6 +23,7 @@
     <dimen name="margen_dialogo">20dp</dimen>
     <dimen name="ancho_maximo_dialogo">400dp</dimen>
     <!-- Sistema de espaciado de 8. -->
+    <dimen name="espacio_4">4dp</dimen>
     <dimen name="espacio_8">8dp</dimen>
     <dimen name="espacio_12">12dp</dimen>
     <dimen name="espacio_16">16dp</dimen>
@@ -35,8 +39,10 @@
     <dimen name="margen_barra_navegacion">16dp</dimen>
     <dimen name="icono_barra_navegacion">24dp</dimen>
     <dimen name="espacio_contenido_barra">160dp</dimen>
+    <dimen name="espacio_barra_navegacion">80dp</dimen>
     <dimen name="hueco_barra_navegacion">76dp</dimen>
     <dimen name="margen_fab_navegacion">96dp</dimen>
+    <dimen name="margen_fab_sobre_boton">160dp</dimen>
     <!-- Bienvenida inicial. -->
     <dimen name="icono_onboarding">132dp</dimen>
     <dimen name="punto_onboarding">8dp</dimen>

@@ -1,68 +1,109 @@
 package com.example.cerrajeria24horas
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import androidx.viewpager2.widget.ViewPager2
-import com.example.cerrajeria24horas.adapters.OnboardingAdapter
-import com.example.cerrajeria24horas.util.Preferencias
+import com.example.cerrajeria24horas.adapters.BienvenidaServiciosAdapter
+import com.example.cerrajeria24horas.util.Movimiento
+import com.example.cerrajeria24horas.util.UI
+import com.google.firebase.auth.FirebaseAuth
 
 /**
- * Pantalla de bienvenida que se muestra una sola vez, en el primer arranque de la app.
- * Después deja el paso a la pantalla de acceso (LoginActivity).
+ * Portada de la app: se muestra siempre al abrir. Presenta los servicios en un carrusel que
+ * avanza solo, ofrece registrarse o iniciar sesión y enlaza a la página web. "Iniciar sesión"
+ * lleva directo al panel si ya hay una sesión activa; si no, abre la pantalla de acceso.
  */
 class BienvenidaActivity : BaseActivity() {
 
+    private companion object {
+        const val URL_WEB = "https://www.cerrajeria24horas.com.co"
+        const val INTERVALO_MS = 4000L
+    }
+
+    private lateinit var pager: ViewPager2
+    private lateinit var adaptador: BienvenidaServiciosAdapter
+    private lateinit var indicador: LinearLayout
+    private val manejador = Handler(Looper.getMainLooper())
+    private val avanzar = object : Runnable {
+        override fun run() {
+            if (adaptador.total > 1) {
+                val siguiente = (pager.currentItem + 1) % adaptador.total
+                pager.setCurrentItem(siguiente, true)
+            }
+            manejador.postDelayed(this, INTERVALO_MS)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (Preferencias.onboardingVisto(this)) {
-            irAlAcceso()
-            return
-        }
-
         setContentView(R.layout.activity_bienvenida)
+        UI.aplicarMarca(findViewById(R.id.tvMarcaBienvenida))
 
-        val pager = findViewById<ViewPager2>(R.id.pagerBienvenida)
-        val adaptador = OnboardingAdapter()
+        pager = findViewById(R.id.pagerBienvenida)
+        indicador = findViewById(R.id.indicadorBienvenida)
+        adaptador = BienvenidaServiciosAdapter()
         pager.adapter = adaptador
-
-        val indicador = findViewById<LinearLayout>(R.id.indicadorBienvenida)
         crearPuntos(indicador, adaptador.total)
-
-        val btnSiguiente = findViewById<Button>(R.id.btnBienvenidaSiguiente)
-        val btnSaltar = findViewById<Button>(R.id.btnBienvenidaSaltar)
 
         pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 actualizarPuntos(indicador, position)
-                val ultima = position == adaptador.total - 1
-                btnSiguiente.setText(
-                    if (ultima) R.string.onboarding_comenzar else R.string.onboarding_siguiente
-                )
-                btnSaltar.visibility = if (ultima) View.GONE else View.VISIBLE
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                    manejador.removeCallbacks(avanzar)
+                } else if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                    programarAvance()
+                }
             }
         })
 
-        btnSiguiente.setOnClickListener {
-            val siguiente = pager.currentItem + 1
-            if (siguiente < adaptador.total) {
-                pager.setCurrentItem(siguiente, true)
-            } else {
-                finalizar()
-            }
+        findViewById<View>(R.id.btnBienvenidaIniciar).setOnClickListener { irAlAcceso() }
+        findViewById<View>(R.id.btnBienvenidaCrear).setOnClickListener {
+            abrirActividad(RegisterActivity::class.java)
         }
-        btnSaltar.setOnClickListener { finalizar() }
+        findViewById<View>(R.id.btnBienvenidaWeb).setOnClickListener { abrirWeb() }
     }
 
-    private fun finalizar() {
-        Preferencias.guardarOnboardingVisto(this)
-        irAlAcceso()
+    override fun onResume() {
+        super.onResume()
+        programarAvance()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        manejador.removeCallbacks(avanzar)
+    }
+
+    /** El carrusel avanza solo salvo que el usuario haya pedido "Reducir movimiento". */
+    private fun programarAvance() {
+        manejador.removeCallbacks(avanzar)
+        if (Movimiento.activo(this) && adaptador.total > 1) {
+            manejador.postDelayed(avanzar, INTERVALO_MS)
+        }
     }
 
     private fun irAlAcceso() {
-        abrirRaiz(LoginActivity::class.java)
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            abrirRaiz(MainActivity::class.java)
+        } else {
+            abrirActividad(LoginActivity::class.java)
+        }
+    }
+
+    private fun abrirWeb() {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(URL_WEB)))
+        } catch (_: ActivityNotFoundException) {
+            // Sin navegador instalado no hay nada que abrir.
+        }
     }
 
     private fun crearPuntos(contenedor: LinearLayout, total: Int) {
@@ -82,9 +123,9 @@ class BienvenidaActivity : BaseActivity() {
     }
 
     private fun actualizarPuntos(contenedor: LinearLayout, activo: Int) {
-        for (indice in 0 until contenedor.childCount) {
-            val punto = contenedor.getChildAt(indice)
-            val seleccionado = indice == activo
+        for (posicion in 0 until contenedor.childCount) {
+            val punto = contenedor.getChildAt(posicion)
+            val seleccionado = posicion == activo
             punto.alpha = if (seleccionado) 1f else 0.35f
             punto.scaleX = if (seleccionado) 1.2f else 1f
             punto.scaleY = if (seleccionado) 1.2f else 1f

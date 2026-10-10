@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Página del carrusel de bienvenida: icono en círculo, título y descripción del servicio. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -9,35 +10,37 @@
     android:paddingEnd="@dimen/margen_formulario">
 
     <FrameLayout
-        android:id="@+id/onbCirculo"
-        android:layout_width="@dimen/icono_onboarding"
-        android:layout_height="@dimen/icono_onboarding"
-        android:background="@drawable/bg_circulo_onboarding">
+        android:id="@+id/carCirculo"
+        android:layout_width="@dimen/circulo_bienvenida"
+        android:layout_height="@dimen/circulo_bienvenida"
+        android:background="@drawable/bg_circulo_onboarding"
+        android:elevation="2dp">
 
         <ImageView
-            android:id="@+id/onbIcono"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:id="@+id/carIcono"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:contentDescription="@null"
             app:tint="@color/azul_marino" />
     </FrameLayout>
 
     <TextView
-        android:id="@+id/onbTitulo"
+        android:id="@+id/carTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/espacio_24"
         android:gravity="center"
         android:textColor="@color/azul_marino"
-        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloGrande" />
+        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo" />
 
     <TextView
-        android:id="@+id/onbDescripcion"
+        android:id="@+id/carDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/espacio_12"
         android:gravity="center"
+        android:maxWidth="360dp"
         android:textColor="@color/texto_secundario"
         android:textSize="16sp"
         android:fontFamily="@font/dm_sans_regular"

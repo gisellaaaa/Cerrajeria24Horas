@@ -75,21 +75,6 @@ svg {
   padding: 0 24px;
 }
 
-.saltar {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  background: var(--azul-marino);
-  color: #fff;
-  padding: 12px 18px;
-  border-radius: 0 0 12px 0;
-  z-index: 100;
-}
-
-.saltar:focus {
-  left: 0;
-}
-
 /* ---------- Botones ---------- */
 .boton {
   display: inline-flex;
@@ -314,7 +299,7 @@ svg {
 
 /* ---------- Héroe ---------- */
 .heroe {
-  padding: 64px 0 76px;
+  padding: 52px 0 60px;
   background:
     radial-gradient(1100px 500px at 88% -10%, var(--crema), transparent 60%),
     radial-gradient(900px 480px at -10% 110%, var(--azul-acento-claro), transparent 55%),
@@ -338,6 +323,10 @@ svg {
   font-size: 1.1rem;
   max-width: 32em;
   color: var(--texto-cuerpo);
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .heroe__texto .boton {
@@ -423,7 +412,7 @@ svg {
 
 /* ---------- Secciones ---------- */
 .seccion {
-  padding: 82px 0;
+  padding: 56px 0;
 }
 
 .servicios {
@@ -436,7 +425,7 @@ svg {
 
 .seccion__cabecera {
   max-width: 760px;
-  margin: 0 auto 52px;
+  margin: 0 auto 34px;
   text-align: center;
 }
 
@@ -458,6 +447,10 @@ svg {
   margin-top: 16px;
   font-size: 1.05rem;
   color: var(--texto-secundario);
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 /* ---------- Grid de servicios (imágenes) ---------- */
@@ -465,7 +458,7 @@ svg {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 22px;
-  margin-bottom: 46px;
+  margin-bottom: 30px;
 }
 
 .servicio-media {
@@ -528,16 +521,20 @@ svg {
 .servicios-resumen__texto {
   margin: 22px auto 0;
   max-width: 60em;
-  text-align: center;
   color: var(--texto-cuerpo);
   font-size: 1.03rem;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .servicios-lista {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  align-items: stretch;
   gap: 22px;
-  margin-top: 32px;
+  margin-top: 30px;
 }
 
 .servicio-item {
@@ -580,6 +577,10 @@ svg {
   margin-top: 8px;
   color: var(--texto-secundario);
   font-size: 0.96rem;
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 /* ---------- Videos ---------- */
@@ -683,7 +684,7 @@ svg {
 .pie {
   background: var(--azul-marino-oscuro);
   color: var(--texto-claro);
-  padding: 56px 0 28px;
+  padding: 44px 0 24px;
 }
 
 .pie__columnas {
@@ -761,6 +762,7 @@ svg {
 .pie__menu {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
   margin-top: 40px;
   padding-top: 22px;
@@ -779,10 +781,11 @@ svg {
 .pie__copy {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
   margin-top: 18px;
   font-size: 0.85rem;
+  text-align: center;
   color: var(--texto-claro);
 }
 
@@ -876,6 +879,10 @@ svg {
     gap: 18px;
   }
 
+  .servicios-lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .pie__columnas {
     grid-template-columns: 1fr 1fr;
   }
@@ -949,6 +956,10 @@ svg {
     gap: 16px;
   }
 
+  .servicios-lista {
+    grid-template-columns: 1fr;
+  }
+
   .servicios-resumen {
     padding: 30px 20px;
   }
@@ -972,7 +983,7 @@ svg {
   }
 
   .seccion {
-    padding: 60px 0;
+    padding: 44px 0;
   }
 }
 

@@ -85,7 +85,7 @@
     <!-- Servicios -->
     <string name="titulo_servicios">Servicios</string>
     <string name="subir_servicio">Registrar servicio</string>
-    <string name="sin_servicios">Aún no tienes servicios. ¡Esperamos no tener que verte pronto!</string>
+    <string name="sin_servicios">Aún no hay servicios.</string>
     <string name="selecciona_cliente">Selecciona un cliente</string>
     <string name="tipo_servicio">Tipo de servicio</string>
     <string name="descripcion">Descripción</string>
@@ -247,16 +247,21 @@
     <string name="montos_ocultos">• • • •</string>
     <string name="legal_politica">Qué guardamos\n\nTu nombre, correo, teléfono y la foto de perfil que elijas, además de los clientes y servicios que registres.\n\nPara qué lo usamos\n\nSolo para prestarte el servicio: contactarte, mostrarte tus servicios y calcular tus ganancias.\n\nCon quién lo compartimos\n\nNo lo vendemos ni lo entregamos a terceros. El cerrajero asignado a un servicio ve solo ese servicio y los datos del cliente necesarios para llegar.\n\nDónde se guarda\n\nEn una base de datos en la nube (Google Firebase) con acceso restringido a las cuentas de la app.\n\nCuánto tiempo\n\nHasta que borres tu cuenta o los datos de cada servicio.\n\nTus derechos\n\nPuedes editar tu perfil, eliminar tu foto y solicitar la eliminación de tu cuenta.\n\nContacto\n\nEscríbenos desde la app.</string>
     <string name="legal_terminos">1. Al usar la app aceptas estas reglas.\n\n2. Registra datos reales de clientes y servicios: son la base del historial y de tus ganancias.\n\n3. El precio final se confirma con el cliente antes de iniciar el trabajo.\n\n4. La app muestra el historial, los estados y las ganancias registradas; el pago se acuerda por fuera de la app.\n\n5. No registres servicios falsos ni datos de terceros sin su permiso.\n\n6. Podemos suspender cuentas con información falsa o uso indebido.</string>
-    <!-- Bienvenida inicial (onboarding) -->
-    <string name="onboarding_titulo_1">Todo tu taller en una app</string>
-    <string name="onboarding_desc_1">Servicios, clientes y ganancias en un mismo lugar, listos en segundos.</string>
-    <string name="onboarding_titulo_2">Atiende más rápido</string>
-    <string name="onboarding_desc_2">Agenda visitas, sigue cada trabajo por estado y guarda todos los detalles sin papeleo.</string>
-    <string name="onboarding_titulo_3">Tus ganancias claras</string>
-    <string name="onboarding_desc_3">Mira cuánto facturas cada día y cumple con tus clientes a tiempo.</string>
-    <string name="onboarding_saltar">Saltar</string>
-    <string name="onboarding_siguiente">Siguiente</string>
-    <string name="onboarding_comenzar">Comenzar</string>
+    <!-- Bienvenida: portada con carrusel de servicios, acceso y promo de la web -->
+    <string name="bienvenida_texto">Emergencias y trabajos de cerrajería a domicilio, cuando los necesites.</string>
+    <string name="bienvenida_etiqueta">Nuestros servicios</string>
+    <string name="bienvenida_iniciar_sesion">Iniciar sesión</string>
+    <string name="bienvenida_crear_cuenta">Crear cuenta</string>
+    <string name="bienvenida_web">Conoce todos nuestros servicios en cerrajeria24horas.com.co</string>
+    <string name="bienvenida_web_accion">Visitar la página web</string>
+    <string name="servicio_carrusel_1_titulo">Duplicación de llaves</string>
+    <string name="servicio_carrusel_1_desc">Convencionales, de seguridad, vehiculares, motocicletas y más, con precisión.</string>
+    <string name="servicio_carrusel_2_titulo">Apertura de vehículos</string>
+    <string name="servicio_carrusel_2_desc">Abrimos sin daños si dejaste las llaves dentro. Trabajamos todas las marcas.</string>
+    <string name="servicio_carrusel_3_titulo">Instalación de cerraduras</string>
+    <string name="servicio_carrusel_3_desc">Cerraduras digitales y convencionales para hogares, oficinas y negocios.</string>
+    <string name="servicio_carrusel_4_titulo">Extracción y reparación</string>
+    <string name="servicio_carrusel_4_desc">Sacamos llaves partidas y reparamos cerraduras dañadas con técnicas especializadas.</string>
     <!-- Equipo -->
     <string name="equipo_ayuda">Crea las cuentas de tus cerrajeros y asígnales servicios.</string>
     <string name="agregar_cerrajero">Agregar cerrajero</string>
@@ -275,7 +280,6 @@
     <string name="servicio_asignado">Servicio asignado.</string>
     <string name="error_asignar">No fue posible asignar el servicio.</string>
     <string name="correo_ya_registrado">Ya existe una cuenta con ese correo.</string>
-    <string name="accesos_rapidos">Accesos rápidos</string>
     <string name="ultimos_servicios">Últimos servicios</string>
     <string name="panel_sin_servicios">Aún no has registrado servicios.</string>
 </resources>

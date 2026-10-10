@@ -1,54 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Portada: marca, carrusel con los servicios, acceso (registrarse/iniciar) y promo de la web. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/fondo">
+    android:background="@drawable/bg_fondo_app"
+    android:paddingStart="@dimen/margen_formulario"
+    android:paddingEnd="@dimen/margen_formulario"
+    android:paddingBottom="@dimen/espacio_8">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/zona_tactil"
-        android:gravity="end|center_vertical"
-        android:paddingStart="@dimen/margen_pantalla"
-        android:paddingEnd="@dimen/espacio_12"
-        android:paddingTop="@dimen/espacio_8">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/espacio_16">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBienvenidaSaltar"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/logoBienvenida"
+            android:layout_width="@dimen/logo_bienvenida"
+            android:layout_height="@dimen/logo_bienvenida"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo"
+            android:contentDescription="@string/nombre_empresa" />
+
+        <TextView
+            android:id="@+id/tvMarcaBienvenida"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/zona_tactil"
-            android:text="@string/onboarding_saltar"
+            android:layout_marginTop="@dimen/espacio_8"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="20sp"
+            android:autoSizeMaxTextSize="32sp"
+            android:autoSizeStepGranularity="1sp"
+            android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloGrande" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_4"
+            android:gravity="center"
+            android:text="@string/bienvenida_texto"
             android:textColor="@color/texto_secundario"
-            android:textAllCaps="false" />
+            android:textSize="15sp"
+            android:fontFamily="@font/dm_sans_regular" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/espacio_20"
+        android:gravity="center"
+        android:text="@string/bienvenida_etiqueta"
+        android:textAllCaps="true"
+        android:textColor="@color/azul_acento"
+        android:textSize="12sp"
+        android:letterSpacing="0.08"
+        android:fontFamily="@font/dm_sans_bold" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pagerBienvenida"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginTop="@dimen/espacio_8" />
 
     <LinearLayout
         android:id="@+id/indicadorBienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/espacio_16"
+        android:layout_marginTop="@dimen/espacio_12"
         android:gravity="center"
         android:orientation="horizontal" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBienvenidaSiguiente"
+        android:id="@+id/btnBienvenidaIniciar"
         style="@style/Cerrajeria24Horas.BotonPrimario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margen_formulario"
-        android:layout_marginEnd="@dimen/margen_formulario"
         android:layout_marginTop="@dimen/espacio_20"
-        android:layout_marginBottom="@dimen/espacio_24"
-        android:text="@string/onboarding_siguiente" />
+        android:text="@string/bienvenida_iniciar_sesion" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBienvenidaCrear"
+        style="@style/Cerrajeria24Horas.BotonContorno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/espacio_8"
+        android:text="@string/bienvenida_crear_cuenta" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBienvenidaWeb"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/espacio_4"
+        android:minHeight="@dimen/zona_tactil"
+        android:text="@string/bienvenida_web"
+        android:textAllCaps="false"
+        android:textColor="@color/azul_acento"
+        android:textSize="13sp"
+        android:fontFamily="@font/dm_sans_semibold"
+        app:icon="@drawable/ic_documento"
+        app:iconGravity="textStart"
+        app:iconSize="16dp"
+        app:iconTint="@color/azul_acento" />
 </LinearLayout>

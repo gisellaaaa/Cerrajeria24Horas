@@ -5,19 +5,18 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.cerrajeria24horas.MainActivity
 import com.example.cerrajeria24horas.R
 import com.example.cerrajeria24horas.ServicioDetalleActivity
 import com.example.cerrajeria24horas.data.EstadoServicio
 import com.example.cerrajeria24horas.data.FirestoreAPI
-import com.example.cerrajeria24horas.data.RolUsuario
 import com.example.cerrajeria24horas.data.Servicio
 import com.example.cerrajeria24horas.util.AnilloProgresoView
-import com.example.cerrajeria24horas.util.BarraNavegacionFlotante.Destino
 import com.example.cerrajeria24horas.util.Calculos
 import com.example.cerrajeria24horas.util.Fechas
 import com.example.cerrajeria24horas.util.Formato
@@ -36,7 +35,6 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         raiz = view
-        configurarAccesosRapidos()
         mostrarResumen(emptyList())
         cargarNombre()
         cargado = true
@@ -47,27 +45,12 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
         if (cargado && auth.currentUser != null) cargarDatos()
     }
 
-    private fun configurarAccesosRapidos() {
-        raiz.findViewById<View>(R.id.btnAccesoServicios).setOnClickListener {
-            (activity as? MainActivity)?.abrirDestino(Destino.SERVICIOS)
-        }
-        raiz.findViewById<View>(R.id.btnAccesoClientes).setOnClickListener {
-            (activity as? MainActivity)?.abrirDestino(Destino.CLIENTES)
-        }
-        raiz.findViewById<View>(R.id.btnAccesoGanancias).setOnClickListener {
-            (activity as? MainActivity)?.abrirDestino(Destino.GANANCIAS)
-        }
-    }
-
     private fun cargarNombre() {
         val usuario = auth.currentUser ?: return
         FirestoreAPI.obtenerUsuario(usuario.uid)
             .addOnSuccessListener { doc ->
                 val nombre = doc.getString("nombre").orEmpty()
                 raiz.findViewById<TextView>(R.id.tvBienvenido).text = nombre
-                if (doc.getString("rol") == RolUsuario.CERRAJERO.valor) {
-                    raiz.findViewById<View>(R.id.btnAccesoClientes).visibility = View.GONE
-                }
                 usuario.email?.let { correo ->
                     Preferencias.guardarCuenta(requireContext(), correo, nombre.ifBlank { correo })
                 }
@@ -95,38 +78,22 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
     }
 
     private fun mostrarResumen(servicios: List<Servicio>) {
-        val titulos = listOf(
-            R.id.cardPendientes to R.string.pendientes,
-            R.id.cardEnProceso to R.string.en_proceso,
-            R.id.cardRealizados to R.string.realizados
-        )
-        titulos.forEach { (idTarjeta, idTexto) ->
-            raiz.findViewById<MaterialCardView>(idTarjeta)
-                .findViewById<TextView>(R.id.tvStatTitulo).setText(idTexto)
-        }
+        val pendientes = Calculos.contarPorEstado(servicios, EstadoServicio.PENDIENTE)
+        val enProceso = Calculos.contarPorEstado(servicios, EstadoServicio.EN_PROCESO)
+        val realizados = Calculos.contarPorEstado(servicios, EstadoServicio.REALIZADO)
 
-        val valores = mapOf(
-            R.id.cardPendientes to Calculos.contarPorEstado(servicios, EstadoServicio.PENDIENTE).toString(),
-            R.id.cardEnProceso to Calculos.contarPorEstado(servicios, EstadoServicio.EN_PROCESO).toString(),
-            R.id.cardRealizados to Calculos.contarPorEstado(servicios, EstadoServicio.REALIZADO).toString()
+        pintarMetrica(
+            R.id.cardPendientes, pendientes.toString(), R.string.pendientes,
+            R.drawable.ic_reloj, R.color.oro, R.color.azul_marino
         )
-        valores.forEach { (idTarjeta, valor) ->
-            raiz.findViewById<MaterialCardView>(idTarjeta)
-                .findViewById<TextView>(R.id.tvStatValor).text = valor
-        }
-
-        val acentos = listOf(
-            Triple(R.id.cardPendientes, R.color.oro, R.color.azul_marino),
-            Triple(R.id.cardEnProceso, R.color.azul_acento, R.color.azul_acento),
-            Triple(R.id.cardRealizados, R.color.estado_realizado, R.color.estado_realizado)
+        pintarMetrica(
+            R.id.cardEnProceso, enProceso.toString(), R.string.en_proceso,
+            R.drawable.ic_llave_doble, R.color.azul_acento, R.color.white
         )
-        acentos.forEach { (idTarjeta, idAcento, idCifra) ->
-            val tarjeta = raiz.findViewById<MaterialCardView>(idTarjeta)
-            tarjeta.findViewById<View>(R.id.vAcento).backgroundTintList =
-                ColorStateList.valueOf(requireContext().getColor(idAcento))
-            tarjeta.findViewById<TextView>(R.id.tvStatValor)
-                .setTextColor(requireContext().getColor(idCifra))
-        }
+        pintarMetrica(
+            R.id.cardRealizados, realizados.toString(), R.string.realizados,
+            R.drawable.ic_cerradura, R.color.estado_realizado, R.color.white
+        )
 
         val gananciasHoy = Calculos.sumarValores(
             Calculos.serviciosRealizadosEn(servicios, Fechas.inicioDeHoy(), Fechas.inicioDeManana())
@@ -136,11 +103,30 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
             else Formato.moneda(gananciasHoy)
 
         val total = servicios.size
-        val realizados = Calculos.contarPorEstado(servicios, EstadoServicio.REALIZADO)
         val fraccion = if (total == 0) 0f else realizados.toFloat() / total
         raiz.findViewById<AnilloProgresoView>(R.id.anilloProgreso).mostrar(fraccion)
 
         mostrarUltimos(servicios)
+    }
+
+    /** Colorea una tarjeta de métrica: ícono, número y título. */
+    private fun pintarMetrica(
+        idTarjeta: Int,
+        valor: String,
+        tituloRes: Int,
+        iconoRes: Int,
+        acentoRes: Int,
+        tintIconoRes: Int
+    ) {
+        val tarjeta = raiz.findViewById<MaterialCardView>(idTarjeta)
+        tarjeta.findViewById<FrameLayout>(R.id.fondoMetricaIcono).backgroundTintList =
+            ColorStateList.valueOf(requireContext().getColor(acentoRes))
+        tarjeta.findViewById<ImageView>(R.id.ivMetricaIcono).apply {
+            setImageResource(iconoRes)
+            imageTintList = ColorStateList.valueOf(requireContext().getColor(tintIconoRes))
+        }
+        tarjeta.findViewById<TextView>(R.id.tvMetricaValor).text = valor
+        tarjeta.findViewById<TextView>(R.id.tvMetricaTitulo).setText(tituloRes)
     }
 
     /** Rellena el panel con los últimos servicios para que la pantalla no quede vacía. */
