@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.cerrajeria24horas.util.Formato
 import com.example.cerrajeria24horas.util.Preferencias
+import com.example.cerrajeria24horas.util.UI
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -33,6 +34,7 @@ class LoginActivity : BaseActivity() {
         }
 
         setContentView(R.layout.activity_login)
+        UI.aplicarMarca(findViewById(R.id.tvMarca))
 
         etCorreo = findViewById(R.id.etLoginCorreo)
         etPassword = findViewById(R.id.etLoginPassword)

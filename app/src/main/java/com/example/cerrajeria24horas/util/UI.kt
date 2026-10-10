@@ -2,13 +2,43 @@ package com.example.cerrajeria24horas.util
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.cerrajeria24horas.R
 import com.example.cerrajeria24horas.data.EstadoServicio
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.firestore.FirebaseFirestoreException
 
 object UI {
+
+    /**
+     * Escribe el letrero de la marca en un solo [TextView] ("Cerrajería 24 Horas") con el
+     * nombre en azul marino y el "24 Horas" en rojo de urgencia. Evita el corte que producía
+     * tener dos etiquetas separadas en pantallas estrechas.
+     */
+    fun aplicarMarca(texto: TextView) {
+        val ctx = texto.context
+        val marca = ctx.getString(R.string.marca_cerrajeria)
+        val horas = ctx.getString(R.string.marca_24_horas)
+        val completo = "$marca $horas"
+        val span = SpannableString(completo)
+        span.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(ctx, R.color.azul_marino)),
+            0,
+            marca.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        span.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(ctx, R.color.rojo_urgencia)),
+            marca.length + 1,
+            completo.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        texto.text = span
+    }
 
     fun colorDeEstado(estado: EstadoServicio): Int = when (estado) {
         EstadoServicio.PENDIENTE -> R.color.estado_pendiente

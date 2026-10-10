@@ -33,26 +33,18 @@
             android:layout_marginEnd="@dimen/espacio_8"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvMarca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="bottom">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/marca_cerrajeria"
-                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo"
-                    android:textColor="@color/azul_marino" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/marca_24_horas"
-                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo"
-                    android:textColor="@color/rojo_urgencia" />
-            </LinearLayout>
+                android:maxLines="1"
+                android:singleLine="true"
+                android:ellipsize="none"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="14sp"
+                android:autoSizeMaxTextSize="22sp"
+                android:autoSizeStepGranularity="1sp"
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo" />
 
             <TextView
                 android:layout_width="match_parent"

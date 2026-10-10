@@ -14,6 +14,7 @@ import com.example.cerrajeria24horas.data.RolUsuario
 import com.example.cerrajeria24horas.util.BarraNavegacionFlotante
 import com.example.cerrajeria24horas.util.BarraNavegacionFlotante.Destino
 import com.example.cerrajeria24horas.util.Preferencias
+import com.example.cerrajeria24horas.util.UI
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : BaseActivity() {
@@ -31,6 +32,7 @@ class MainActivity : BaseActivity() {
         }
 
         setContentView(R.layout.activity_main)
+        UI.aplicarMarca(findViewById(R.id.tvMarca))
         barra = findViewById(R.id.barraNavegacion)
 
         findViewById<View>(R.id.btnIrPerfil).setOnClickListener { abrirActividad(PerfilActivity::class.java) }
