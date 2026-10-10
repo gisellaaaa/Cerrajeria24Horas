@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Acceso: todo cabe sin desplazamiento. Cabecera arriba, formulario centrado y pie abajo. -->
+<!-- Acceso: cabecera arriba, formulario centrado y pie abajo. El cuerpo se centra cuando
+     sobra espacio y se desplaza solo si no cabe, así nunca se cortan los campos. -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -64,140 +65,149 @@
             android:background="@color/oro" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llCuerpoLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:id="@+id/svCuerpoLogin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/espacio_16"
         android:layout_marginBottom="@dimen/espacio_12"
-        android:orientation="vertical"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/llCabeceraLogin"
         app:layout_constraintBottom_toTopOf="@id/llPieLogin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:id="@+id/cardLogin"
+            android:id="@+id/llCuerpoLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@drawable/bg_tarjeta">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/acceso_cuenta"
-                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Subtitulo" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Cerrajeria24Horas.Campo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="@string/correo">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLoginCorreo"
-                    style="@style/Cerrajeria24Horas.Entrada"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColor="@color/texto_principal" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Cerrajeria24Horas.Campo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:hint="@string/contrasena"
-                app:endIconMode="password_toggle">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etLoginPassword"
-                    style="@style/Cerrajeria24Horas.Entrada"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:textColor="@color/texto_principal" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tvOlvideContrasena"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="6dp"
-                android:minHeight="@dimen/zona_tactil"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="@string/olvide_contrasena"
-                android:textColor="@color/azul_acento"
-                android:textSize="14sp"
-                android:fontFamily="@font/dm_sans_semibold" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogin"
-                style="@style/Cerrajeria24Horas.BotonPrimario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/iniciar_sesion" />
-
-            <ProgressBar
-                android:id="@+id/pbLogin"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="12dp"
-                android:visibility="gone"
-                android:indeterminateTint="@color/azul_acento" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llCuentasDispositivo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/espacio_12"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/cuentas_dispositivo"
-                android:textColor="@color/azul_marino"
-                android:textSize="13sp"
-                android:fontFamily="@font/dm_sans_bold"
-                android:textAllCaps="true" />
+            android:gravity="center">
 
             <LinearLayout
-                android:id="@+id/llCuentasLista"
+                android:id="@+id/cardLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:orientation="horizontal" />
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/bg_tarjeta">
 
-            <TextView
-                android:id="@+id/tvSinCuentas"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/acceso_cuenta"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Subtitulo" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Cerrajeria24Horas.Campo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/correo">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLoginCorreo"
+                        style="@style/Cerrajeria24Horas.Entrada"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColor="@color/texto_principal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Cerrajeria24Horas.Campo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/contrasena"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLoginPassword"
+                        style="@style/Cerrajeria24Horas.Entrada"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:textColor="@color/texto_principal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvOlvideContrasena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="6dp"
+                    android:minHeight="@dimen/zona_tactil"
+                    android:gravity="center"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/olvide_contrasena"
+                    android:textColor="@color/azul_acento"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/dm_sans_semibold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogin"
+                    style="@style/Cerrajeria24Horas.BotonPrimario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/iniciar_sesion" />
+
+                <ProgressBar
+                    android:id="@+id/pbLogin"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    android:indeterminateTint="@color/azul_acento" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCuentasDispositivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/sin_cuentas_guardadas"
-                android:textColor="@color/texto_secundario"
-                android:textSize="13sp"
-                android:fontFamily="@font/dm_sans_regular" />
+                android:layout_marginTop="@dimen/espacio_12"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cuentas_dispositivo"
+                    android:textColor="@color/azul_marino"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:textAllCaps="true" />
+
+                <LinearLayout
+                    android:id="@+id/llCuentasLista"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal" />
+
+                <TextView
+                    android:id="@+id/tvSinCuentas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/sin_cuentas_guardadas"
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/dm_sans_regular" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/llPieLogin"

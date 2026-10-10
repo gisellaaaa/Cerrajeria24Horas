@@ -103,12 +103,12 @@ class MainActivity : BaseActivity() {
     }
 
     /**
-     * En Servicios y Clientes hay un botón de registro como barra inferior, así que el
-     * botón "+" debe flotar por encima de él. En el resto de pestañas queda en la esquina.
+     * En Servicios, Clientes y Equipo hay un botón de registro como barra inferior, así que
+     * el botón "+" debe flotar por encima de él. En el resto de pestañas queda en la esquina.
      */
     private fun ajustarFab(destino: Destino) {
         val fab = findViewById<FloatingActionButton>(R.id.btnNuevoServicio)
-        val margenRes = if (destino == Destino.SERVICIOS || destino == Destino.CLIENTES) {
+        val margenRes = if (destino == Destino.SERVICIOS || destino == Destino.CLIENTES || destino == Destino.EQUIPO) {
             R.dimen.margen_fab_sobre_boton
         } else {
             R.dimen.margen_fab_navegacion

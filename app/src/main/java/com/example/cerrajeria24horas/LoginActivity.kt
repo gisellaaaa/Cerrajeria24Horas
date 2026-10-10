@@ -73,7 +73,6 @@ class LoginActivity : BaseActivity() {
         auth.signInWithEmailAndPassword(correo, password)
             .addOnSuccessListener {
                 Preferencias.guardarCuenta(this, correo, correo)
-                Toast.makeText(this, getString(R.string.bienvenido), Toast.LENGTH_SHORT).show()
                 if (Preferencias.tienePin(this) && !BloqueoActivity.desbloqueado) {
                     // La app no se abre hasta digitar el PIN.
                     BloqueoActivity.abrir(this, BloqueoActivity.MODO_DESBLOQUEO)

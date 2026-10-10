@@ -81,12 +81,10 @@ class RegisterActivity : BaseActivity() {
     private fun guardarUsuario(uid: String, nombre: String, correo: String, telefono: String) {
         FirestoreAPI.guardarUsuario(uid, nombre, correo, telefono)
             .addOnSuccessListener {
-                Toast.makeText(this, R.string.cuenta_creada, Toast.LENGTH_SHORT).show()
                 irAlPanel()
             }
             .addOnFailureListener {
                 // La cuenta ya existe en Authentication aunque falle el detalle en Firestore.
-                Toast.makeText(this, R.string.cuenta_creada, Toast.LENGTH_SHORT).show()
                 irAlPanel()
             }
     }
