@@ -1,7 +1,7 @@
-<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="#2420265D">
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/onda_oscura">
     <item>
         <shape>
-            <gradient android:startColor="#F8FBFF" android:endColor="#E7EDF8" android:angle="135"/>
+            <gradient android:startColor="@color/fondo_tarjeta" android:endColor="@color/fondo_suave" android:angle="135"/>
             <corners android:radius="20dp"/>
         </shape>
     </item>

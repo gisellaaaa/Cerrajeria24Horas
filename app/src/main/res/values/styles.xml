@@ -1,22 +1,30 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <style name="TextAppearance.Cerrajeria24Horas.TituloGrande" parent="TextAppearance.Material3.HeadlineLarge">
-        <item name="android:fontFamily">@font/tipografia_bebas</item>
-        <item name="fontFamily">@font/tipografia_bebas</item>
-        <item name="android:textSize">36sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:letterSpacing">0.025</item>
+    <!-- Una sola familia (DM Sans). La jerarquía se logra con peso y color, no con otras fuentes. -->
+    <style name="TextAppearance.Cerrajeria24Horas.Hero" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+        <item name="fontFamily">@font/dm_sans_bold</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.01</item>
         <item name="android:textColor">@color/azul_marino</item>
     </style>
-    <style name="TextAppearance.Cerrajeria24Horas.Titulo" parent="TextAppearance.Cerrajeria24Horas.TituloGrande">
-        <item name="android:textSize">24sp</item>
+    <style name="TextAppearance.Cerrajeria24Horas.TituloGrande" parent="TextAppearance.Cerrajeria24Horas.Hero">
+        <item name="android:textSize">34sp</item>
     </style>
-    <style name="TextAppearance.Cerrajeria24Horas.TituloPantalla" parent="TextAppearance.Cerrajeria24Horas.TituloGrande">
-        <item name="android:textSize">22sp</item>
+    <style name="TextAppearance.Cerrajeria24Horas.Titulo" parent="TextAppearance.Cerrajeria24Horas.Hero">
+        <item name="android:textSize">28sp</item>
+    </style>
+    <style name="TextAppearance.Cerrajeria24Horas.TituloPantalla" parent="TextAppearance.Cerrajeria24Horas.Titulo"/>
+    <style name="TextAppearance.Cerrajeria24Horas.Subtitulo" parent="TextAppearance.Cerrajeria24Horas.Hero">
+        <item name="android:fontFamily">@font/dm_sans_semibold</item>
+        <item name="fontFamily">@font/dm_sans_semibold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
     </style>
     <style name="TextAppearance.Cerrajeria24Horas.Cuerpo" parent="TextAppearance.Material3.BodyLarge">
-        <item name="android:fontFamily">@font/tipografia_dm_sans</item>
-        <item name="fontFamily">@font/tipografia_dm_sans</item>
+        <item name="android:fontFamily">@font/dm_sans_regular</item>
+        <item name="fontFamily">@font/dm_sans_regular</item>
         <item name="android:textColor">@color/texto_cuerpo</item>
         <item name="android:textSize">15sp</item>
         <item name="android:letterSpacing">0</item>
@@ -27,12 +35,19 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/texto_secundario</item>
     </style>
-    <!-- Cifras importantes: el número domina y su etiqueta va pequeña debajo. -->
+    <!-- Cifras: DM Sans Bold con cifras tabulares (tnum) para que no "bailen" al animarse. -->
     <style name="TextAppearance.Cerrajeria24Horas.Cifra" parent="TextAppearance.Cerrajeria24Horas.Cuerpo">
         <item name="android:fontFamily">@font/dm_sans_bold</item>
         <item name="fontFamily">@font/dm_sans_bold</item>
-        <item name="android:textSize">34sp</item>
+        <item name="android:textSize">36sp</item>
         <item name="android:textColor">@color/texto_principal</item>
+        <item name="android:fontFeatureSettings">tnum</item>
+    </style>
+    <style name="TextAppearance.Cerrajeria24Horas.CifraUnidad" parent="TextAppearance.Cerrajeria24Horas.Cuerpo">
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/texto_secundario</item>
     </style>
     <style name="Cerrajeria24Horas.Campo" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="android:textColorHint">@color/tint_etiqueta_campo</item>
@@ -97,7 +112,6 @@
         <item name="iconSize">22dp</item>
         <item name="iconGravity">textStart</item>
         <item name="rippleColor">@color/onda_clara</item>
-        <item name="android:stateListAnimator">@animator/elevacion_boton</item>
     </style>
     <style name="Cerrajeria24Horas.BotonPrimario" parent="Cerrajeria24Horas.Boton">
         <item name="backgroundTint">@color/tint_boton_primario</item>
@@ -130,10 +144,60 @@
         <item name="strokeColor">@color/rojo_error</item>
         <item name="backgroundTint">@color/rojo_suave</item>
     </style>
+    <!-- Se retira el deslizamiento global del 8 %: las transiciones concretas las gobierna Movimiento. -->
     <style name="Cerrajeria24Horas.Transiciones" parent="android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
-        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
-        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
-        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+        <item name="android:activityOpenEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
+    </style>
+
+    <!-- Botón de icono circular (reemplaza los cuadrados de 16dp). -->
+    <style name="Cerrajeria24Horas.BotonIcono" parent="Widget.Material3.Button.IconButton">
+        <item name="android:layout_width">@dimen/zona_tactil</item>
+        <item name="android:layout_height">@dimen/zona_tactil</item>
+        <item name="backgroundTint">@color/fondo_suave</item>
+        <item name="iconTint">@color/azul_marino</item>
+        <item name="iconSize">24dp</item>
+        <item name="cornerRadius">@dimen/radio_pildora</item>
+        <item name="rippleColor">@color/onda_oscura</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+    <style name="Cerrajeria24Horas.BotonIconoClaro" parent="Cerrajeria24Horas.BotonIcono">
+        <item name="backgroundTint">@color/white</item>
+        <item name="iconTint">@color/azul_marino</item>
+    </style>
+
+    <!-- Chips en píldora sobre el sistema de Material 3. -->
+    <style name="Cerrajeria24Horas.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="android:fontFamily">@font/dm_sans_semibold</item>
+        <item name="fontFamily">@font/dm_sans_semibold</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="chipBackgroundColor">@color/fondo_tarjeta</item>
+        <item name="chipStrokeColor">@color/borde</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/texto_cuerpo</item>
+        <item name="chipIconTint">@color/azul_acento</item>
+    </style>
+
+    <!-- Tarjetas: se distinguen por color de superficie, sin borde de 1dp. -->
+    <style name="Widget.Cerrajeria24Horas.Tarjeta" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/fondo_tarjeta</item>
+        <item name="cardCornerRadius">@dimen/radio_tarjeta</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+    <style name="Widget.Cerrajeria24Horas.TarjetaHeroe" parent="Widget.Cerrajeria24Horas.Tarjeta">
+        <item name="cardCornerRadius">@dimen/radio_heroe</item>
+    </style>
+    <style name="Widget.Cerrajeria24Horas.TarjetaInicio" parent="Widget.Cerrajeria24Horas.Tarjeta">
+        <item name="cardBackgroundColor">@color/superficie_inicio</item>
+    </style>
+    <style name="Widget.Cerrajeria24Horas.TarjetaServicios" parent="Widget.Cerrajeria24Horas.Tarjeta">
+        <item name="cardBackgroundColor">@color/superficie_servicios</item>
+    </style>
+    <style name="Widget.Cerrajeria24Horas.TarjetaClientes" parent="Widget.Cerrajeria24Horas.Tarjeta">
+        <item name="cardBackgroundColor">@color/superficie_clientes</item>
     </style>
 </resources>

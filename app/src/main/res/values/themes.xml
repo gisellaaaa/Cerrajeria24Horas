@@ -48,11 +48,13 @@
         <item name="textInputStyle">@style/Cerrajeria24Horas.Campo</item>
         <item name="editTextStyle">@style/Cerrajeria24Horas.Entrada</item>
         <item name="materialButtonStyle">@style/Cerrajeria24Horas.BotonPrimario</item>
+        <item name="chipStyle">@style/Cerrajeria24Horas.Chip</item>
+        <item name="materialCardViewStyle">@style/Widget.Cerrajeria24Horas.Tarjeta</item>
         <item name="android:spinnerItemStyle">@style/Cerrajeria24Horas.TextoSelector</item>
         <item name="android:spinnerDropDownItemStyle">@style/Cerrajeria24Horas.TextoSelector</item>
         <item name="android:statusBarColor">@color/fondo</item>
         <item name="android:navigationBarColor">@color/fondo</item>
-        <item name="android:windowBackground">@drawable/bg_fondo_app</item>
+        <item name="android:windowBackground">@color/fondo</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowAnimationStyle">@style/Cerrajeria24Horas.Transiciones</item>
         <item name="materialCalendarTheme">@style/ThemeOverlay.Cerrajeria24Horas.Calendario</item>

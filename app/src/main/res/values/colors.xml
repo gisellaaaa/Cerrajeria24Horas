@@ -35,7 +35,7 @@
 
     <color name="texto_principal">#1B1E3D</color>
     <color name="texto_cuerpo">#3A3F6B</color>
-    <color name="texto_secundario">#7A80A8</color>
+    <color name="texto_secundario">#5B628F</color>
     <color name="texto_sobre_dorado">#1C2260</color>
     <color name="texto_sobre_azul">#E4ECFA</color>
     <color name="texto_deshabilitado">#9AA0BE</color>
@@ -62,4 +62,18 @@
 
     <color name="rojo_error">#B4212A</color>
     <color name="rojo_suave">#FDE3E3</color>
+
+    <!-- Superficies del sistema "profesional y fresco": el color va en bloques, no en pantalla completa. -->
+    <color name="crema">#FFF8D6</color>
+    <color name="superficie_inicio">@color/oro</color>
+    <color name="superficie_servicios">@color/tinte_azul</color>
+    <color name="superficie_clientes">@color/tinte_lavanda</color>
+    <color name="superficie_ganancias">@color/durazno</color>
+    <color name="superficie_perfil">@color/azul_marino</color>
+    <color name="nav_fondo">@color/azul_marino_oscuro</color>
+    <color name="nav_indicador">#2A3178</color>
+    <color name="nav_texto_inactivo">#9AA2D0</color>
+
+    <!-- El degradado diagonal anterior se retira: el fondo de trabajo es plano y claro. -->
+    <color name="degradado_app_inicio">#F4F7FD</color>
 </resources>

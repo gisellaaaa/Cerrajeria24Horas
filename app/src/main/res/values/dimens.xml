@@ -12,6 +12,8 @@
     <dimen name="circulo_icono">44dp</dimen>
     <!-- Radios generosos: tarjetas 28, campos 18, botones totalmente redondeados. -->
     <dimen name="radio_tarjeta">28dp</dimen>
+    <dimen name="radio_heroe">36dp</dimen>
+    <dimen name="radio_ficha">18dp</dimen>
     <dimen name="radio_campo">18dp</dimen>
     <dimen name="radio_ventana">28dp</dimen>
     <dimen name="radio_pildora">999dp</dimen>
@@ -22,4 +24,10 @@
     <dimen name="espacio_12">12dp</dimen>
     <dimen name="espacio_16">16dp</dimen>
     <dimen name="espacio_20">20dp</dimen>
+    <dimen name="espacio_24">24dp</dimen>
+    <!-- Barra de navegación flotante. -->
+    <dimen name="alto_barra_navegacion">64dp</dimen>
+    <dimen name="boton_central_navegacion">60dp</dimen>
+    <dimen name="margen_barra_navegacion">16dp</dimen>
+    <dimen name="icono_barra_navegacion">24dp</dimen>
 </resources>
