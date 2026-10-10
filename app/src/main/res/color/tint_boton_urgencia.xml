@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/fondo_deshabilitado" android:state_enabled="false" />
+    <item android:color="@color/boton_urgencia_presionado" android:state_pressed="true" />
+    <item android:color="@color/boton_urgencia_presionado" android:state_focused="true" />
+    <item android:color="@color/boton_urgencia" />
+</selector>

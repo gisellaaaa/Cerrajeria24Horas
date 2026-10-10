@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de la app: color base #F4F7FD con un degradado diagonal muy suave que
+     mezcla los dos colores de marca (cobalto arriba y amarillo llave abajo).
+     Sin formas decorativas: solo el tinte, para que las tarjetas resalten limpias. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="315"
+                android:centerColor="@color/fondo"
+                android:centerX="0.5"
+                android:centerY="0.42"
+                android:endColor="@color/degradado_fondo_fin"
+                android:startColor="@color/degradado_fondo_inicio"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

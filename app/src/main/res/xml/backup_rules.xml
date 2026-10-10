@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+   El PIN, los ajustes y las cuentas del dispositivo no se copian a la nube
+   ni se transfieren a otro teléfono: son datos locales de este equipo.
+   Ver https://developer.android.com/guide/topics/data/autobackup
+-->
+<full-backup-content>
+    <exclude
+        domain="sharedpref"
+        path="cerrajeria_preferencias.xml" />
+</full-backup-content>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla de bloqueo por PIN: privada, sin cabecera ni forma de salir con el botón atrás. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@drawable/bg_fondo_app">
+
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:padding="18dp"
+        android:background="@drawable/bg_acento_suave"
+        android:src="@drawable/ic_key"
+        app:tint="@color/azul_acento"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/tvBloqueoTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo" />
+
+    <TextView
+        android:id="@+id/tvBloqueoPuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/azul_marino"
+        android:textSize="26sp"
+        android:letterSpacing="0.3"
+        android:fontFamily="@font/dm_sans_bold"
+        android:importantForAccessibility="no" />
+
+    <TextView
+        android:id="@+id/tvBloqueoError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:minHeight="20sp"
+        android:textColor="@color/rojo_error"
+        android:textSize="13sp"
+        android:fontFamily="@font/dm_sans_medium" />
+
+    <LinearLayout
+        android:id="@+id/llTeclado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical" />
+</LinearLayout>

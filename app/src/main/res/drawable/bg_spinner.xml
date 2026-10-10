@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/fondo_tarjeta"/>
+            <corners android:radius="@dimen/radio_campo"/>
+            <stroke android:width="2dp" android:color="@color/azul_acento"/>
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/azul_acento_claro"/>
+            <corners android:radius="@dimen/radio_campo"/>
+            <stroke android:width="2dp" android:color="@color/azul_acento"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/fondo_tarjeta"/>
+            <corners android:radius="@dimen/radio_campo"/>
+            <stroke android:width="1dp" android:color="@color/borde_input"/>
+        </shape>
+    </item>
+</selector>

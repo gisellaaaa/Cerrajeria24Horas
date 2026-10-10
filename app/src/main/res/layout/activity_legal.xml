@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Texto legal estático: política de privacidad y términos. No consulta la base de datos. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_fondo_app">
+
+    <include
+        android:id="@+id/enc"
+        layout="@layout/encabezado_actividad" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margen_pantalla">
+
+            <TextView
+                android:id="@+id/tvLegalTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
+
+            <TextView
+                android:id="@+id/tvLegalTexto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:lineSpacingExtra="5dp"
+                android:textColor="@color/texto_secundario"
+                android:textSize="14sp"
+                android:fontFamily="@font/dm_sans_regular" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

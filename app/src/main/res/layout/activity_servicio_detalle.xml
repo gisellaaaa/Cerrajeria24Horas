@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@drawable/bg_fondo_app">
+    <include android:id="@+id/enc" layout="@layout/encabezado_actividad"/>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:clipToPadding="false" android:scrollbars="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/margen_pantalla">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_tarjeta" android:padding="18dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="start">
+                        <TextView android:id="@+id/tvSCliente" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/azul_marino" android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla"/>
+                        <TextView android:id="@+id/tvSEstado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_chip_estado" android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="5dp" android:paddingBottom="5dp" android:textColor="@color/white" android:textSize="12sp" android:fontFamily="@font/dm_sans_bold" android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                    <TextView android:id="@+id/tvSTipo" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:textColor="@color/texto_principal" android:textSize="16sp" android:fontFamily="@font/dm_sans_bold"/>
+                    <TextView android:id="@+id/tvSDescripcion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="@color/texto_secundario" android:textSize="15sp" android:visibility="gone" android:fontFamily="@font/dm_sans_regular"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="16dp" android:layout_marginBottom="16dp" android:background="@color/borde"/>
+                    <TextView android:id="@+id/tvSCiudad" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/texto_secundario" android:textSize="15sp" android:fontFamily="@font/dm_sans_regular"/>
+                    <TextView android:id="@+id/tvSDireccion" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="@color/texto_secundario" android:textSize="15sp" android:fontFamily="@font/dm_sans_regular"/>
+                    <TextView android:id="@+id/tvSFecha" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="@color/texto_secundario" android:textSize="15sp" android:fontFamily="@font/dm_sans_regular"/>
+                    <TextView android:id="@+id/tvSValor" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:fontFamily="@font/dm_sans_bold" android:textColor="@color/estado_realizado" android:textSize="30sp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:orientation="vertical" android:background="@drawable/bg_tarjeta" android:padding="18dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/estado" android:textColor="@color/texto_secundario" android:textSize="12sp" android:fontFamily="@font/dm_sans_bold" android:textAllCaps="true"/>
+                    <androidx.appcompat.widget.AppCompatSpinner android:id="@+id/spEstado" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:background="@drawable/bg_spinner" android:paddingStart="16dp" android:paddingEnd="12dp" android:minHeight="56dp" android:popupBackground="@drawable/bg_lista_opciones" android:spinnerMode="dropdown" android:dropDownWidth="match_parent" app:popupTheme="@style/ThemeOverlay.Cerrajeria24Horas.Selector"/>
+                    <com.google.android.material.button.MaterialButton android:id="@+id/btnCambiarEstado" style="@style/Cerrajeria24Horas.BotonSecundario" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/actualizar_estado" android:textSize="14sp"/>
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnFactura" style="@style/Cerrajeria24Horas.BotonDorado" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:text="@string/descargar_factura" app:icon="@drawable/ic_key" app:iconGravity="textStart"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/nota_estados_realizado" android:textColor="@color/texto_secundario" android:textSize="13sp" android:fontFamily="@font/dm_sans_regular"/>
+            </LinearLayout>
+        </ScrollView>
+        <ProgressBar android:id="@+id/pbServicioDetalle" style="?android:attr/progressBarStyleLarge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone" android:indeterminateTint="@color/azul_acento"/>
+    </FrameLayout>
+</LinearLayout>

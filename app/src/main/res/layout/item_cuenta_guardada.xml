@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fila de una cuenta guardada en el dispositivo, para cambiar de cuenta en un toque. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:minHeight="56dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="14dp"
+    android:background="@drawable/bg_tarjeta"
+    android:stateListAnimator="@animator/elevacion_boton">
+
+    <ImageView
+        android:layout_width="@dimen/circulo_icono"
+        android:layout_height="@dimen/circulo_icono"
+        android:padding="10dp"
+        android:background="@drawable/bg_acento_suave"
+        android:src="@drawable/ic_person"
+        app:tint="@color/azul_acento"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/icCuentaNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/texto_principal"
+            android:textSize="15sp"
+            android:fontFamily="@font/dm_sans_semibold" />
+
+        <TextView
+            android:id="@+id/icCuentaCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/texto_secundario"
+            android:textSize="12sp"
+            android:fontFamily="@font/dm_sans_regular" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usar_cuenta"
+        android:textColor="@color/azul_acento"
+        android:textSize="13sp"
+        android:fontFamily="@font/dm_sans_semibold" />
+</LinearLayout>

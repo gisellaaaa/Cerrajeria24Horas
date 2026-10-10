@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="margen_pantalla">32dp</dimen>
+    <dimen name="margen_formulario">32dp</dimen>
+    <dimen name="logo_acceso">144dp</dimen>
+    <dimen name="espacio_acceso_superior">36dp</dimen>
+</resources>

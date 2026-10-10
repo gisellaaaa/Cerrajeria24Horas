@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" app:cardBackgroundColor="@color/tint_tarjeta" app:cardCornerRadius="@dimen/radio_tarjeta" app:strokeWidth="1dp" app:strokeColor="@color/borde" app:cardElevation="0dp" android:clickable="true" android:focusable="true" android:stateListAnimator="@animator/presion_tarjeta" app:rippleColor="@color/onda_oscura">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="start">
+            <TextView android:id="@+id/tvServCliente" android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="@font/dm_sans_semibold" android:textColor="@color/azul_marino" android:textSize="16sp"/>
+            <TextView android:id="@+id/tvServEstado" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_chip_estado" android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="5dp" android:paddingBottom="5dp" android:textColor="@color/white" android:textSize="12sp" android:fontFamily="@font/dm_sans_bold" android:layout_marginTop="8dp"/>
+        </LinearLayout>
+        <TextView android:id="@+id/tvServTipo" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="@color/texto_principal" android:textSize="15sp" android:fontFamily="@font/dm_sans_regular"/>
+        <TextView android:id="@+id/tvServCiudad" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textColor="@color/texto_secundario" android:textSize="13sp" android:fontFamily="@font/dm_sans_regular"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:orientation="vertical" android:gravity="start">
+            <TextView android:id="@+id/tvServFecha" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/texto_secundario" android:textSize="13sp" android:fontFamily="@font/dm_sans_regular"/>
+            <TextView android:id="@+id/tvServValor" android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="@font/dm_sans_bold" android:textColor="@color/azul_marino" android:textSize="20sp" android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

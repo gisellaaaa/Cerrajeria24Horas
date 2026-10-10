@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Cerrajeria24Horas" parent="Base.Theme.Cerrajeria24Horas">
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowSplashScreenBackground">@color/fondo</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/white</item>
+    </style>
+</resources>

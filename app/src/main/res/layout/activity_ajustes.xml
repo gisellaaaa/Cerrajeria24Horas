@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_fondo_app">
+
+    <include
+        android:id="@+id/enc"
+        layout="@layout/encabezado_actividad" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margen_pantalla">
+
+            <!-- Cuenta -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="@drawable/bg_tarjeta">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ajustes_cuenta"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/ajustes_cuenta_descripcion"
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/dm_sans_regular" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAjustesFoto"
+                    style="@style/Cerrajeria24Horas.BotonContorno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/agregar_foto_perfil"
+                    app:icon="@drawable/ic_person"
+                    app:iconGravity="start" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAjustesCambiarCuenta"
+                    style="@style/Cerrajeria24Horas.BotonSecundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="start|center_vertical"
+                    android:text="@string/cambiar_cuenta"
+                    app:icon="@drawable/ic_person"
+                    app:iconGravity="start" />
+            </LinearLayout>
+
+            <!-- Seguridad: las filas se agregan desde el código -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="@drawable/bg_tarjeta">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ajustes_seguridad"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/ajustes_seguridad_descripcion"
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/dm_sans_regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:id="@+id/llSeguridad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- Privacidad: las filas se agregan desde el código -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="@drawable/bg_tarjeta">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ajustes_privacidad"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/ajustes_privacidad_descripcion"
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/dm_sans_regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:id="@+id/llPrivacidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- Avisos y movimiento -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="@drawable/bg_tarjeta">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ajustes_dispositivo"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/ajustes_dispositivo_descripcion"
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/dm_sans_regular" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/zona_tactil"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pref_notificaciones"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/dm_sans_semibold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/pref_notificaciones_descripcion"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/dm_sans_regular" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/swNotificaciones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="52dp"
+                        android:minHeight="@dimen/zona_tactil"
+                        android:text="" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/borde" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/zona_tactil"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pref_reducir_movimiento"
+                            android:textColor="@color/texto_principal"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/dm_sans_semibold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/pref_reducir_movimiento_descripcion"
+                            android:textColor="@color/texto_secundario"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/dm_sans_regular" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/swReducirMovimiento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="52dp"
+                        android:minHeight="@dimen/zona_tactil"
+                        android:text="" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAjustesCerrar"
+                style="@style/Cerrajeria24Horas.BotonSalir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/cerrar_sesion"
+                app:strokeWidth="1dp"
+                app:icon="@drawable/ic_logout"
+                app:iconGravity="start" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

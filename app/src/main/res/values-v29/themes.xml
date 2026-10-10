@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.Cerrajeria24Horas" parent="Base.Theme.Cerrajeria24Horas">
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

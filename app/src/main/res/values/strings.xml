@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cerrajería 24 Horas</string>
+    <string name="nombre_empresa">Cerrajería 24 Horas</string>
+    <!-- Nombre de marca en dos tonos, igual que la jerarquía de color del logo. -->
+    <string name="marca_cerrajeria">Cerrajería</string>
+    <string name="marca_24_horas">24 Horas</string>
+    <string name="eslogan">Siempre a tu servicio</string>
+    <!-- Generales -->
+    <string name="cargando">Cargando…</string>
+    <string name="guardando">Guardando…</string>
+    <string name="sin_datos">No hay información disponible.</string>
+    <string name="error_conexion">Error de conexión. Verifica tu conexión a Internet.</string>
+    <string name="error_guardar">No fue posible guardar la información.</string>
+    <string name="completa_campos">Completa todos los campos.</string>
+    <string name="campos_incorrectos">Revisa los campos marcados.</string>
+    <string name="volver">Volver</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+    <!-- Login -->
+    <string name="correo">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="iniciar_sesion">INICIAR SESIÓN</string>
+    <string name="crear_cuenta">CREAR CUENTA</string>
+    <string name="sin_cuenta">¿Aún no tienes cuenta?</string>
+    <string name="crear_cuenta_link">Crear cuenta</string>
+    <string name="correo_o_contrasena_incorrectos">Correo o contraseña incorrectos.</string>
+    <string name="no_existe_cuenta">No existe una cuenta con este correo.</string>
+    <string name="contrasena_incorrecta">Contraseña incorrecta.</string>
+    <string name="correo_invalido">Ingresa un correo electrónico válido.</string>
+    <!-- Recuperar contraseña -->
+    <string name="olvide_contrasena">¿Olvidaste tu contraseña?</string>
+    <string name="correo_recuperacion_enviado">Te enviamos el enlace de recuperación a tu correo. Revisa tu bandeja de entrada.</string>
+    <string name="error_enviar_recuperacion">No fue posible enviar el correo de recuperación.</string>
+    <!-- Cambio de cuenta en el mismo dispositivo -->
+    <string name="cuentas_dispositivo">Cuentas en este dispositivo</string>
+    <string name="sin_cuentas_guardadas">Aquí aparecerán las cuentas con las que inicias sesión en este teléfono.</string>
+    <string name="usar_cuenta">Usar esta cuenta</string>
+    <string name="cambiar_cuenta">Cambiar de cuenta</string>
+    <!-- Registro de cuenta -->
+    <string name="titulo_registro">Crear cuenta</string>
+    <string name="nombre_completo">Nombre completo</string>
+    <string name="confirmar_contrasena">Confirmar contraseña</string>
+    <string name="contrasena_corta">La contraseña debe tener al menos 6 caracteres.</string>
+    <string name="contrasenas_no_coinciden">Las contraseñas no coinciden.</string>
+    <string name="cuenta_existente">Ya existe una cuenta con este correo.</string>
+    <string name="cuenta_creada">¡Cuenta creada correctamente!</string>
+    <!-- Dashboard -->
+    <string name="bienvenido">Bienvenido(a),</string>
+    <string name="pendientes">Pendientes</string>
+    <string name="en_proceso">En proceso</string>
+    <string name="realizados">Realizados</string>
+    <string name="ganancias_hoy">Ganancias de hoy</string>
+    <string name="menu_clientes">Clientes</string>
+    <string name="menu_servicios">Servicios</string>
+    <string name="menu_ganancias">Ganancias</string>
+    <string name="mi_perfil">Mi perfil</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="titulo_panel">Panel principal</string>
+    <!-- Clientes -->
+    <string name="titulo_clientes">Clientes</string>
+    <string name="subir_cliente">Registrar cliente</string>
+    <string name="tip_cantidad_clientes">clientes registrados</string>
+    <string name="sin_clientes">No hay clientes guardados.</string>
+    <string name="nombre">Nombre</string>
+    <string name="documento">Documento / Identificación</string>
+    <string name="telefono">Teléfono</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="direccion">Dirección</string>
+    <string name="notas">Notas / Información adicional</string>
+    <string name="telefono_invalido">Ingresa un teléfono válido.</string>
+    <string name="guardar_cliente">GUARDAR CLIENTE</string>
+    <string name="cliente_guardado">Cliente registrado correctamente.</string>
+    <string name="error_registrar_cliente">No fue posible registrar el cliente. Inténtalo nuevamente.</string>
+    <string name="cliente_obligatorio">Nombre, teléfono, ciudad y dirección son obligatorios.</string>
+    <string name="titulo_detalle_cliente">Detalle del cliente</string>
+    <string name="registrar_servicio">REGISTRAR SERVICIO</string>
+    <string name="sin_datos_adicionales">Sin información adicional.</string>
+    <string name="sin_documento">Sin documento.</string>
+    <string name="sin_correo">Sin correo.</string>
+    <!-- Servicios -->
+    <string name="titulo_servicios">Servicios</string>
+    <string name="subir_servicio">Registrar servicio</string>
+    <string name="sin_servicios">Aún no tienes servicios. ¡Esperamos no tener que verte pronto!</string>
+    <string name="selecciona_cliente">Selecciona un cliente</string>
+    <string name="tipo_servicio">Tipo de servicio</string>
+    <string name="descripcion">Descripción</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora_servicio">Hora</string>
+    <string name="valor">Valor (COP)</string>
+    <string name="estado">Estado</string>
+    <string name="elegir_fecha">Elegir fecha</string>
+    <string name="elegir_hora">Elegir hora</string>
+    <string name="guardar_servicio">GUARDAR SERVICIO</string>
+    <string name="servicio_guardado">Servicio registrado correctamente.</string>
+    <string name="error_registrar_servicio">No fue posible registrar el servicio. Inténtalo nuevamente.</string>
+    <string name="selecciona_un_cliente">Debes seleccionar un cliente.</string>
+    <string name="valor_invalido">Ingresa un valor mayor que cero.</string>
+    <string name="titulo_detalle_servicio">Detalle del servicio</string>
+    <string name="estado_actualizado">Estado actualizado correctamente.</string>
+    <string name="error_actualizar_estado">No fue posible actualizar el estado.</string>
+    <string name="actualizar_estado">ACTUALIZAR ESTADO</string>
+    <string name="cliente_no_encontrado">No se encontró el cliente.</string>
+    <string name="nota_estados_realizado">Solo los servicios con estado REALIZADO cuentan como ganancia.</string>
+    <!-- Ganancias -->
+    <string name="titulo_ganancias">Ganancias</string>
+    <string name="ganancias_del_dia">Ganancias del día</string>
+    <string name="ganancias_de_la_semana">Ganancias de la semana</string>
+    <string name="ganancias_del_mes">Ganancias del mes</string>
+    <string name="disponible_ahora">Disponible ahora</string>
+    <string name="sin_ganancias">Aún no hay ganancias registradas.</string>
+    <!-- Perfil -->
+    <string name="titulo_perfil">Mi perfil</string>
+    <string name="rol">Rol</string>
+    <string name="cerrar_sesion_confirmar">¿Deseas cerrar sesión?</string>
+    <string name="sesion_cerrada">Sesión cerrada.</string>
+    <string name="sesion_cerrada_cambio">Sesión cerrada. Ya puedes entrar con otra cuenta.</string>
+    <string name="cambiar_foto_perfil">Cambiar imagen de perfil</string>
+    <string name="agregar_foto_perfil">Agregar imagen de perfil</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="titulo_ajustes">Ajustes</string>
+    <string name="ajustes_cuenta">Cuenta</string>
+    <string name="ajustes_cuenta_descripcion">Personaliza la información visible de tu perfil.</string>
+    <string name="foto_perfil_guardada">Imagen de perfil actualizada.</string>
+    <string name="error_foto_perfil">No se pudo actualizar la imagen de perfil.</string>
+<string name="eliminar_foto_perfil">Eliminar imagen de perfil</string>
+    <string name="foto_perfil_eliminada">Imagen de perfil eliminada.</string>
+    <string name="error_eliminar_foto_perfil">No se pudo eliminar la imagen de perfil.</string>
+    <!-- Preferencias del dispositivo -->
+    <string name="ajustes_dispositivo">Preferencias del dispositivo</string>
+    <string name="ajustes_dispositivo_descripcion">Se guardan en este teléfono y se mantienen al salir de la app.</string>
+    <string name="pref_notificaciones">Notificaciones</string>
+    <string name="pref_notificaciones_descripcion">Avisos de tus servicios y de tus ganancias.</string>
+    <string name="pref_reducir_movimiento">Reducir movimiento</string>
+    <string name="pref_reducir_movimiento_descripcion">Cambia las transiciones entre pantallas por fundidos suaves.</string>
+    <!-- Factura en PDF -->
+    <string name="descargar_factura">DESCARGAR FACTURA PDF</string>
+    <string name="compartir_factura">Compartir factura</string>
+    <string name="factura_lista">Factura lista. Elige dónde guardarla o cómo compartirla.</string>
+    <string name="factura_error">No fue posible generar la factura.</string>
+    <string name="factura_sin_app">No hay una app instalada para abrir el archivo PDF.</string>
+    <string name="factura_titulo">FACTURA</string>
+    <string name="factura_numero">Factura N.º</string>
+    <string name="factura_fecha">Fecha de emisión</string>
+    <string name="factura_cliente">Cliente</string>
+    <string name="factura_servicio">Servicio</string>
+    <string name="factura_direccion">Dirección</string>
+    <string name="factura_estado">Estado</string>
+    <string name="factura_total">Total</string>
+    <string name="factura_gracias">Gracias por confiar en Cerrajería 24 Horas.</string>
+    <!-- Errores de Firebase -->
+    <string name="error_red">Error de conexión. Verifica tu conexión a Internet.</string>
+    <string name="error_permisos">No tienes permisos para realizar esta acción. Revisa las reglas de seguridad de Firestore.</string>
+    <string name="error_base_datos">No se encontró la base de datos. Crea Cloud Firestore en el proyecto de Firebase.</string>
+    <string name="error_configuracion">Firestore necesita un índice compuesto o la base de datos no está creada. Revisa Cloud Firestore en la consola (pestaña Índices).</string>
+    <string name="espera">Espera…</string>
+    <string-array name="tipos_servicio">
+        <item>APERTURA_DE_PUERTA</item>
+        <item>CAMBIO_DE_CERRADURA</item>
+        <item>INSTALACION_DE_CERRADURA</item>
+        <item>REPARACION_DE_CERRADURA</item>
+        <item>DUPLICADO_DE_LLAVES</item>
+        <item>APERTURA_DE_VEHICULO</item>
+        <item>OTRO</item>
+    </string-array>
+    <string-array name="tipos_servicio_etiquetas">
+        <item>Apertura de puerta</item>
+        <item>Cambio de cerradura</item>
+        <item>Instalación de cerradura</item>
+        <item>Reparación de cerradura</item>
+        <item>Duplicado de llaves</item>
+        <item>Apertura de vehículo</item>
+        <item>Otro</item>
+    </string-array>
+    <string name="acceso_cuenta">Acceso a tu cuenta</string>
+    <string name="panel_gestion">Gestión de clientes y servicios</string>
+    <!-- Seguridad -->
+    <string name="ajustes_seguridad">Seguridad</string>
+    <string name="ajustes_seguridad_descripcion">Protege el acceso a tu cuenta y a la app.</string>
+    <string name="seg_cambiar_contrasena">Cambiar contraseña</string>
+    <string name="seg_cambiar_contrasena_descripcion">Define una nueva contraseña para tu cuenta.</string>
+    <string name="seg_pin">PIN de acceso</string>
+    <string name="seg_pin_descripcion">Pide un PIN de 4 dígitos al abrir la app.</string>
+    <string name="seg_pin_activo">Activo</string>
+    <string name="seg_pin_inactivo">No configurado</string>
+    <string name="seg_cambiar_pin">Cambiar PIN</string>
+    <string name="seg_quitar_pin">Quitar PIN</string>
+    <string name="seg_sesion_automatica">Cerrar sesión automáticamente</string>
+    <string name="seg_sesion_automatica_descripcion">Sale de tu cuenta si la app queda sin usarse.</string>
+    <string name="seg_sesion_nunca">Nunca</string>
+    <string name="seg_sesion_5">A los 5 minutos</string>
+    <string name="seg_sesion_15">A los 15 minutos</string>
+    <string name="seg_sesion_30">A los 30 minutos</string>
+    <string name="sesion_cerrada_automatica">Tu sesión se cerró por inactividad.</string>
+    <string name="titulo_cambiar_contrasena">Cambiar contraseña</string>
+    <string name="contrasena_actual">Contraseña actual</string>
+    <string name="contrasena_nueva">Nueva contraseña</string>
+    <string name="contrasena_nueva_confirmacion">Confirmar nueva contraseña</string>
+    <string name="contrasena_actual_incorrecta">La contraseña actual no es correcta.</string>
+    <string name="contrasena_actual_requerida">Escribe tu contraseña actual para poder cambiarla.</string>
+    <string name="contrasena_nueva_no_coincide">La nueva contraseña no coincide con su confirmación.</string>
+    <string name="contrasena_minima">La nueva contraseña debe tener al menos 6 caracteres.</string>
+    <string name="contrasena_actualizada">Contraseña actualizada.</string>
+    <string name="error_actualizar_contrasena">No fue posible actualizar la contraseña.</string>
+    <!-- PIN -->
+    <string name="pin_desbloquear">Escribe tu PIN</string>
+    <string name="pin_crear">Crea un PIN de 4 dígitos</string>
+    <string name="pin_quitar">Escribe tu PIN para quitarlo</string>
+    <string name="pin_confirmar">Repite el PIN</string>
+    <string name="pin_borrar">Borrar</string>
+    <string name="pin_incorrecto">PIN incorrecto. Inténtalo de nuevo.</string>
+    <string name="pin_no_coincide">Los PIN no coinciden. Empieza de nuevo.</string>
+    <string name="pin_guardado">PIN activado.</string>
+    <string name="pin_quitado">PIN eliminado.</string>
+    <!-- Privacidad -->
+    <string name="ajustes_privacidad">Privacidad</string>
+    <string name="ajustes_privacidad_descripcion">Decide qué se ve en tu teléfono.</string>
+    <string name="priv_ocultar_montos">Ocultar montos</string>
+    <string name="priv_ocultar_montos_descripcion">Cambia las cifras de dinero por puntos hasta que las reveles.</string>
+    <string name="priv_activado">Activado</string>
+    <string name="priv_desactivado">Desactivado</string>
+    <string name="priv_borrar_datos">Borrar datos locales</string>
+    <string name="priv_borrar_datos_descripcion">Elimina ajustes, PIN y cuentas guardadas en este teléfono.</string>
+    <string name="priv_borrar_confirmacion">Se borrarán el PIN, los ajustes y las cuentas guardadas en este teléfono. Tu cuenta y sus datos seguirán intactos. ¿Continuar?</string>
+    <string name="priv_datos_borrados">Datos locales borrados de este teléfono.</string>
+    <string name="priv_politica">Política de privacidad</string>
+    <string name="priv_politica_descripcion">Qué datos guardamos y para qué los usamos.</string>
+    <string name="priv_terminos">Términos y condiciones</string>
+    <string name="priv_terminos_descripcion">Reglas de uso de la plataforma.</string>
+    <string name="titulo_legal">Privacidad</string>
+    <string name="mostrar_montos">Mostrar montos</string>
+    <string name="ocultar_montos">Ocultar montos</string>
+    <string name="montos_ocultos">• • • •</string>
+    <string name="legal_politica">Qué guardamos\n\nTu nombre, correo, teléfono y la foto de perfil que elijas, además de los clientes y servicios que registres.\n\nPara qué lo usamos\n\nSolo para prestarte el servicio: contactarte, mostrarte tus servicios y calcular tus ganancias.\n\nCon quién lo compartimos\n\nNo lo vendemos ni lo entregamos a terceros. El cerrajero asignado a un servicio ve solo ese servicio y los datos del cliente necesarios para llegar.\n\nDónde se guarda\n\nEn una base de datos en la nube (Google Firebase) con acceso restringido a las cuentas de la app.\n\nCuánto tiempo\n\nHasta que borres tu cuenta o los datos de cada servicio.\n\nTus derechos\n\nPuedes editar tu perfil, eliminar tu foto y solicitar la eliminación de tu cuenta.\n\nContacto\n\nEscríbenos desde la app.</string>
+    <string name="legal_terminos">1. Al usar la app aceptas estas reglas.\n\n2. Registra datos reales de clientes y servicios: son la base del historial y de tus ganancias.\n\n3. El precio final se confirma con el cliente antes de iniciar el trabajo.\n\n4. La app muestra el historial, los estados y las ganancias registradas; el pago se acuerda por fuera de la app.\n\n5. No registres servicios falsos ni datos de terceros sin su permiso.\n\n6. Podemos suspender cuentas con información falsa o uso indebido.</string>
+</resources>

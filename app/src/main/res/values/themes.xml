@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <!-- Un tema claro completo evita que el modo oscuro mezcle fondos y texto. -->
+    <style name="Base.Theme.Cerrajeria24Horas" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/azul_marino</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/azul_acento_claro</item>
+        <item name="colorOnPrimaryContainer">@color/azul_marino</item>
+        <item name="colorSecondary">@color/azul_acento</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/azul_acento_claro</item>
+        <item name="colorOnSecondaryContainer">@color/azul_marino</item>
+        <item name="colorTertiary">@color/oro</item>
+        <item name="colorOnTertiary">@color/texto_sobre_dorado</item>
+        <item name="android:colorBackground">@color/fondo</item>
+        <item name="colorOnBackground">@color/texto_principal</item>
+        <item name="colorSurface">@color/fondo_tarjeta</item>
+        <item name="colorOnSurface">@color/texto_principal</item>
+        <item name="colorSurfaceVariant">@color/fondo_suave</item>
+        <item name="colorOnSurfaceVariant">@color/texto_secundario</item>
+        <item name="colorOutline">@color/borde_input</item>
+        <item name="colorOutlineVariant">@color/borde</item>
+        <item name="colorError">@color/rojo_error</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="colorControlActivated">@color/azul_acento</item>
+        <item name="colorControlNormal">@color/texto_secundario</item>
+        <item name="colorControlHighlight">@color/onda_oscura</item>
+        <item name="colorAccent">@color/azul_acento</item>
+        <item name="android:colorAccent">@color/azul_acento</item>
+        <item name="android:textColorPrimary">@color/texto_principal</item>
+        <item name="android:textColorSecondary">@color/texto_secundario</item>
+        <item name="android:textColorHint">@color/texto_secundario</item>
+        <item name="android:textColorHighlight">@color/seleccion_texto</item>
+        <item name="android:fontFamily">@font/tipografia_dm_sans</item>
+        <item name="fontFamily">@font/tipografia_dm_sans</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Cerrajeria24Horas.TituloGrande</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.Cerrajeria24Horas.Titulo</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.Cerrajeria24Horas.TituloPantalla</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Cerrajeria24Horas.TituloPantalla</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Cerrajeria24Horas.Cuerpo</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.Cerrajeria24Horas.Etiqueta</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Cerrajeria24Horas.Cuerpo</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Cerrajeria24Horas.Cuerpo</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Cerrajeria24Horas.Etiqueta</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Cerrajeria24Horas.Etiqueta</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.Cerrajeria24Horas.Etiqueta</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.Cerrajeria24Horas.Etiqueta</item>
+        <item name="textInputStyle">@style/Cerrajeria24Horas.Campo</item>
+        <item name="editTextStyle">@style/Cerrajeria24Horas.Entrada</item>
+        <item name="materialButtonStyle">@style/Cerrajeria24Horas.BotonPrimario</item>
+        <item name="android:spinnerItemStyle">@style/Cerrajeria24Horas.TextoSelector</item>
+        <item name="android:spinnerDropDownItemStyle">@style/Cerrajeria24Horas.TextoSelector</item>
+        <item name="android:statusBarColor">@color/fondo</item>
+        <item name="android:navigationBarColor">@color/fondo</item>
+        <item name="android:windowBackground">@drawable/bg_fondo_app</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowAnimationStyle">@style/Cerrajeria24Horas.Transiciones</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.Cerrajeria24Horas.Calendario</item>
+        <item name="materialTimePickerTheme">@style/ThemeOverlay.Cerrajeria24Horas.Reloj</item>
+    </style>
+    <style name="Theme.Cerrajeria24Horas" parent="Base.Theme.Cerrajeria24Horas"/>
+</resources>

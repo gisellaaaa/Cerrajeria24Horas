@@ -1,0 +1,6 @@
+<resources>
+    <integer name="duracion_entrada">220</integer>
+    <integer name="duracion_salida">180</integer>
+    <integer name="duracion_presion">90</integer>
+    <integer name="duracion_reposo">150</integer>
+</resources>

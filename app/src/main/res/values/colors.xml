@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Identidad del logo: azul marino, azul cobalto, amarillo llave y rojo 24 HORAS. -->
+    <color name="azul_marino">#1C2260</color>
+    <color name="azul_marino_oscuro">#14184A</color>
+    <color name="azul_marino_claro">#2A3178</color>
+    <color name="azul_acento">#1A5BA8</color>
+    <color name="azul_acento_claro">#DCE8F8</color>
+    <color name="azul_acento_oscuro">#14477F</color>
+    <color name="oro">#F2E53A</color>
+    <color name="oro_oscuro">#D4CE2A</color>
+    <color name="durazno">#F9C795</color>
+    <color name="rojo_urgencia">#EE2E31</color>
+
+    <!-- Fondos claros derivados de la paleta del logo, nunca blanco puro plano. -->
+    <color name="fondo">#F4F7FD</color>
+    <color name="fondo_inferior">#EAF0FA</color>
+    <!-- Extremos del degradado del fondo: cobalto diluido arriba, amarillo llave abajo. -->
+    <color name="degradado_fondo_inicio">#DDE9FA</color>
+    <color name="degradado_fondo_fin">#FDF3CE</color>
+    <color name="fondo_tarjeta">#FFFFFF</color>
+    <color name="fondo_suave">#EDF2FB</color>
+    <color name="tinte_amarillo">#FFF8D6</color>
+    <color name="tinte_azul">#DCE8F8</color>
+    <color name="tinte_lavanda">#D6D9F7</color>
+    <color name="tinte_rojo">#FDE3E3</color>
+    <color name="tinte_verde">#D8F0E6</color>
+
+    <color name="borde">#DCE4F2</color>
+    <color name="borde_input">#8A93B5</color>
+    <color name="borde_dorado">#F2E53A</color>
+
+    <color name="texto_principal">#1B1E3D</color>
+    <color name="texto_cuerpo">#3A3F6B</color>
+    <color name="texto_secundario">#7A80A8</color>
+    <color name="texto_sobre_dorado">#1C2260</color>
+    <color name="texto_sobre_azul">#E4ECFA</color>
+    <color name="texto_deshabilitado">#9AA0BE</color>
+    <color name="fondo_deshabilitado">#E7ECF6</color>
+    <color name="seleccion_texto">#441A5BA8</color>
+
+    <color name="onda_clara">#33FFFFFF</color>
+    <color name="onda_oscura">#241C2260</color>
+
+    <color name="boton_primario">#1C2260</color>
+    <color name="boton_primario_presionado">#14184A</color>
+    <color name="boton_secundario">#1A5BA8</color>
+    <color name="boton_secundario_presionado">#14477F</color>
+    <color name="boton_dorado">#F2E53A</color>
+    <color name="boton_dorado_presionado">#D4CE2A</color>
+    <color name="boton_urgencia">#EE2E31</color>
+    <color name="boton_urgencia_presionado">#C4212A</color>
+
+    <!-- El verde queda reservado para servicios completados. -->
+    <color name="estado_pendiente">#F2E53A</color>
+    <color name="estado_en_proceso">#1A5BA8</color>
+    <color name="estado_realizado">#1E7A5F</color>
+    <color name="estado_cancelado">#6A7292</color>
+
+    <color name="rojo_error">#B4212A</color>
+    <color name="rojo_suave">#FDE3E3</color>
+</resources>

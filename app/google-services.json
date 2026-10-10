@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "909650284837",
+    "project_id": "cerrajeria-24-horas-34870",
+    "storage_bucket": "cerrajeria-24-horas-34870.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909650284837:android:e92c251131da30fcaf8acc",
+        "android_client_info": {
+          "package_name": "com.example.cerrajeria24horas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeA5IjEzmWmbT3ACnGlQ3gDWQZSFpbDDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

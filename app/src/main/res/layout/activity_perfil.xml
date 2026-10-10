@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@drawable/bg_fondo_app">
+    <include android:id="@+id/enc" layout="@layout/encabezado_actividad"/>
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:clipToPadding="false">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/margen_pantalla">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:background="@drawable/bg_tarjeta" android:padding="24dp">
+                    <ImageView android:id="@+id/ivPerfilFoto" android:layout_width="96dp" android:layout_height="96dp" android:src="@drawable/ic_person" android:padding="24dp" android:background="@drawable/bg_icono_redondo" android:clipToOutline="true" android:scaleType="centerCrop" app:tint="@color/white" android:contentDescription="@string/mi_perfil"/>
+                    <TextView android:id="@+id/tvPerfilNombre" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:textColor="@color/azul_marino" android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" android:gravity="center"/>
+                    <TextView android:id="@+id/tvPerfilCorreo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textColor="@color/texto_secundario" android:textSize="15sp" android:fontFamily="@font/dm_sans_regular" android:gravity="center"/>
+                    <TextView android:id="@+id/tvPerfilTelefono" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textColor="@color/texto_secundario" android:textSize="15sp" android:fontFamily="@font/dm_sans_regular" android:gravity="center"/>
+                    <TextView android:id="@+id/tvPerfilRol" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textColor="@color/azul_acento" android:textSize="15sp" android:fontFamily="@font/dm_sans_bold" android:gravity="center"/>
+                    <com.google.android.material.button.MaterialButton android:id="@+id/btnCambiarFoto" style="@style/Cerrajeria24Horas.BotonContorno" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="@string/cambiar_foto_perfil"/>
+                    <TextView android:id="@+id/btnEliminarFoto" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14dp" android:minHeight="48dp" android:gravity="center" android:padding="10dp" android:text="@string/eliminar_foto_perfil" android:textColor="@color/rojo_error" android:textSize="14sp" android:fontFamily="@font/dm_sans_semibold" android:visibility="gone"/>
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btnAjustes" style="@style/Cerrajeria24Horas.BotonContorno" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/ajustes" app:icon="@drawable/ic_settings" app:iconGravity="start"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/tvCerrarSesion" style="@style/Cerrajeria24Horas.BotonSalir" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="@string/cerrar_sesion" app:strokeWidth="1dp" app:icon="@drawable/ic_logout"/>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+    <ProgressBar android:id="@+id/pbPerfil" style="?android:attr/progressBarStyleLarge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone" android:indeterminateTint="@color/azul_acento"/>
+</LinearLayout>

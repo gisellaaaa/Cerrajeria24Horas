@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <style name="TextAppearance.Cerrajeria24Horas.TituloGrande" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:fontFamily">@font/tipografia_bebas</item>
+        <item name="fontFamily">@font/tipografia_bebas</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:letterSpacing">0.025</item>
+        <item name="android:textColor">@color/azul_marino</item>
+    </style>
+    <style name="TextAppearance.Cerrajeria24Horas.Titulo" parent="TextAppearance.Cerrajeria24Horas.TituloGrande">
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="TextAppearance.Cerrajeria24Horas.TituloPantalla" parent="TextAppearance.Cerrajeria24Horas.TituloGrande">
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="TextAppearance.Cerrajeria24Horas.Cuerpo" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:fontFamily">@font/tipografia_dm_sans</item>
+        <item name="fontFamily">@font/tipografia_dm_sans</item>
+        <item name="android:textColor">@color/texto_cuerpo</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+    <style name="TextAppearance.Cerrajeria24Horas.Etiqueta" parent="TextAppearance.Cerrajeria24Horas.Cuerpo">
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+        <item name="fontFamily">@font/dm_sans_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/texto_secundario</item>
+    </style>
+    <!-- Cifras importantes: el número domina y su etiqueta va pequeña debajo. -->
+    <style name="TextAppearance.Cerrajeria24Horas.Cifra" parent="TextAppearance.Cerrajeria24Horas.Cuerpo">
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+        <item name="fontFamily">@font/dm_sans_bold</item>
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/texto_principal</item>
+    </style>
+    <style name="Cerrajeria24Horas.Campo" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/tint_etiqueta_campo</item>
+        <item name="boxBackgroundColor">@color/fondo_tarjeta</item>
+        <item name="boxStrokeColor">@color/tint_borde_campo</item>
+        <item name="boxStrokeErrorColor">@color/rojo_error</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/radio_campo</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/radio_campo</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/radio_campo</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/radio_campo</item>
+        <item name="hintTextColor">@color/azul_acento</item>
+        <item name="hintTextAppearance">@style/TextAppearance.Cerrajeria24Horas.Etiqueta</item>
+        <item name="helperTextTextAppearance">@style/TextAppearance.Cerrajeria24Horas.Etiqueta</item>
+        <item name="errorTextColor">@color/rojo_error</item>
+        <item name="endIconTint">@color/azul_acento</item>
+        <item name="startIconTint">@color/texto_secundario</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Cerrajeria24Horas.Campo</item>
+    </style>
+    <style name="Cerrajeria24Horas.Entrada" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+        <item name="android:fontFamily">@font/dm_sans_regular</item>
+        <item name="fontFamily">@font/dm_sans_regular</item>
+        <item name="android:textColor">@color/texto_principal</item>
+        <item name="android:textColorHint">@color/texto_secundario</item>
+        <item name="android:textColorHighlight">@color/seleccion_texto</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_campo</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:gravity">start|center_vertical</item>
+    </style>
+    <style name="Cerrajeria24Horas.TextoSelector" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:fontFamily">@font/dm_sans_regular</item>
+        <item name="fontFamily">@font/dm_sans_regular</item>
+        <item name="android:textColor">@color/texto_principal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+    <style name="Cerrajeria24Horas.Boton" parent="Widget.Material3.Button">
+        <item name="android:fontFamily">@font/dm_sans_semibold</item>
+        <item name="fontFamily">@font/dm_sans_semibold</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:minHeight">@dimen/alto_minimo_boton</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">@dimen/radio_pildora</item>
+        <item name="iconPadding">12dp</item>
+        <item name="iconSize">22dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="rippleColor">@color/onda_clara</item>
+        <item name="android:stateListAnimator">@animator/elevacion_boton</item>
+    </style>
+    <style name="Cerrajeria24Horas.BotonPrimario" parent="Cerrajeria24Horas.Boton">
+        <item name="backgroundTint">@color/tint_boton_primario</item>
+        <item name="android:textColor">@color/tint_texto_claro</item>
+        <item name="iconTint">@color/tint_texto_claro</item>
+    </style>
+    <style name="Cerrajeria24Horas.BotonSecundario" parent="Cerrajeria24Horas.BotonPrimario">
+        <item name="backgroundTint">@color/tint_boton_secundario</item>
+    </style>
+    <style name="Cerrajeria24Horas.BotonDorado" parent="Cerrajeria24Horas.Boton">
+        <item name="backgroundTint">@color/tint_boton_dorado</item>
+        <item name="android:textColor">@color/tint_texto_oscuro</item>
+        <item name="iconTint">@color/tint_texto_oscuro</item>
+        <item name="rippleColor">@color/onda_oscura</item>
+    </style>
+    <!-- Botón de urgencia: el rojo solo se usa para emergencias. -->
+    <style name="Cerrajeria24Horas.BotonUrgencia" parent="Cerrajeria24Horas.Boton">
+        <item name="backgroundTint">@color/tint_boton_urgencia</item>
+        <item name="android:textColor">@color/tint_texto_claro</item>
+        <item name="iconTint">@color/tint_texto_claro</item>
+    </style>
+    <style name="Cerrajeria24Horas.BotonContorno" parent="Cerrajeria24Horas.BotonDorado">
+        <item name="backgroundTint">@color/tint_fondo_contorno</item>
+        <item name="strokeColor">@color/tint_borde_contorno</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    <style name="Cerrajeria24Horas.BotonSalir" parent="Cerrajeria24Horas.BotonContorno">
+        <item name="android:textColor">@color/rojo_error</item>
+        <item name="iconTint">@color/rojo_error</item>
+        <item name="strokeColor">@color/rojo_error</item>
+        <item name="backgroundTint">@color/rojo_suave</item>
+    </style>
+    <style name="Cerrajeria24Horas.Transiciones" parent="android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+</resources>

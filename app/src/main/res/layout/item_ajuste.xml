@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fila reutilizable de Ajustes: icono en círculo, título, descripción y valor a la derecha. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/zona_tactil"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
+
+    <ImageView
+        android:id="@+id/iaIcono"
+        android:layout_width="@dimen/circulo_icono"
+        android:layout_height="@dimen/circulo_icono"
+        android:padding="11dp"
+        android:background="@drawable/bg_icono_redondo"
+        android:src="@drawable/ic_key"
+        app:tint="@color/azul_acento"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/iaTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/texto_principal"
+            android:textSize="15sp"
+            android:fontFamily="@font/dm_sans_semibold" />
+
+        <TextView
+            android:id="@+id/iaDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/texto_secundario"
+            android:textSize="12sp"
+            android:fontFamily="@font/dm_sans_regular" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/iaValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/azul_acento"
+        android:textSize="13sp"
+        android:fontFamily="@font/dm_sans_semibold" />
+</LinearLayout>

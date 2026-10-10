@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <dimen name="margen_pantalla">20dp</dimen>
+    <dimen name="margen_formulario">24dp</dimen>
+    <dimen name="ancho_maximo_contenido">840dp</dimen>
+    <dimen name="ancho_maximo_formulario">600dp</dimen>
+    <dimen name="ancho_maximo_acceso">520dp</dimen>
+    <dimen name="logo_acceso">84dp</dimen>
+    <dimen name="espacio_acceso_superior">12dp</dimen>
+    <dimen name="alto_minimo_boton">56dp</dimen>
+    <dimen name="zona_tactil">48dp</dimen>
+    <dimen name="circulo_icono">44dp</dimen>
+    <!-- Radios generosos: tarjetas 28, campos 18, botones totalmente redondeados. -->
+    <dimen name="radio_tarjeta">28dp</dimen>
+    <dimen name="radio_campo">18dp</dimen>
+    <dimen name="radio_ventana">28dp</dimen>
+    <dimen name="radio_pildora">999dp</dimen>
+    <dimen name="margen_dialogo">20dp</dimen>
+    <dimen name="ancho_maximo_dialogo">400dp</dimen>
+    <!-- Sistema de espaciado de 8. -->
+    <dimen name="espacio_8">8dp</dimen>
+    <dimen name="espacio_12">12dp</dimen>
+    <dimen name="espacio_16">16dp</dimen>
+    <dimen name="espacio_20">20dp</dimen>
+</resources>
