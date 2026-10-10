@@ -8,8 +8,8 @@
     <dimen name="logo_acceso">88dp</dimen>
     <dimen name="espacio_acceso_superior">8dp</dimen>
     <!-- Bienvenida (portada con carrusel de servicios). -->
-    <dimen name="logo_bienvenida">84dp</dimen>
-    <dimen name="circulo_bienvenida">112dp</dimen>
+<dimen name="logo_bienvenida">72dp</dimen>
+<dimen name="circulo_bienvenida">88dp</dimen>
     <dimen name="alto_minimo_boton">56dp</dimen>
     <dimen name="zona_tactil">48dp</dimen>
     <dimen name="circulo_icono">44dp</dimen>

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:paddingTop="@dimen/espacio_16">
+        android:paddingTop="@dimen/espacio_12">
 
         <ImageView
             android:id="@+id/logoBienvenida"
@@ -55,7 +55,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/espacio_20"
+        android:layout_marginTop="@dimen/espacio_16"
         android:gravity="center"
         android:text="@string/bienvenida_etiqueta"
         android:textAllCaps="true"
@@ -85,7 +85,7 @@
         style="@style/Cerrajeria24Horas.BotonPrimario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/espacio_20"
+        android:layout_marginTop="@dimen/espacio_16"
         android:text="@string/bienvenida_iniciar_sesion" />
 
     <com.google.android.material.button.MaterialButton
@@ -98,18 +98,16 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBienvenidaWeb"
-        style="@style/Widget.Material3.Button.TextButton"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/espacio_4"
+        android:layout_marginTop="@dimen/espacio_8"
         android:minHeight="@dimen/zona_tactil"
         android:text="@string/bienvenida_web"
         android:textAllCaps="false"
-        android:textColor="@color/azul_acento"
-        android:textSize="13sp"
-        android:fontFamily="@font/dm_sans_semibold"
-        app:icon="@drawable/ic_documento"
-        app:iconGravity="textStart"
-        app:iconSize="16dp"
-        app:iconTint="@color/azul_acento" />
+        android:textColor="@color/azul_marino"
+        android:textSize="14sp"
+        android:fontFamily="@font/dm_sans_bold"
+        app:backgroundTint="@color/azul_acento_claro"
+        app:cornerRadius="@dimen/radio_pildora" />
 </LinearLayout>

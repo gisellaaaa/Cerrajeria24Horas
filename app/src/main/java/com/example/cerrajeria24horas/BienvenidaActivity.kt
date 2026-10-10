@@ -34,7 +34,7 @@ class BienvenidaActivity : BaseActivity() {
         override fun run() {
             if (adaptador.total > 1) {
                 val siguiente = (pager.currentItem + 1) % adaptador.total
-                pager.setCurrentItem(siguiente, true)
+                pager.setCurrentItem(siguiente, Movimiento.activo(this@BienvenidaActivity))
             }
             manejador.postDelayed(this, INTERVALO_MS)
         }
@@ -82,10 +82,13 @@ class BienvenidaActivity : BaseActivity() {
         manejador.removeCallbacks(avanzar)
     }
 
-    /** El carrusel avanza solo salvo que el usuario haya pedido "Reducir movimiento". */
+    /**
+     * El carrusel avanza solo siempre. Con "Reducir movimiento" activo el cambio es instantáneo
+     * (sin deslizamiento) para no forzar animación, pero sigue siendo automático.
+     */
     private fun programarAvance() {
         manejador.removeCallbacks(avanzar)
-        if (Movimiento.activo(this) && adaptador.total > 1) {
+        if (adaptador.total > 1) {
             manejador.postDelayed(avanzar, INTERVALO_MS)
         }
     }
