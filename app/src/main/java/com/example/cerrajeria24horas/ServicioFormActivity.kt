@@ -15,6 +15,8 @@ import com.example.cerrajeria24horas.data.FirestoreAPI
 import com.example.cerrajeria24horas.data.Servicio
 import com.example.cerrajeria24horas.data.TiposServicio
 import com.example.cerrajeria24horas.util.Formato
+import com.example.cerrajeria24horas.util.FormatoPrecioWatcher
+import com.example.cerrajeria24horas.util.Precio
 import com.example.cerrajeria24horas.util.UI
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -104,21 +106,7 @@ class ServicioFormActivity : BaseActivity() {
     }
 
     private fun configurarFormatoValor() {
-        etValor.setOnFocusChangeListener { _, tieneFoco ->
-            val enteros = etValor.text.toString().split(",")[0].filter { it.isDigit() }
-            if (tieneFoco) {
-                if (etValor.text.toString() != enteros) {
-                    etValor.setText(enteros)
-                    runCatching { etValor.setSelection(enteros.length) }
-                }
-            } else {
-                val valor = enteros.take(14).toLongOrNull() ?: 0L
-                val texto = if (valor > 0) Formato.moneda(valor.toDouble()) else ""
-                if (etValor.text.toString() != texto) {
-                    etValor.setText(texto)
-                }
-            }
-        }
+        etValor.addTextChangedListener(FormatoPrecioWatcher(etValor))
     }
 
     private fun cargarClientes() {
@@ -211,11 +199,7 @@ class ServicioFormActivity : BaseActivity() {
         }
 
         val textoValor = etValor.text.toString().trim()
-        val valor = textoValor
-            .split(",")[0]
-            .filter { it.isDigit() }
-            .toDoubleOrNull()
-            ?: 0.0
+        val valor = Precio.aDouble(textoValor)
         if (valor <= 0) {
             Toast.makeText(this, R.string.valor_invalido, Toast.LENGTH_SHORT).show()
             return
