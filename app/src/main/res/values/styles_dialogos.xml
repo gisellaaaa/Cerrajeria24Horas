@@ -132,10 +132,10 @@
         <item name="boxCornerRadiusBottomEnd">@dimen/radio_campo</item>
     </style>
     <style name="TextAppearance.Cerrajeria24Horas.TituloSelector" parent="TextAppearance.Material3.MaterialTimePicker.Title">
-        <item name="android:fontFamily">@font/bebas_neue_regular</item>
-        <item name="fontFamily">@font/bebas_neue_regular</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+        <item name="fontFamily">@font/dm_sans_bold</item>
         <item name="android:textColor">@color/azul_marino</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">22sp</item>
     </style>
     <style name="Cerrajeria24Horas.BotonSelectorCancelar" parent="Widget.Material3.Button.TextButton.Dialog">
         <item name="android:fontFamily">@font/dm_sans_semibold</item>

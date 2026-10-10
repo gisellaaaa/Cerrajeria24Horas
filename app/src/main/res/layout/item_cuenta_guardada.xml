@@ -11,8 +11,7 @@
     android:clickable="true"
     android:focusable="true"
     android:padding="14dp"
-    android:background="@drawable/bg_tarjeta"
-    android:stateListAnimator="@animator/elevacion_boton">
+    android:background="@drawable/bg_tarjeta">
 
     <ImageView
         android:layout_width="@dimen/circulo_icono"
