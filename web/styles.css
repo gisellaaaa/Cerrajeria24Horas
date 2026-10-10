@@ -456,9 +456,27 @@ input[type="time"].campo::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-input[type="date"].campo::-webkit-datetime-edit,
-input[type="time"].campo::-webkit-datetime-edit {
-  color: var(--texto);
+/* Texto guía propio en fecha/hora (oculta el "dd/mm/aaaa" nativo) */
+.campo-fecha {
+  position: relative;
+}
+
+.campo-fecha__guia {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: var(--texto-secundario);
+  pointer-events: none;
+}
+
+.campo-fecha.tiene-valor .campo-fecha__guia {
+  display: none;
+}
+
+.campo-fecha:not(.tiene-valor) input.campo {
+  color: transparent;
 }
 
 .form__estado {

@@ -6,6 +6,20 @@
     anio.textContent = String(new Date().getFullYear());
   }
 
+  /* Texto guía propio en los campos de fecha y hora */
+  Array.prototype.forEach.call(document.querySelectorAll(".campo-fecha"), function (contenedor) {
+    var campo = contenedor.querySelector("input");
+    if (!campo) {
+      return;
+    }
+    var actualizar = function () {
+      contenedor.classList.toggle("tiene-valor", !!campo.value);
+    };
+    campo.addEventListener("input", actualizar);
+    campo.addEventListener("change", actualizar);
+    actualizar();
+  });
+
   /* Cabecera: sombra al desplazarse */
   var cabecera = document.getElementById("cabecera");
   if (cabecera) {

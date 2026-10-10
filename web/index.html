@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <header class="cabecera" id="cabecera">
@@ -90,8 +90,14 @@
           <h3>¡Programe su servicio de cerrajería!</h3>
           <form id="formServicio" novalidate>
             <input id="nombres" name="nombres" class="campo" type="text" placeholder="Nombres y apellidos" autocomplete="name">
-            <input id="fecha" name="fecha" class="campo" type="date" aria-label="Fecha del servicio">
-            <input id="hora" name="hora" class="campo" type="time" aria-label="Hora de la asistencia">
+            <div class="campo-fecha">
+              <input id="fecha" name="fecha" class="campo" type="date" aria-label="Fecha del servicio">
+              <span class="campo-fecha__guia" aria-hidden="true">Seleccione la fecha</span>
+            </div>
+            <div class="campo-fecha">
+              <input id="hora" name="hora" class="campo" type="time" aria-label="Hora de la asistencia">
+              <span class="campo-fecha__guia" aria-hidden="true">Seleccione la hora</span>
+            </div>
             <input id="direccion" name="direccion" class="campo" type="text" placeholder="Dirección donde necesita el servicio" autocomplete="street-address">
             <select id="select1" name="select1" class="campo" aria-label="Tipo de servicio">
               <option value="" selected>Seleccione el servicio de cerrajería</option>
@@ -341,6 +347,6 @@
     "areaServed": ["Bucaramanga", "Floridablanca", "Girón", "Piedecuesta"]
   }
   </script>
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
