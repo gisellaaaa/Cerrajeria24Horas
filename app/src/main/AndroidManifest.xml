@@ -35,10 +35,6 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".ClientesActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".ClienteFormActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
@@ -48,20 +44,12 @@
             android:exported="false" />
 
         <activity
-            android:name=".ServiciosActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".ServicioFormActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".ServicioDetalleActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".GananciasActivity"
             android:exported="false" />
 
         <activity

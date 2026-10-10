@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/espacio_contenido_barra">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvClientes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/margen_pantalla"
+            android:paddingEnd="@dimen/margen_pantalla"
+            android:paddingTop="@dimen/margen_pantalla"
+            android:paddingBottom="@dimen/espacio_16"
+            android:clipToPadding="false" />
+
+        <LinearLayout
+            android:id="@+id/emptyClientes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_equipo"
+                app:tint="@color/azul_acento"
+                android:background="@drawable/bg_acento_suave"
+                android:padding="16dp"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/sin_clientes"
+                android:textColor="@color/texto_secundario"
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pbClientes"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminateTint="@color/azul_acento" />
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegistrarCliente"
+        style="@style/Cerrajeria24Horas.BotonPrimario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margen_pantalla"
+        android:layout_marginEnd="@dimen/margen_pantalla"
+        android:layout_marginBottom="@dimen/espacio_12"
+        android:text="@string/subir_cliente"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_mas" />
+</LinearLayout>

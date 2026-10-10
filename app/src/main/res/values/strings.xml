@@ -51,10 +51,12 @@
     <string name="en_proceso">En proceso</string>
     <string name="realizados">Realizados</string>
     <string name="ganancias_hoy">Ganancias de hoy</string>
+    <string name="menu_inicio">Inicio</string>
     <string name="menu_clientes">Clientes</string>
     <string name="menu_servicios">Servicios</string>
     <string name="menu_ganancias">Ganancias</string>
     <string name="mi_perfil">Mi perfil</string>
+    <string name="nuevo_servicio">Nuevo servicio</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="titulo_panel">Panel principal</string>
     <!-- Clientes -->

@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='utf-8'?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/espacio_contenido_barra"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margen_pantalla">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/azul_marino"
+                app:cardCornerRadius="@dimen/radio_tarjeta"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ganancias_del_dia"
+                        android:textColor="@color/texto_sobre_azul"
+                        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo" />
+
+                    <TextView
+                        android:id="@+id/tvGananciaDia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cifra"
+                        android:textColor="@color/oro"
+                        android:breakStrategy="simple" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:cardBackgroundColor="@color/tinte_azul"
+                app:cardCornerRadius="@dimen/radio_tarjeta"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ganancias_de_la_semana"
+                        android:textColor="@color/texto_secundario"
+                        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo" />
+
+                    <TextView
+                        android:id="@+id/tvGananciaSemana"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cifra"
+                        android:textColor="@color/azul_marino"
+                        android:breakStrategy="simple" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:cardBackgroundColor="@color/fondo_tarjeta"
+                app:cardCornerRadius="@dimen/radio_tarjeta"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/borde"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ganancias_del_mes"
+                        android:textColor="@color/texto_secundario"
+                        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo" />
+
+                    <TextView
+                        android:id="@+id/tvGananciaMes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cifra"
+                        android:textColor="@color/azul_marino"
+                        android:breakStrategy="simple" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMontos"
+                style="@style/Cerrajeria24Horas.BotonSecundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/espacio_16"
+                android:gravity="start|center_vertical"
+                android:text="@string/mostrar_montos"
+                app:icon="@drawable/ic_ojo_oculto"
+                app:iconGravity="start"
+                app:strokeWidth="1dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/espacio_16"
+                android:text="@string/nota_estados_realizado"
+                android:textColor="@color/texto_secundario"
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Etiqueta" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/pbGanancias"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminateTint="@color/azul_acento" />
+</FrameLayout>

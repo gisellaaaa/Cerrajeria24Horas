@@ -1,60 +1,52 @@
-package com.example.cerrajeria24horas
+package com.example.cerrajeria24horas.fragmentos
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cerrajeria24horas.ClienteDetalleActivity
+import com.example.cerrajeria24horas.ClienteFormActivity
+import com.example.cerrajeria24horas.R
 import com.example.cerrajeria24horas.adapters.ClientesAdapter
 import com.example.cerrajeria24horas.data.Cliente
 import com.example.cerrajeria24horas.data.FirestoreAPI
 import com.example.cerrajeria24horas.util.UI
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 
-class ClientesActivity : BaseActivity() {
+class ClientesFragment : Fragment(R.layout.fragment_clientes) {
 
-    private lateinit var auth: FirebaseAuth
+    private val auth = FirebaseAuth.getInstance()
+    private lateinit var raiz: View
     private lateinit var adapter: ClientesAdapter
     private lateinit var rvClientes: RecyclerView
     private lateinit var emptyView: View
     private lateinit var pbClientes: ProgressBar
-    private var cargado = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        auth = FirebaseAuth.getInstance()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        raiz = view
 
-        if (auth.currentUser == null) {
-            irAlLogin()
-            return
-        }
-
-        setContentView(R.layout.activity_clientes)
-        configurarEncabezado(getString(R.string.titulo_clientes))
-
-        rvClientes = findViewById(R.id.rvClientes)
-        emptyView = findViewById(R.id.emptyClientes)
-        pbClientes = findViewById(R.id.pbClientes)
+        rvClientes = view.findViewById(R.id.rvClientes)
+        emptyView = view.findViewById(R.id.emptyClientes)
+        pbClientes = view.findViewById(R.id.pbClientes)
 
         adapter = ClientesAdapter { cliente -> abrirDetalle(cliente.id) }
-        rvClientes.layoutManager = LinearLayoutManager(this)
+        rvClientes.layoutManager = LinearLayoutManager(requireContext())
         rvClientes.adapter = adapter
 
-        findViewById<com.google.android.material.button.MaterialButton>(R.id.btnRegistrarCliente)
-            .setOnClickListener {
-                abrirActividad(ClienteFormActivity::class.java)
-            }
-
-        cargado = true
+        view.findViewById<MaterialButton>(R.id.btnRegistrarCliente).setOnClickListener {
+            abrirFormulario()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        if (cargado && auth.currentUser != null) {
-            cargarClientes()
-        }
+        if (auth.currentUser != null) cargarClientes()
     }
 
     private fun cargarClientes() {
@@ -74,7 +66,7 @@ class ClientesActivity : BaseActivity() {
                 adapter.setData(clientes)
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, UI.mensajeErrorFirestore(this, e), Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
                 emptyView.visibility = View.VISIBLE
             }
             .addOnCompleteListener {
@@ -83,14 +75,15 @@ class ClientesActivity : BaseActivity() {
             }
     }
 
-    private fun abrirDetalle(clienteId: String) {
-        val intent = Intent(this, ClienteDetalleActivity::class.java)
-        intent.putExtra(ClienteDetalleActivity.EXTRA_CLIENTE_ID, clienteId)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    private fun abrirFormulario() {
+        startActivity(Intent(requireContext(), ClienteFormActivity::class.java))
+        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
-    private fun irAlLogin() {
-        abrirRaiz(LoginActivity::class.java)
+    private fun abrirDetalle(clienteId: String) {
+        val intent = Intent(requireContext(), ClienteDetalleActivity::class.java)
+        intent.putExtra(ClienteDetalleActivity.EXTRA_CLIENTE_ID, clienteId)
+        startActivity(intent)
+        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 }

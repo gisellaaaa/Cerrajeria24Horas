@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:minWidth="@dimen/zona_tactil"
+    android:minHeight="@dimen/zona_tactil"
+    android:paddingStart="@dimen/espacio_8"
+    android:paddingEnd="@dimen/espacio_8"
+    android:paddingTop="14dp"
+    android:paddingBottom="12dp"
+    android:background="?attr/selectableItemBackgroundBorderless">
+
+    <FrameLayout
+        android:id="@+id/navPildora"
+        android:layout_width="40dp"
+        android:layout_height="28dp">
+
+        <ImageView
+            android:id="@+id/navIcono"
+            android:layout_width="@dimen/icono_barra_navegacion"
+            android:layout_height="@dimen/icono_barra_navegacion"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_inicio"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/navTexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Etiqueta"
+        android:textColor="@color/nav_texto_inactivo" />
+</LinearLayout>

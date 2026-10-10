@@ -1,55 +1,95 @@
 <?xml version='1.0' encoding='utf-8'?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@drawable/bg_fondo_app">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="84dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="@android:color/transparent" android:padding="16dp">
-        <ImageView android:layout_width="52dp" android:layout_height="52dp" android:adjustViewBounds="true" android:scaleType="fitCenter" android:src="@drawable/logo" android:contentDescription="@string/nombre_empresa"/>
-        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:layout_marginEnd="8dp" android:orientation="vertical">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="bottom">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/marca_cerrajeria" android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/marca_24_horas" android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" android:textColor="@color/rojo_urgencia"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fondo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="80dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/espacio_20"
+        android:paddingEnd="@dimen/espacio_12"
+        android:paddingTop="@dimen/espacio_12"
+        android:paddingBottom="@dimen/espacio_12">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo"
+            android:contentDescription="@string/nombre_empresa" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/espacio_12"
+            android:layout_marginEnd="@dimen/espacio_8"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/marca_cerrajeria"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo"
+                    android:textColor="@color/azul_marino" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/marca_24_horas"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo"
+                    android:textColor="@color/rojo_urgencia" />
             </LinearLayout>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/panel_gestion" android:textColor="@color/texto_secundario" android:textSize="12sp" android:fontFamily="@font/dm_sans_regular"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/panel_gestion"
+                android:textColor="@color/texto_secundario"
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Etiqueta" />
         </LinearLayout>
-        <ImageButton android:id="@+id/btnIrPerfil" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:background="@drawable/bg_boton_icono" android:src="@drawable/ic_person" app:tint="@color/azul_marino" android:stateListAnimator="@animator/elevacion_boton" android:contentDescription="@string/mi_perfil"/>
+
+        <ImageButton
+            android:id="@+id/btnIrPerfil"
+            android:layout_width="@dimen/zona_tactil"
+            android:layout_height="@dimen/zona_tactil"
+            android:padding="12dp"
+            android:background="@drawable/bg_boton_icono"
+            android:src="@drawable/ic_person"
+            app:tint="@color/azul_marino"
+            android:contentDescription="@string/mi_perfil" />
     </LinearLayout>
-    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true" android:clipToPadding="false" android:scrollbars="vertical">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/margen_pantalla">
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/bg_banner" android:padding="22dp">
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/bienvenido" android:textColor="@color/texto_sobre_azul" android:textSize="14sp" android:fontFamily="@font/dm_sans_regular"/>
-                <TextView android:id="@+id/tvBienvenido" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloGrande" android:textColor="@color/white"/>
-                <View android:layout_width="40dp" android:layout_height="3dp" android:layout_marginTop="14dp" android:layout_marginBottom="16dp" android:background="@color/oro"/>
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/ganancias_hoy" android:textColor="@color/texto_sobre_azul" android:textSize="13sp" android:fontFamily="@font/dm_sans_regular"/>
-                <TextView android:id="@+id/tvGananciasHoy" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:fontFamily="@font/dm_sans_bold" android:textColor="@color/oro" android:textSize="28sp" android:breakStrategy="simple"/>
-            </LinearLayout>
-            <com.example.cerrajeria24horas.util.FilaEstadisticas android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal">
-                <include android:id="@+id/cardPendientes" layout="@layout/tarjeta_estadistica" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
-                <include android:id="@+id/cardEnProceso" layout="@layout/tarjeta_estadistica" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
-                <include android:id="@+id/cardRealizados" layout="@layout/tarjeta_estadistica" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
-            </com.example.cerrajeria24horas.util.FilaEstadisticas>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="28dp" android:layout_marginBottom="12dp" android:text="@string/titulo_panel" android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla"/>
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-                    <LinearLayout android:id="@+id/btnIrClientes" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="120dp" android:orientation="vertical" android:gravity="center" android:clickable="true" android:focusable="true" android:padding="12dp" android:background="@drawable/bg_btn_rejilla_navy">
-                        <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@drawable/ic_person" app:tint="@color/white" android:contentDescription="@null"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/menu_clientes" android:textColor="@color/white" android:textSize="15sp" android:fontFamily="@font/dm_sans_semibold"/>
-                    </LinearLayout>
-                    <LinearLayout android:id="@+id/btnIrServicios" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:minHeight="120dp" android:orientation="vertical" android:gravity="center" android:clickable="true" android:focusable="true" android:padding="12dp" android:background="@drawable/bg_btn_rejilla_azul">
-                        <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@drawable/ic_key" app:tint="@color/white" android:contentDescription="@null"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/menu_servicios" android:textColor="@color/white" android:textSize="15sp" android:fontFamily="@font/dm_sans_semibold"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
-                    <LinearLayout android:id="@+id/btnIrGanancias" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:minHeight="120dp" android:orientation="vertical" android:gravity="center" android:clickable="true" android:focusable="true" android:padding="12dp" android:background="@drawable/bg_btn_rejilla_oro">
-                        <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@drawable/ic_ganancias" app:tint="@color/tint_texto_oscuro" android:contentDescription="@null"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/menu_ganancias" android:textColor="@color/tint_texto_oscuro" android:textSize="15sp" android:fontFamily="@font/dm_sans_semibold"/>
-                    </LinearLayout>
-                    <LinearLayout android:id="@+id/btnIrPerfilTexto" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="12dp" android:minHeight="120dp" android:orientation="vertical" android:gravity="center" android:clickable="true" android:focusable="true" android:padding="12dp" android:background="@drawable/bg_btn_rejilla_claro">
-                        <ImageView android:layout_width="36dp" android:layout_height="36dp" android:src="@drawable/ic_person" app:tint="@color/azul_marino" android:contentDescription="@null"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/mi_perfil" android:textColor="@color/azul_marino" android:textSize="15sp" android:fontFamily="@font/dm_sans_semibold"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-            <TextView android:id="@+id/btnCerrarSesion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp" android:gravity="center" android:layout_gravity="center_horizontal" android:layout_marginTop="20dp" android:text="@string/cerrar_sesion" android:textColor="@color/rojo_error" android:textSize="14sp" android:fontFamily="@font/dm_sans_semibold" android:padding="12dp" android:background="@drawable/bg_boton_icono" android:stateListAnimator="@animator/elevacion_boton"/>
-        </LinearLayout>
-    </ScrollView>
-    <ProgressBar android:id="@+id/pbDashboard" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="4dp" android:indeterminate="true" android:visibility="gone" android:indeterminateTint="@color/azul_acento"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/contenedorFragmentos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.example.cerrajeria24horas.util.BarraNavegacionFlotante
+            android:id="@+id/barraNavegacion"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/alto_total_barra_navegacion"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/margen_barra_navegacion"
+            android:layout_marginEnd="@dimen/margen_barra_navegacion"
+            android:layout_marginBottom="@dimen/espacio_12" />
+    </FrameLayout>
 </LinearLayout>

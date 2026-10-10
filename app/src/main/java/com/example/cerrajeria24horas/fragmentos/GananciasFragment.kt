@@ -1,10 +1,12 @@
-package com.example.cerrajeria24horas
+package com.example.cerrajeria24horas.fragmentos
 
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.cerrajeria24horas.R
 import com.example.cerrajeria24horas.data.FirestoreAPI
 import com.example.cerrajeria24horas.data.Servicio
 import com.example.cerrajeria24horas.util.Calculos
@@ -13,41 +15,37 @@ import com.example.cerrajeria24horas.util.Formato
 import com.example.cerrajeria24horas.util.Interaccion
 import com.example.cerrajeria24horas.util.Preferencias
 import com.example.cerrajeria24horas.util.UI
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 
-class GananciasActivity : BaseActivity() {
+class GananciasFragment : Fragment(R.layout.fragment_ganancias) {
 
-    private var cargado = false
+    private lateinit var raiz: View
     private var cifras = Triple(0.0, 0.0, 0.0)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ganancias)
-        configurarEncabezado(getString(R.string.titulo_ganancias))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        raiz = view
 
-        findViewById<View>(R.id.btnMontos).setOnClickListener {
-            if (Interaccion.Montos.ocultos(this)) {
+        view.findViewById<View>(R.id.btnMontos).setOnClickListener {
+            if (Interaccion.Montos.ocultos(requireContext())) {
                 Interaccion.Montos.revelar()
             } else {
-                Preferencias.guardarOcultarMontos(this, true)
+                Preferencias.guardarOcultarMontos(requireContext(), true)
                 Interaccion.Montos.reiniciar()
             }
             aplicarMontos()
         }
-
-        cargado = true
     }
 
     override fun onResume() {
         super.onResume()
-        if (cargado) {
-            cargarGanancias()
-        }
+        if (FirebaseAuth.getInstance().currentUser != null) cargarGanancias()
     }
 
     private fun cargarGanancias() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val pbGanancias = findViewById<ProgressBar>(R.id.pbGanancias)
+        val pbGanancias = raiz.findViewById<ProgressBar>(R.id.pbGanancias)
         pbGanancias.visibility = View.VISIBLE
 
         FirestoreAPI.obtenerServicios(uid)
@@ -58,7 +56,7 @@ class GananciasActivity : BaseActivity() {
                 mostrar(servicios)
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, UI.mensajeErrorFirestore(this, e), Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
             }
             .addOnCompleteListener {
                 pbGanancias.visibility = View.GONE
@@ -75,25 +73,24 @@ class GananciasActivity : BaseActivity() {
         val delMes = Calculos.sumarValores(
             Calculos.serviciosRealizadosEn(servicios, Fechas.inicioDeMes(), Fechas.inicioDeProximoMes())
         )
-
         cifras = Triple(delDia, deLaSemana, delMes)
         aplicarMontos()
     }
 
-    /** Con "Ocultar montos" las cifras se muestran como puntos hasta que se revelan. */
     private fun aplicarMontos() {
-        val ocultos = Interaccion.Montos.ocultos(this)
+        val ocultos = Interaccion.Montos.ocultos(requireContext())
         val visibles = listOf(
-            findViewById<TextView>(R.id.tvGananciaDia),
-            findViewById<TextView>(R.id.tvGananciaSemana),
-            findViewById<TextView>(R.id.tvGananciaMes)
+            raiz.findViewById<TextView>(R.id.tvGananciaDia),
+            raiz.findViewById<TextView>(R.id.tvGananciaSemana),
+            raiz.findViewById<TextView>(R.id.tvGananciaMes)
         )
         val valores = listOf(cifras.first, cifras.second, cifras.third)
         visibles.forEachIndexed { indice, texto ->
-            texto.text = if (ocultos) getString(R.string.montos_ocultos) else Formato.moneda(valores[indice])
+            texto.text = if (ocultos) getString(R.string.montos_ocultos)
+            else Formato.moneda(valores[indice])
         }
 
-        val boton = findViewById<com.google.android.material.button.MaterialButton>(R.id.btnMontos)
+        val boton = raiz.findViewById<MaterialButton>(R.id.btnMontos)
         boton.setText(if (ocultos) R.string.mostrar_montos else R.string.ocultar_montos)
         boton.setIconResource(if (ocultos) R.drawable.ic_ojo_oculto else R.drawable.ic_ganancias)
     }

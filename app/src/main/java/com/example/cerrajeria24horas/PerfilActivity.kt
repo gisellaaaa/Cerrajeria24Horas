@@ -129,6 +129,8 @@ class PerfilActivity : BaseActivity() {
     private fun confirmarCierreSesion() {
         mostrarDialogoCerrarSesion {
             com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
+            BloqueoActivity.olvidarDesbloqueo()
+            com.example.cerrajeria24horas.util.Interaccion.reiniciar()
             Toast.makeText(this, R.string.sesion_cerrada, Toast.LENGTH_SHORT).show()
             irAlLogin()
         }

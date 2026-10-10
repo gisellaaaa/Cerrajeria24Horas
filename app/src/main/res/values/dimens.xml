@@ -26,8 +26,13 @@
     <dimen name="espacio_20">20dp</dimen>
     <dimen name="espacio_24">24dp</dimen>
     <!-- Barra de navegación flotante. -->
-    <dimen name="alto_barra_navegacion">64dp</dimen>
+    <dimen name="alto_barra_navegacion">68dp</dimen>
+    <dimen name="alto_total_barra_navegacion">96dp</dimen>
+    <dimen name="realce_barra_navegacion">28dp</dimen>
+    <dimen name="notch_barra_navegacion">38dp</dimen>
+    <dimen name="radio_barra_navegacion">24dp</dimen>
     <dimen name="boton_central_navegacion">60dp</dimen>
     <dimen name="margen_barra_navegacion">16dp</dimen>
     <dimen name="icono_barra_navegacion">24dp</dimen>
+    <dimen name="espacio_contenido_barra">116dp</dimen>
 </resources>
