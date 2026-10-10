@@ -469,8 +469,7 @@ svg {
   aspect-ratio: 4 / 3;
 }
 
-.servicio-media img,
-.servicio-media svg {
+.servicio-media img {
   width: 100%;
   height: 100%;
   display: block;
@@ -478,8 +477,7 @@ svg {
   transition: transform 0.5s ease;
 }
 
-.servicio-media:hover img,
-.servicio-media:hover svg {
+.servicio-media:hover img {
   transform: scale(1.06);
 }
 
@@ -487,11 +485,6 @@ svg {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-}
-
-.servicio-media--ancha {
-  grid-column: 1 / -1;
-  aspect-ratio: 21 / 9;
 }
 
 .servicio-media__overlay {
@@ -889,10 +882,6 @@ svg {
     grid-template-columns: 1fr;
   }
 
-  .servicio-media--ancha {
-    grid-column: auto;
-  }
-
   .pie__columnas {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -911,7 +900,6 @@ svg {
   .boton,
   .servicio-item,
   .servicio-media img,
-  .servicio-media svg,
   .revela,
   .arriba,
   .whatsapp-flotante {
