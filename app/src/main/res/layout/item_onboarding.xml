@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingStart="@dimen/margen_formulario"
+    android:paddingEnd="@dimen/margen_formulario">
+
+    <FrameLayout
+        android:id="@+id/onbCirculo"
+        android:layout_width="@dimen/icono_onboarding"
+        android:layout_height="@dimen/icono_onboarding"
+        android:background="@drawable/bg_circulo_onboarding">
+
+        <ImageView
+            android:id="@+id/onbIcono"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            app:tint="@color/azul_marino" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/onbTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/espacio_24"
+        android:gravity="center"
+        android:textColor="@color/azul_marino"
+        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloGrande" />
+
+    <TextView
+        android:id="@+id/onbDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/espacio_12"
+        android:gravity="center"
+        android:textColor="@color/texto_secundario"
+        android:textSize="16sp"
+        android:fontFamily="@font/dm_sans_regular"
+        android:lineSpacingExtra="4dp" />
+</LinearLayout>

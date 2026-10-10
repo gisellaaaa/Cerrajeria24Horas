@@ -15,6 +15,7 @@ object Preferencias {
     private const val CLAVE_REDUCIR_MOVIMIENTO = "reducir_movimiento"
     private const val CLAVE_PIN = "pin"
     private const val CLAVE_OCULTAR_MONTOS = "ocultar_montos"
+    private const val CLAVE_ONBOARDING = "onboarding_visto"
 
     private const val MAX_CUENTAS = 4
 
@@ -39,6 +40,14 @@ object Preferencias {
 
     fun guardarReducirMovimiento(context: Context, valor: Boolean) {
         prefs(context).edit().putBoolean(CLAVE_REDUCIR_MOVIMIENTO, valor).apply()
+    }
+
+    /** La pantalla de bienvenida se muestra una sola vez, en el primer arranque. */
+    fun onboardingVisto(context: Context): Boolean =
+        prefs(context).getBoolean(CLAVE_ONBOARDING, false)
+
+    fun guardarOnboardingVisto(context: Context) {
+        prefs(context).edit().putBoolean(CLAVE_ONBOARDING, true).apply()
     }
 
     // ---------- Seguridad ----------

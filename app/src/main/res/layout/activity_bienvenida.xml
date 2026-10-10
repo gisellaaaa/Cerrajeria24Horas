@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fondo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/zona_tactil"
+        android:gravity="end|center_vertical"
+        android:paddingStart="@dimen/margen_pantalla"
+        android:paddingEnd="@dimen/espacio_12"
+        android:paddingTop="@dimen/espacio_8">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBienvenidaSaltar"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/zona_tactil"
+            android:text="@string/onboarding_saltar"
+            android:textColor="@color/texto_secundario"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pagerBienvenida"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/indicadorBienvenida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/espacio_16"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBienvenidaSiguiente"
+        style="@style/Cerrajeria24Horas.BotonPrimario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margen_formulario"
+        android:layout_marginEnd="@dimen/margen_formulario"
+        android:layout_marginTop="@dimen/espacio_20"
+        android:layout_marginBottom="@dimen/espacio_24"
+        android:text="@string/onboarding_siguiente" />
+</LinearLayout>

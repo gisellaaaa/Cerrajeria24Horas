@@ -61,4 +61,8 @@
         <item name="materialTimePickerTheme">@style/ThemeOverlay.Cerrajeria24Horas.Reloj</item>
     </style>
     <style name="Theme.Cerrajeria24Horas" parent="Base.Theme.Cerrajeria24Horas"/>
+    <!-- Fondo de arranque: logo centrado sobre el fondo claro, sin recorte ni sombra. -->
+    <style name="Theme.Cerrajeria24Horas.Splash" parent="Theme.Cerrajeria24Horas">
+        <item name="android:windowBackground">@drawable/splash_fondo</item>
+    </style>
 </resources>
