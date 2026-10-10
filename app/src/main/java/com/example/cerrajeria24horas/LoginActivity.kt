@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.example.cerrajeria24horas.util.Formato
+import com.example.cerrajeria24horas.util.Movimiento
 import com.example.cerrajeria24horas.util.Preferencias
 import com.example.cerrajeria24horas.util.UI
 import com.google.firebase.FirebaseNetworkException
@@ -18,10 +19,15 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 
 class LoginActivity : BaseActivity() {
 
+    companion object {
+        private const val MAXIMO_CUENTAS_VISIBLES = 4
+    }
+
     private lateinit var auth: FirebaseAuth
     private lateinit var etCorreo: EditText
     private lateinit var etPassword: EditText
     private lateinit var pbLogin: ProgressBar
+    private var cabeceraVisible = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,21 +106,29 @@ class LoginActivity : BaseActivity() {
             }
     }
 
+    /** Con el teclado abierto se encoge (oculta) la cabecera para que el formulario quepa. */
+    override fun alCambiarTeclado(tecladoVisible: Boolean) {
+        val mostrar = !tecladoVisible
+        if (mostrar == cabeceraVisible) return
+        cabeceraVisible = mostrar
+        findViewById<View>(R.id.logoLogin)?.let { Movimiento.fundir(it, mostrar) }
+        findViewById<View>(R.id.tvEslogan)?.let { Movimiento.fundir(it, mostrar) }
+        findViewById<View>(R.id.acentoLogin)?.let { Movimiento.fundir(it, mostrar) }
+    }
+
     /** Cuentas usadas en este teléfono: al tocarlas se completa el correo para cambiar de cuenta. */
     private fun mostrarCuentasDelDispositivo() {
         val cuentas = Preferencias.cuentas(this)
         val lista = findViewById<LinearLayout>(R.id.llCuentasLista)
-        findViewById<TextView>(R.id.tvSinCuentas).visibility =
-            if (cuentas.isEmpty()) View.VISIBLE else View.GONE
         if (cuentas.isEmpty()) return
 
         findViewById<View>(R.id.llCuentasDispositivo).visibility = View.VISIBLE
         lista.removeAllViews()
-        cuentas.forEach { cuenta ->
-            val fila = layoutInflater.inflate(R.layout.item_cuenta_guardada, lista, false)
+        cuentas.take(MAXIMO_CUENTAS_VISIBLES).forEach { cuenta ->
+            val fila = layoutInflater.inflate(R.layout.item_cuenta_avatar, lista, false)
             fila.findViewById<TextView>(R.id.icCuentaNombre).text =
                 cuenta.nombre.ifBlank { cuenta.correo }
-            fila.findViewById<TextView>(R.id.icCuentaCorreo).text = cuenta.correo
+            fila.contentDescription = "${getString(R.string.usar_cuenta)}: ${cuenta.correo}"
             fila.setOnClickListener { usarCuenta(cuenta.correo) }
             lista.addView(fila)
         }

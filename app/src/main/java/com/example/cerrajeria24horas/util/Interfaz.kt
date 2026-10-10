@@ -30,11 +30,16 @@ object Interfaz {
         }
     }
 
-    fun ajustarContenido(raiz: View, recursoAnchoMaximo: Int) {
+    fun ajustarContenido(
+        raiz: View,
+        recursoAnchoMaximo: Int,
+        alCambiarTeclado: ((Int) -> Unit)? = null
+    ) {
         val anchoMaximo = raiz.resources.getDimensionPixelSize(recursoAnchoMaximo)
         val inicial = Insets.of(raiz.paddingLeft, raiz.paddingTop, raiz.paddingRight, raiz.paddingBottom)
         var barras = Insets.NONE
         var altoTeclado = 0
+        var altoTecladoPrevio = -1
 
         fun aplicarMargenes() {
             val anchoUtil = (raiz.width - barras.left - barras.right).coerceAtLeast(0)
@@ -55,6 +60,10 @@ object Interfaz {
             )
             altoTeclado = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
             aplicarMargenes()
+            if (altoTeclado != altoTecladoPrevio) {
+                altoTecladoPrevio = altoTeclado
+                alCambiarTeclado?.invoke(altoTeclado)
+            }
             WindowInsetsCompat.CONSUMED
         }
         // Se recalcula con el ancho real, también en pantalla dividida y ventanas.

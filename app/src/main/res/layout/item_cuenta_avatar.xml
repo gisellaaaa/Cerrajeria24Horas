@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cuenta guardada en formato compacto de avatar, para la fila horizontal del acceso. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/espacio_12"
+    android:minWidth="64dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <ImageView
+        android:layout_width="@dimen/circulo_icono"
+        android:layout_height="@dimen/circulo_icono"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:background="@drawable/bg_acento_suave"
+        android:src="@drawable/ic_person"
+        app:tint="@color/azul_acento"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/icCuentaNombre"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/texto_principal"
+        android:textSize="11sp"
+        android:fontFamily="@font/dm_sans_semibold" />
+</LinearLayout>

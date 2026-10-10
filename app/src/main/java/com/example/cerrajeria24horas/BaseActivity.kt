@@ -46,8 +46,13 @@ abstract class BaseActivity : AppCompatActivity() {
             R.layout.activity_servicio_form -> R.dimen.ancho_maximo_formulario
             else -> R.dimen.ancho_maximo_contenido
         }
-        Interfaz.ajustarContenido(raiz, anchoMaximo)
+        Interfaz.ajustarContenido(raiz, anchoMaximo) { altoTeclado ->
+            alCambiarTeclado(altoTeclado > 0)
+        }
     }
+
+    /** Aviso cuando el teclado en pantalla aparece o desaparece, para encoger la cabecera. */
+    protected open fun alCambiarTeclado(tecladoVisible: Boolean) {}
 
     override fun onResume() {
         super.onResume()

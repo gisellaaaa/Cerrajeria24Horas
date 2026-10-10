@@ -162,6 +162,27 @@ object Movimiento {
             .start()
     }
 
+    /** Muestra u oculta una vista con un fundido corto (para encoger la cabecera del acceso). */
+    fun fundir(vista: View, visible: Boolean) {
+        vista.animate().cancel()
+        if (visible) {
+            vista.visibility = View.VISIBLE
+            if (!activo(vista.context)) {
+                vista.alpha = 1f
+                return
+            }
+            vista.alpha = 0f
+            vista.animate().alpha(1f).setDuration(CORTA).setInterpolator(decelerar).start()
+        } else {
+            if (!activo(vista.context)) {
+                vista.visibility = View.GONE
+                return
+            }
+            vista.animate().alpha(0f).setDuration(CORTA).setInterpolator(acelerar)
+                .withEndAction { vista.visibility = View.GONE }.start()
+        }
+    }
+
     /** Error: sacudida de 250 ms. */
     fun sacudir(view: View) {
         if (!activo(view.context)) return
