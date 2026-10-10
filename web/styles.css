@@ -403,80 +403,245 @@ svg {
   background: #fff;
 }
 
-/* Selector y campos de fecha/hora con estilo propio (no el nativo) */
-select.campo,
-input[type="date"].campo,
-input[type="time"].campo {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+/* ---------- Controles personalizados (dropdown, calendario, reloj) ---------- */
+.selector {
   position: relative;
-  padding-right: 44px;
-  background-color: var(--fondo);
-  background-repeat: no-repeat;
-  background-position: right 15px center;
-  background-size: 18px 18px;
+}
+
+.selector__campo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
   cursor: pointer;
 }
 
-select.campo {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C2260' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-size: 16px 16px;
-}
-
-input[type="date"].campo {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C2260' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M8 3v4M16 3v4M3 10h18'/%3E%3C/svg%3E");
-}
-
-input[type="time"].campo {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C2260' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E");
-}
-
-select.campo:focus,
-input[type="date"].campo:focus,
-input[type="time"].campo:focus {
-  background-color: #fff;
-}
-
-select.campo option {
+.selector__valor {
+  min-width: 0;
   color: var(--texto);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* Oculta el icono nativo de fecha/hora y deja clicable todo el campo */
-input[type="date"].campo::-webkit-calendar-picker-indicator,
-input[type="time"].campo::-webkit-calendar-picker-indicator {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Texto guía propio en fecha/hora (oculta el "dd/mm/aaaa" nativo) */
-.campo-fecha {
-  position: relative;
-}
-
-.campo-fecha__guia {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 15px;
+.selector__valor[data-vacio="true"] {
   color: var(--texto-secundario);
-  pointer-events: none;
 }
 
-.campo-fecha.tiene-valor .campo-fecha__guia {
-  display: none;
+.selector__icono {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--azul-marino);
+  transition: transform 0.2s ease;
 }
 
-.campo-fecha:not(.tiene-valor) input.campo {
-  color: transparent;
+.selector--menu.abierto .selector__icono {
+  transform: rotate(180deg);
+}
+
+.selector__popup {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+}
+
+.selector.abierto .selector__popup {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.selector__opcion {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+  color: var(--texto);
+  background: none;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 12px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.selector__opcion:hover,
+.selector__opcion:focus-visible {
+  background: var(--azul-acento-claro);
+  outline: none;
+}
+
+.selector__opcion.activo {
+  background: var(--azul-acento-claro);
+  color: var(--azul-marino);
+  font-weight: 700;
+}
+
+.selector__popup--calendario,
+.selector__popup--reloj {
+  right: auto;
+  width: 300px;
+  max-width: calc(100vw - 40px);
+  padding: 14px;
+}
+
+/* Calendario */
+.calendario__cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.calendario__titulo {
+  font-weight: 800;
+  color: var(--azul-marino);
+  text-transform: capitalize;
+}
+
+.calendario__nav {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--azul-marino);
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.calendario__nav:hover {
+  background: var(--azul-acento-claro);
+}
+
+.calendario__semana,
+.calendario__dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendario__semana {
+  margin-bottom: 4px;
+}
+
+.calendario__semana span {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--texto-secundario);
+}
+
+.calendario__dia {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font: inherit;
+  font-size: 14px;
+  color: var(--texto);
+  background: none;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.calendario__dia:hover {
+  background: var(--azul-acento-claro);
+}
+
+.calendario__dia--vacio {
+  visibility: hidden;
+}
+
+.calendario__dia--hoy {
+  box-shadow: inset 0 0 0 1px var(--azul-acento);
+  font-weight: 700;
+}
+
+.calendario__dia--sel,
+.calendario__dia--sel:hover {
+  background: var(--azul-marino);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Reloj */
+.selector__popup--reloj {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.reloj__etiqueta {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--texto-secundario);
+}
+
+.reloj__columna {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.reloj__opcion {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  text-align: center;
+  color: var(--texto);
+  background: none;
+  border: 0;
+  border-radius: 10px;
+  padding: 9px 0;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.reloj__opcion:hover {
+  background: var(--azul-acento-claro);
+}
+
+.reloj__opcion.activo,
+.reloj__opcion.activo:hover {
+  background: var(--azul-marino);
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .selector__popup--calendario,
+  .selector__popup--reloj {
+    right: 0;
+    width: auto;
+  }
 }
 
 .form__estado {
