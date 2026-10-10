@@ -275,4 +275,7 @@
     <string name="servicio_asignado">Servicio asignado.</string>
     <string name="error_asignar">No fue posible asignar el servicio.</string>
     <string name="correo_ya_registrado">Ya existe una cuenta con ese correo.</string>
+    <string name="accesos_rapidos">Accesos rápidos</string>
+    <string name="ultimos_servicios">Últimos servicios</string>
+    <string name="panel_sin_servicios">Aún no has registrado servicios.</string>
 </resources>

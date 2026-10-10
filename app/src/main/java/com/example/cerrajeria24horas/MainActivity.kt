@@ -36,9 +36,9 @@ class MainActivity : BaseActivity() {
         barra = findViewById(R.id.barraNavegacion)
 
         findViewById<View>(R.id.btnIrPerfil).setOnClickListener { abrirActividad(PerfilActivity::class.java) }
+        findViewById<View>(R.id.btnNuevoServicio).setOnClickListener { abrirActividad(ServicioFormActivity::class.java) }
 
         barra.alSeleccionar = { destino -> cambiarFragmento(destino) }
-        barra.alAccionCentral = { abrirActividad(ServicioFormActivity::class.java) }
 
         aplicarRol()
 
@@ -78,9 +78,16 @@ class MainActivity : BaseActivity() {
             if (doc.getString("rol") == RolUsuario.CERRAJERO.valor) {
                 barra.mostrarItem(Destino.CLIENTES, false)
                 barra.mostrarItem(Destino.EQUIPO, false)
-                barra.mostrarAccionCentral(false)
+                findViewById<View>(R.id.btnNuevoServicio).visibility = View.GONE
             }
         }
+    }
+
+    /** Cambia de pestaña desde un fragmento (por ejemplo, los accesos rápidos del panel). */
+    fun abrirDestino(destino: Destino) {
+        if (barra.destinoActual == destino) return
+        barra.mostrar(destino)
+        cambiarFragmento(destino)
     }
 
     private fun cambiarFragmento(destino: Destino) {

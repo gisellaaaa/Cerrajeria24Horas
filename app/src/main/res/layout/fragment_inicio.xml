@@ -116,5 +116,75 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
         </com.example.cerrajeria24horas.util.FilaEstadisticas>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_24"
+            android:text="@string/accesos_rapidos"
+            android:textColor="@color/azul_marino"
+            android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_12"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAccesoServicios"
+                style="@style/Cerrajeria24Horas.BotonAccion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="@string/menu_servicios"
+                app:icon="@drawable/ic_llave_doble" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAccesoClientes"
+                style="@style/Cerrajeria24Horas.BotonAccion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="@string/menu_clientes"
+                app:icon="@drawable/ic_person" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAccesoGanancias"
+                style="@style/Cerrajeria24Horas.BotonAccion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/menu_ganancias"
+                app:icon="@drawable/ic_grafico" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_24"
+            android:text="@string/ultimos_servicios"
+            android:textColor="@color/azul_marino"
+            android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo" />
+
+        <TextView
+            android:id="@+id/tvPanelSinServicios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_8"
+            android:text="@string/panel_sin_servicios"
+            android:textColor="@color/texto_secundario"
+            android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llUltimosServicios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/espacio_12"
+            android:orientation="vertical" />
     </LinearLayout>
 </ScrollView>

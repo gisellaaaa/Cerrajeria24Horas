@@ -1,16 +1,23 @@
 package com.example.cerrajeria24horas.fragmentos
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.cerrajeria24horas.MainActivity
 import com.example.cerrajeria24horas.R
+import com.example.cerrajeria24horas.ServicioDetalleActivity
 import com.example.cerrajeria24horas.data.EstadoServicio
 import com.example.cerrajeria24horas.data.FirestoreAPI
+import com.example.cerrajeria24horas.data.RolUsuario
 import com.example.cerrajeria24horas.data.Servicio
 import com.example.cerrajeria24horas.util.AnilloProgresoView
+import com.example.cerrajeria24horas.util.BarraNavegacionFlotante.Destino
 import com.example.cerrajeria24horas.util.Calculos
 import com.example.cerrajeria24horas.util.Fechas
 import com.example.cerrajeria24horas.util.Formato
@@ -29,6 +36,7 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         raiz = view
+        configurarAccesosRapidos()
         mostrarResumen(emptyList())
         cargarNombre()
         cargado = true
@@ -39,12 +47,27 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
         if (cargado && auth.currentUser != null) cargarDatos()
     }
 
+    private fun configurarAccesosRapidos() {
+        raiz.findViewById<View>(R.id.btnAccesoServicios).setOnClickListener {
+            (activity as? MainActivity)?.abrirDestino(Destino.SERVICIOS)
+        }
+        raiz.findViewById<View>(R.id.btnAccesoClientes).setOnClickListener {
+            (activity as? MainActivity)?.abrirDestino(Destino.CLIENTES)
+        }
+        raiz.findViewById<View>(R.id.btnAccesoGanancias).setOnClickListener {
+            (activity as? MainActivity)?.abrirDestino(Destino.GANANCIAS)
+        }
+    }
+
     private fun cargarNombre() {
         val usuario = auth.currentUser ?: return
         FirestoreAPI.obtenerUsuario(usuario.uid)
             .addOnSuccessListener { doc ->
                 val nombre = doc.getString("nombre").orEmpty()
                 raiz.findViewById<TextView>(R.id.tvBienvenido).text = nombre
+                if (doc.getString("rol") == RolUsuario.CERRAJERO.valor) {
+                    raiz.findViewById<View>(R.id.btnAccesoClientes).visibility = View.GONE
+                }
                 usuario.email?.let { correo ->
                     Preferencias.guardarCuenta(requireContext(), correo, nombre.ifBlank { correo })
                 }
@@ -116,5 +139,51 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
         val realizados = Calculos.contarPorEstado(servicios, EstadoServicio.REALIZADO)
         val fraccion = if (total == 0) 0f else realizados.toFloat() / total
         raiz.findViewById<AnilloProgresoView>(R.id.anilloProgreso).mostrar(fraccion)
+
+        mostrarUltimos(servicios)
+    }
+
+    /** Rellena el panel con los últimos servicios para que la pantalla no quede vacía. */
+    private fun mostrarUltimos(servicios: List<Servicio>) {
+        val contenedor = raiz.findViewById<LinearLayout>(R.id.llUltimosServicios)
+        val vacio = raiz.findViewById<View>(R.id.tvPanelSinServicios)
+        contenedor.removeAllViews()
+
+        val ultimos = servicios.take(4)
+        if (ultimos.isEmpty()) {
+            vacio.visibility = View.VISIBLE
+            contenedor.visibility = View.GONE
+            return
+        }
+
+        vacio.visibility = View.GONE
+        contenedor.visibility = View.VISIBLE
+        val inflador = LayoutInflater.from(requireContext())
+        val ocultos = Interaccion.Montos.ocultos(requireContext())
+
+        ultimos.forEach { servicio ->
+            val fila = inflador.inflate(R.layout.item_servicio, contenedor, false)
+            fila.findViewById<TextView>(R.id.tvServCliente).text =
+                servicio.nombreCliente.ifBlank { servicio.clienteId }
+            UI.pintarEstado(fila.findViewById(R.id.tvServEstado), servicio.estado)
+            fila.findViewById<TextView>(R.id.tvServTipo).text =
+                Formato.tipoServicio(servicio.tipoServicio, requireContext())
+            fila.findViewById<TextView>(R.id.tvServCiudad).text =
+                listOf(servicio.ciudad, servicio.direccion)
+                    .filter { it.isNotBlank() }
+                    .joinToString(" · ")
+            fila.findViewById<TextView>(R.id.tvServFecha).text =
+                servicio.fecha?.let { Formato.fechaCorta(it) }.orEmpty()
+            fila.findViewById<TextView>(R.id.tvServValor).text =
+                if (ocultos) getString(R.string.montos_ocultos) else Formato.moneda(servicio.valor)
+            fila.setOnClickListener { abrirDetalle(servicio.id) }
+            contenedor.addView(fila)
+        }
+    }
+
+    private fun abrirDetalle(servicioId: String) {
+        val intent = Intent(requireContext(), ServicioDetalleActivity::class.java)
+        intent.putExtra(ServicioDetalleActivity.EXTRA_SERVICIO_ID, servicioId)
+        startActivity(intent)
     }
 }

@@ -2,9 +2,6 @@ package com.example.cerrajeria24horas.util
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -13,23 +10,19 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.example.cerrajeria24horas.R
-import kotlin.math.min
 
 /**
- * Barra de navegación flotante con una muesca real en el centro, recortada con
- * [Path.op] sobre el cuerpo redondeado. El botón central sobresale por el hueco.
+ * Barra de navegación flotante: una píldora redondeada con cinco destinos de
+ * igual ancho y una pastilla que resalta el destino activo. El botón de
+ * "Nuevo servicio" ya no vive dentro de la barra: se muestra como un botón
+ * circular flotante en la esquina, igual que el acceso rápido de la web.
  */
 class BarraNavegacionFlotante @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-
-    private companion object {
-        const val PESO_ACTIVO = 1.6f
-    }
 
     enum class Destino(val etiquetaRes: Int, val iconoRes: Int) {
         INICIO(R.string.menu_inicio, R.drawable.ic_inicio),
@@ -40,34 +33,16 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
     }
 
     var alSeleccionar: ((Destino) -> Unit)? = null
-    var alAccionCentral: (() -> Unit)? = null
 
     var destinoActual: Destino = Destino.INICIO
         private set
 
-    private val pintura = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val colorBarra = ContextCompat.getColor(context, R.color.nav_fondo)
     private val colorActivo = ContextCompat.getColor(context, R.color.white)
     private val colorInactivo = ContextCompat.getColor(context, R.color.nav_texto_inactivo)
-    private val colorAcento = ContextCompat.getColor(context, R.color.azul_marino)
-    private val colorSombra = ContextCompat.getColor(context, R.color.onda_oscura)
-
-    private val densidad = resources.displayMetrics.density
-    private val realce = resources.getDimension(R.dimen.realce_barra_navegacion)
-    private val radioNotch = resources.getDimension(R.dimen.notch_barra_navegacion)
-    private val radioBarra = resources.getDimension(R.dimen.radio_barra_navegacion)
 
     private val items = mutableMapOf<Destino, LinearLayout>()
-    private val huecoBarra = resources.getDimension(R.dimen.hueco_barra_navegacion)
-
-    /** Si no caben todas las etiquetas, solo se muestra la del destino activo. */
-    private var etiquetasTodas = false
 
     init {
-        setWillNotDraw(false)
-        setLayerType(LAYER_TYPE_SOFTWARE, null)
-        pintura.setShadowLayer(6f * densidad, 0f, 3f * densidad, colorSombra)
-
         LayoutInflater.from(context).inflate(R.layout.barra_navegacion, this, true)
 
         enlazar(R.id.navInicio, Destino.INICIO)
@@ -75,11 +50,6 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
         enlazar(R.id.navClientes, Destino.CLIENTES)
         enlazar(R.id.navGanancias, Destino.GANANCIAS)
         enlazar(R.id.navEquipo, Destino.EQUIPO)
-
-        findViewById<ImageView>(R.id.btnCentral).apply {
-            imageTintList = ColorStateList.valueOf(colorAcento)
-            setOnClickListener { alAccionCentral?.invoke() }
-        }
 
         aplicar(Destino.INICIO)
     }
@@ -103,11 +73,6 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
         items[destino]?.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-    /** Muestra u oculta el botón central de "Nuevo servicio". */
-    fun mostrarAccionCentral(visible: Boolean) {
-        findViewById<ImageView>(R.id.btnCentral).visibility = if (visible) View.VISIBLE else View.GONE
-    }
-
     /** Permite que la pantalla anfitriona cambie de pestaña (por ejemplo, al volver atrás). */
     fun mostrar(destino: Destino) {
         if (destinoActual != destino) aplicar(destino)
@@ -125,71 +90,6 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
                 if (activo) ContextCompat.getDrawable(context, R.drawable.bg_indicador_nav) else null
             icono.imageTintList = ColorStateList.valueOf(color)
             texto.setTextColor(color)
-            texto.visibility = if (activo || etiquetasTodas) View.VISIBLE else View.INVISIBLE
-
-            // El destino activo recibe más ancho cuando las etiquetas están apretadas.
-            val lp = vista.layoutParams
-            if (lp is LinearLayout.LayoutParams) {
-                val peso = if (activo && !etiquetasTodas) PESO_ACTIVO else 1f
-                if (lp.weight != peso) {
-                    lp.weight = peso
-                    vista.layoutParams = lp
-                }
-            }
-            if (activo && !etiquetasTodas) {
-                vista.post { ajustarEtiquetaActiva(vista, texto) }
-            }
         }
-    }
-
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        calcularEtiquetas(w)
-        aplicar(destinoActual)
-    }
-
-    /** Decide si todas las etiquetas caben; si no, se mostrará solo la del destino activo. */
-    private fun calcularEtiquetas(anchoBarra: Int) {
-        if (anchoBarra <= 0) return
-        val pintura = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            typeface = ResourcesCompat.getFont(context, R.font.dm_sans_medium)
-            textSize = 12f * resources.displayMetrics.scaledDensity
-        }
-        val anchoMaximo = Destino.values().maxOf { d ->
-            pintura.measureText(context.getString(d.etiquetaRes))
-        }
-        val util = (anchoBarra - huecoBarra).coerceAtLeast(0f)
-        val anchoItemDerecha = util / 2f / 3f
-        val anchoItemIzquierda = util / 2f / 2f
-        val menor = min(anchoItemIzquierda, anchoItemDerecha)
-        etiquetasTodas = menor >= anchoMaximo + dp(10f)
-    }
-
-    /** Oculta la etiqueta activa si ni siquiera ella cabe, para no cortar nunca el texto. */
-    private fun ajustarEtiquetaActiva(vista: View, texto: TextView) {
-        if (etiquetasTodas || vista.width <= 0) return
-        val anchoTexto = texto.paint.measureText(texto.text?.toString().orEmpty())
-        texto.visibility =
-            if (vista.width >= anchoTexto + dp(10f)) View.VISIBLE else View.INVISIBLE
-    }
-
-    private fun dp(valor: Float): Float = valor * resources.displayMetrics.density
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-        val ancho = width.toFloat()
-        val alto = height.toFloat()
-        if (ancho <= 0f || alto <= 0f) return
-
-        val barra = Path().apply {
-            addRoundRect(0f, realce, ancho, alto, radioBarra, radioBarra, Path.Direction.CW)
-        }
-        val muesca = Path().apply {
-            addCircle(ancho / 2f, realce, radioNotch, Path.Direction.CW)
-        }
-        barra.op(muesca, Path.Op.DIFFERENCE)
-
-        pintura.color = colorBarra
-        canvas.drawPath(barra, pintura)
     }
 }

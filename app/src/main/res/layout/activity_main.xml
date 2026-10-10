@@ -78,10 +78,28 @@
         <com.example.cerrajeria24horas.util.BarraNavegacionFlotante
             android:id="@+id/barraNavegacion"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/alto_total_barra_navegacion"
+            android:layout_height="@dimen/alto_barra_navegacion"
             android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/margen_barra_navegacion"
             android:layout_marginEnd="@dimen/margen_barra_navegacion"
-            android:layout_marginBottom="@dimen/espacio_12" />
+            android:layout_marginBottom="@dimen/espacio_12"
+            android:background="@drawable/bg_barra_navegacion"
+            android:elevation="10dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnNuevoServicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/margen_pantalla"
+            android:layout_marginBottom="@dimen/margen_fab_navegacion"
+            android:contentDescription="@string/nuevo_servicio"
+            android:src="@drawable/ic_mas"
+            app:backgroundTint="@color/oro"
+            app:tint="@color/azul_marino"
+            app:borderWidth="0dp"
+            app:fabSize="normal"
+            app:elevation="8dp"
+            app:rippleColor="@color/onda_oscura" />
     </FrameLayout>
 </LinearLayout>
