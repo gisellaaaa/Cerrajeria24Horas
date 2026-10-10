@@ -27,6 +27,53 @@ object TiposServicio {
     )
 }
 
+/** Rol dentro del taller. El administrador crea las cuentas de sus cerrajeros. */
+enum class RolUsuario(val valor: String, val etiqueta: String) {
+    ADMIN("admin", "Administrador"),
+    CERRAJERO("cerrajero", "Cerrajero");
+
+    companion object {
+        fun desde(valor: String?): RolUsuario =
+            values().firstOrNull { it.valor == valor } ?: ADMIN
+    }
+}
+
+/** Perfil del usuario. `tallerId` une a los cerrajeros con el administrador que los creó. */
+data class Usuario(
+    val uid: String = "",
+    val nombre: String = "",
+    val correo: String = "",
+    val telefono: String = "",
+    val rol: RolUsuario = RolUsuario.ADMIN,
+    val tallerId: String = "",
+    val fechaCreacion: Timestamp? = null
+) {
+    fun toMap(): MutableMap<String, Any> = hashMapOf(
+        "uid" to uid,
+        "nombre" to nombre,
+        "correo" to correo,
+        "telefono" to telefono,
+        "rol" to rol.valor,
+        "tallerId" to tallerId,
+        "fechaCreacion" to (fechaCreacion ?: Timestamp.now())
+    )
+
+    companion object {
+        fun fromSnapshot(doc: DocumentSnapshot): Usuario {
+            val datos = doc.data ?: return Usuario()
+            return Usuario(
+                uid = datos["uid"] as? String ?: doc.id,
+                nombre = datos["nombre"] as? String ?: "",
+                correo = datos["correo"] as? String ?: "",
+                telefono = datos["telefono"] as? String ?: "",
+                rol = RolUsuario.desde(datos["rol"] as? String),
+                tallerId = datos["tallerId"] as? String ?: "",
+                fechaCreacion = datos["fechaCreacion"] as? Timestamp
+            )
+        }
+    }
+}
+
 data class Cliente(
     val id: String = "",
     val clienteId: String = "",
@@ -84,7 +131,8 @@ data class Servicio(
     val estado: EstadoServicio = EstadoServicio.PENDIENTE,
     val fechaCreacion: Timestamp? = null,
     val fechaFinalizacion: Timestamp? = null,
-    val cerrajeroId: String = ""
+    val cerrajeroId: String = "",
+    val asignadoA: String = ""
 ) {
     fun toMap(): MutableMap<String, Any> {
         val mapa = hashMapOf<String, Any>(
@@ -99,7 +147,8 @@ data class Servicio(
             "valor" to valor,
             "estado" to estado.valor,
             "fechaCreacion" to (fechaCreacion ?: Timestamp.now()),
-            "cerrajeroId" to cerrajeroId
+            "cerrajeroId" to cerrajeroId,
+            "asignadoA" to asignadoA
         )
         if (fechaFinalizacion != null) {
             mapa["fechaFinalizacion"] = fechaFinalizacion
@@ -124,7 +173,8 @@ data class Servicio(
                 estado = EstadoServicio.desde(datos["estado"] as? String),
                 fechaCreacion = datos["fechaCreacion"] as? Timestamp,
                 fechaFinalizacion = datos["fechaFinalizacion"] as? Timestamp,
-                cerrajeroId = datos["cerrajeroId"] as? String ?: ""
+                cerrajeroId = datos["cerrajeroId"] as? String ?: "",
+                asignadoA = datos["asignadoA"] as? String ?: ""
             )
         }
     }
