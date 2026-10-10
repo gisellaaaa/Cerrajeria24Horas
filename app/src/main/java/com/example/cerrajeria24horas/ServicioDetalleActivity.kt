@@ -3,13 +3,16 @@ package com.example.cerrajeria24horas
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.Timestamp
 import com.example.cerrajeria24horas.data.EstadoServicio
 import com.example.cerrajeria24horas.data.FirestoreAPI
 import com.example.cerrajeria24horas.data.Servicio
@@ -113,6 +116,32 @@ class ServicioDetalleActivity : BaseActivity() {
 
         val indice = EstadoServicio.values().indexOf(servicio.estado)
         spEstado.setSelection(indice)
+        pintarLineaTiempo(servicio)
+    }
+
+    /** Línea de tiempo construida con las fechas disponibles del servicio. */
+    private fun pintarLineaTiempo(servicio: Servicio) {
+        val contenedor = findViewById<LinearLayout>(R.id.lineaTiempo)
+        contenedor.removeAllViews()
+        val inflador = LayoutInflater.from(this)
+
+        fun agregar(tituloRes: Int, fecha: Timestamp?) {
+            if (fecha == null) return
+            val fila = inflador.inflate(R.layout.item_linea_tiempo, contenedor, false)
+            fila.findViewById<TextView>(R.id.tlTitulo).setText(tituloRes)
+            fila.findViewById<TextView>(R.id.tlFecha).text =
+                Formato.fecha(fecha) + " · " + Formato.hora(fecha)
+            contenedor.addView(fila)
+        }
+
+        agregar(R.string.tl_creado, servicio.fechaCreacion)
+        agregar(R.string.tl_programado, servicio.fecha)
+        if (servicio.estado == EstadoServicio.REALIZADO) {
+            agregar(R.string.tl_finalizado, servicio.fechaFinalizacion)
+        }
+
+        contenedor.getChildAt(contenedor.childCount - 1)
+            ?.findViewById<View>(R.id.tlLinea)?.visibility = View.INVISIBLE
     }
 
     private fun cambiarEstado() {

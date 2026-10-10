@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingTop="14dp"
+    android:paddingBottom="8dp">
+
+    <View
+        android:layout_width="4dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/azul_acento" />
+
+    <TextView
+        android:id="@+id/tvGrupoTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dm_sans_bold"
+        android:textColor="@color/texto_secundario"
+        android:textSize="12sp"
+        android:textAllCaps="true" />
+
+    <TextView
+        android:id="@+id/tvGrupoCantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/dm_sans_semibold"
+        android:textColor="@color/azul_marino"
+        android:textSize="12sp" />
+</LinearLayout>

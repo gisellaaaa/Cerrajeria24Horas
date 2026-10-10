@@ -51,6 +51,7 @@
     <string name="en_proceso">En proceso</string>
     <string name="realizados">Realizados</string>
     <string name="ganancias_hoy">Ganancias de hoy</string>
+    <string name="todos">Todos</string>
     <string name="menu_inicio">Inicio</string>
     <string name="menu_clientes">Clientes</string>
     <string name="menu_servicios">Servicios</string>
@@ -91,6 +92,10 @@
     <string name="hora_servicio">Hora</string>
     <string name="valor">Valor (COP)</string>
     <string name="estado">Estado</string>
+    <string name="linea_tiempo">Línea de tiempo</string>
+    <string name="tl_creado">Servicio registrado</string>
+    <string name="tl_programado">Fecha programada</string>
+    <string name="tl_finalizado">Servicio finalizado</string>
     <string name="elegir_fecha">Elegir fecha</string>
     <string name="elegir_hora">Elegir hora</string>
     <string name="guardar_servicio">GUARDAR SERVICIO</string>

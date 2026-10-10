@@ -11,25 +11,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cerrajeria24horas.R
 import com.example.cerrajeria24horas.ServicioDetalleActivity
 import com.example.cerrajeria24horas.ServicioFormActivity
+import com.example.cerrajeria24horas.adapters.FilaServicios
 import com.example.cerrajeria24horas.adapters.ServiciosAdapter
+import com.example.cerrajeria24horas.data.EstadoServicio
 import com.example.cerrajeria24horas.data.FirestoreAPI
 import com.example.cerrajeria24horas.data.Servicio
 import com.example.cerrajeria24horas.util.UI
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 
 class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
 
     private val auth = FirebaseAuth.getInstance()
-    private lateinit var raiz: View
     private lateinit var adapter: ServiciosAdapter
     private lateinit var rvServicios: RecyclerView
     private lateinit var emptyView: View
     private lateinit var pbServicios: ProgressBar
 
+    private var servicios: List<Servicio> = emptyList()
+    private var filtro: EstadoServicio? = null
+    private var cargado = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        raiz = view
 
         rvServicios = view.findViewById(R.id.rvServicios)
         emptyView = view.findViewById(R.id.emptyServicios)
@@ -38,6 +43,16 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
         adapter = ServiciosAdapter { servicio -> abrirDetalle(servicio.id) }
         rvServicios.layoutManager = LinearLayoutManager(requireContext())
         rvServicios.adapter = adapter
+
+        view.findViewById<ChipGroup>(R.id.chipsServicios).setOnCheckedStateChangeListener { _, marcados ->
+            filtro = when (marcados.firstOrNull()) {
+                R.id.chipPendientes -> EstadoServicio.PENDIENTE
+                R.id.chipEnProceso -> EstadoServicio.EN_PROCESO
+                R.id.chipRealizados -> EstadoServicio.REALIZADO
+                else -> null
+            }
+            aplicar()
+        }
 
         view.findViewById<MaterialButton>(R.id.btnRegistrarServicio).setOnClickListener {
             abrirFormulario()
@@ -57,13 +72,13 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
 
         FirestoreAPI.obtenerServicios(uid)
             .addOnSuccessListener { snapshot ->
-                val servicios = FirestoreAPI.ordenarServicios(
+                servicios = FirestoreAPI.ordenarServicios(
                     snapshot.documents
                         .mapNotNull { Servicio.fromSnapshot(it) }
                         .filterNot { it.id.isEmpty() }
                 )
-                emptyView.visibility = if (servicios.isEmpty()) View.VISIBLE else View.GONE
-                adapter.setData(servicios)
+                cargado = true
+                aplicar()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), UI.mensajeErrorFirestore(requireContext(), e), Toast.LENGTH_LONG).show()
@@ -73,6 +88,25 @@ class ServiciosFragment : Fragment(R.layout.fragment_servicios) {
                 pbServicios.visibility = View.GONE
                 rvServicios.visibility = View.VISIBLE
             }
+    }
+
+    private fun aplicar() {
+        if (!cargado) return
+        val filtrados = servicios.filter { filtro == null || it.estado == filtro }
+        emptyView.visibility = if (filtrados.isEmpty()) View.VISIBLE else View.GONE
+        adapter.submitList(agrupar(filtrados))
+    }
+
+    private fun agrupar(lista: List<Servicio>): List<FilaServicios> {
+        val filas = mutableListOf<FilaServicios>()
+        EstadoServicio.values().forEach { estado ->
+            val delEstado = lista.filter { it.estado == estado }
+            if (delEstado.isNotEmpty()) {
+                filas.add(FilaServicios.Encabezado(estado, delEstado.size))
+                delEstado.forEach { filas.add(FilaServicios.Articulo(it)) }
+            }
+        }
+        return filas
     }
 
     private fun abrirFormulario() {

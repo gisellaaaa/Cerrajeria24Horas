@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cerrajeria24horas.R
 import com.example.cerrajeria24horas.data.Servicio
@@ -13,27 +15,38 @@ import com.example.cerrajeria24horas.util.UI
 
 class ServiciosAdapter(
     private val alHacerClick: (Servicio) -> Unit
-) : RecyclerView.Adapter<ServiciosAdapter.ServicioViewHolder>() {
+) : ListAdapter<FilaServicios, RecyclerView.ViewHolder>(DIFERENCIAS) {
 
-    private val elementos = mutableListOf<Servicio>()
-
-    fun setData(lista: List<Servicio>) {
-        elementos.clear()
-        elementos.addAll(lista)
-        notifyDataSetChanged()
+    override fun getItemViewType(position: Int): Int = when (getItem(position)) {
+        is FilaServicios.Encabezado -> TIPO_ENCABEZADO
+        is FilaServicios.Articulo -> TIPO_ARTICULO
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicioViewHolder {
-        val vista = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_servicio, parent, false)
-        return ServicioViewHolder(vista)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflador = LayoutInflater.from(parent.context)
+        return if (viewType == TIPO_ENCABEZADO) {
+            EncabezadoViewHolder(inflador.inflate(R.layout.item_encabezado_grupo, parent, false))
+        } else {
+            ServicioViewHolder(inflador.inflate(R.layout.item_servicio, parent, false))
+        }
     }
 
-    override fun onBindViewHolder(holder: ServicioViewHolder, position: Int) {
-        holder.enlazar(elementos[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (val fila = getItem(position)) {
+            is FilaServicios.Encabezado -> (holder as EncabezadoViewHolder).enlazar(fila)
+            is FilaServicios.Articulo -> (holder as ServicioViewHolder).enlazar(fila.servicio)
+        }
     }
 
-    override fun getItemCount(): Int = elementos.size
+    private class EncabezadoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val titulo: TextView = itemView.findViewById(R.id.tvGrupoTitulo)
+        private val cantidad: TextView = itemView.findViewById(R.id.tvGrupoCantidad)
+
+        fun enlazar(fila: FilaServicios.Encabezado) {
+            titulo.text = fila.estado.etiqueta
+            cantidad.text = fila.cantidad.toString()
+        }
+    }
 
     inner class ServicioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvCliente: TextView = itemView.findViewById(R.id.tvServCliente)
@@ -57,6 +70,24 @@ class ServiciosAdapter(
                 Formato.moneda(servicio.valor)
             }
             itemView.setOnClickListener { alHacerClick(servicio) }
+        }
+    }
+
+    companion object {
+        private const val TIPO_ENCABEZADO = 0
+        private const val TIPO_ARTICULO = 1
+
+        private val DIFERENCIAS = object : DiffUtil.ItemCallback<FilaServicios>() {
+            override fun areItemsTheSame(viejo: FilaServicios, nuevo: FilaServicios): Boolean =
+                clave(viejo) == clave(nuevo)
+
+            override fun areContentsTheSame(viejo: FilaServicios, nuevo: FilaServicios): Boolean =
+                viejo == nuevo
+
+            private fun clave(fila: FilaServicios): String = when (fila) {
+                is FilaServicios.Encabezado -> "enc_${fila.estado.valor}"
+                is FilaServicios.Articulo -> fila.servicio.id
+            }
         }
     }
 }
