@@ -17,47 +17,76 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bg_banner"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_heroe_oro"
             android:padding="22dp">
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/bienvenido"
-                android:textColor="@color/texto_sobre_azul"
-                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvBienvenido"
-                android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bienvenido"
+                    android:textColor="@color/azul_marino"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo" />
+
+                <TextView
+                    android:id="@+id/tvBienvenido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloGrande"
+                    android:textColor="@color/azul_marino" />
+
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/azul_marino" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ganancias_hoy"
+                    android:textColor="@color/azul_marino"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo" />
+
+                <TextView
+                    android:id="@+id/tvGananciasHoy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cifra"
+                    android:textColor="@color/azul_marino"
+                    android:breakStrategy="simple" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloGrande"
-                android:textColor="@color/white" />
+                android:layout_marginStart="@dimen/espacio_12"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            <View
-                android:layout_width="40dp"
-                android:layout_height="3dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/oro" />
+                <com.example.cerrajeria24horas.util.AnilloProgresoView
+                    android:id="@+id/anilloProgreso"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ganancias_hoy"
-                android:textColor="@color/texto_sobre_azul"
-                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cuerpo" />
-
-            <TextView
-                android:id="@+id/tvGananciasHoy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cifra"
-                android:textColor="@color/oro"
-                android:breakStrategy="simple" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/trabajos_completados"
+                    android:textColor="@color/azul_marino"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Etiqueta" />
+            </LinearLayout>
         </LinearLayout>
 
         <com.example.cerrajeria24horas.util.FilaEstadisticas

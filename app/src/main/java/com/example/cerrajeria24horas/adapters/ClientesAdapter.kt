@@ -1,5 +1,6 @@
 package com.example.cerrajeria24horas.adapters
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class ClientesAdapter(
     override fun getItemCount(): Int = elementos.size
 
     inner class ClienteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val tvAvatar: TextView = itemView.findViewById(R.id.tvCliAvatar)
         private val tvNombre: TextView = itemView.findViewById(R.id.tvCliNombre)
         private val tvTelefono: TextView = itemView.findViewById(R.id.tvCliTelefono)
         private val tvCiudad: TextView = itemView.findViewById(R.id.tvCliCiudad)
@@ -41,7 +43,29 @@ class ClientesAdapter(
             tvNombre.text = cliente.nombreCompleto
             tvTelefono.text = cliente.telefono
             tvCiudad.text = cliente.ciudad
+            pintarAvatar(cliente.nombreCompleto)
             itemView.setOnClickListener { alHacerClick(cliente) }
+        }
+
+        private fun pintarAvatar(nombre: String) {
+            val colores = intArrayOf(
+                R.color.azul_marino,
+                R.color.azul_acento,
+                R.color.azul_marino_claro
+            )
+            val color = colores[Math.floorMod(nombre.hashCode(), colores.size)]
+            tvAvatar.backgroundTintList =
+                ColorStateList.valueOf(itemView.context.getColor(color))
+            tvAvatar.text = iniciales(nombre)
+        }
+
+        private fun iniciales(nombre: String): String {
+            val partes = nombre.trim().split(Regex("\\s+")).filter { it.isNotBlank() }
+            return when {
+                partes.isEmpty() -> "?"
+                partes.size == 1 -> partes[0].take(1).uppercase()
+                else -> (partes[0].take(1) + partes[1].take(1)).uppercase()
+            }
         }
     }
 }

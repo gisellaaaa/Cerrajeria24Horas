@@ -12,11 +12,15 @@ import com.example.cerrajeria24horas.data.Servicio
 import com.example.cerrajeria24horas.util.Calculos
 import com.example.cerrajeria24horas.util.Fechas
 import com.example.cerrajeria24horas.util.Formato
+import com.example.cerrajeria24horas.util.GraficoGananciasView
 import com.example.cerrajeria24horas.util.Interaccion
 import com.example.cerrajeria24horas.util.Preferencias
 import com.example.cerrajeria24horas.util.UI
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class GananciasFragment : Fragment(R.layout.fragment_ganancias) {
 
@@ -74,7 +78,27 @@ class GananciasFragment : Fragment(R.layout.fragment_ganancias) {
             Calculos.serviciosRealizadosEn(servicios, Fechas.inicioDeMes(), Fechas.inicioDeProximoMes())
         )
         cifras = Triple(delDia, deLaSemana, delMes)
+        pintarGraficoSemanal(servicios)
         aplicarMontos()
+    }
+
+    private fun pintarGraficoSemanal(servicios: List<Servicio>) {
+        val hoy = Fechas.inicioDeHoy()
+        val dias = (6 downTo 0).map { atras ->
+            Calendar.getInstance().apply {
+                timeInMillis = hoy.timeInMillis
+                add(Calendar.DAY_OF_MONTH, -atras)
+            }
+        }
+        val valores = dias.map { inicio ->
+            val fin = (inicio.clone() as Calendar).apply { add(Calendar.DAY_OF_MONTH, 1) }
+            Calculos.sumarValores(Calculos.serviciosRealizadosEn(servicios, inicio, fin)).toFloat()
+        }
+        val formato = SimpleDateFormat("EEE", Locale.forLanguageTag("es-CO"))
+        val etiquetas = dias.map { dia ->
+            formato.format(dia.time).take(3).replaceFirstChar { it.uppercase() }
+        }
+        raiz.findViewById<GraficoGananciasView>(R.id.graficoGanancias).datos(valores, etiquetas)
     }
 
     private fun aplicarMontos() {
@@ -93,5 +117,8 @@ class GananciasFragment : Fragment(R.layout.fragment_ganancias) {
         val boton = raiz.findViewById<MaterialButton>(R.id.btnMontos)
         boton.setText(if (ocultos) R.string.mostrar_montos else R.string.ocultar_montos)
         boton.setIconResource(if (ocultos) R.drawable.ic_ojo_oculto else R.drawable.ic_ganancias)
+
+        raiz.findViewById<GraficoGananciasView>(R.id.graficoGanancias).visibility =
+            if (ocultos) View.GONE else View.VISIBLE
     }
 }

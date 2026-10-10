@@ -10,6 +10,7 @@ import com.example.cerrajeria24horas.R
 import com.example.cerrajeria24horas.data.EstadoServicio
 import com.example.cerrajeria24horas.data.FirestoreAPI
 import com.example.cerrajeria24horas.data.Servicio
+import com.example.cerrajeria24horas.util.AnilloProgresoView
 import com.example.cerrajeria24horas.util.Calculos
 import com.example.cerrajeria24horas.util.Fechas
 import com.example.cerrajeria24horas.util.Formato
@@ -110,5 +111,10 @@ class InicioFragment : Fragment(R.layout.fragment_inicio) {
         raiz.findViewById<TextView>(R.id.tvGananciasHoy).text =
             if (Interaccion.Montos.ocultos(requireContext())) getString(R.string.montos_ocultos)
             else Formato.moneda(gananciasHoy)
+
+        val total = servicios.size
+        val realizados = Calculos.contarPorEstado(servicios, EstadoServicio.REALIZADO)
+        val fraccion = if (total == 0) 0f else realizados.toFloat() / total
+        raiz.findViewById<AnilloProgresoView>(R.id.anilloProgreso).mostrar(fraccion)
     }
 }

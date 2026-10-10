@@ -106,6 +106,9 @@
     <string name="nota_estados_realizado">Solo los servicios con estado REALIZADO cuentan como ganancia.</string>
     <!-- Ganancias -->
     <string name="titulo_ganancias">Ganancias</string>
+    <string name="ganancias_ultimos_7_dias">Últimos 7 días</string>
+    <string name="porcentaje">%1$d%%</string>
+    <string name="trabajos_completados">Completados</string>
     <string name="ganancias_del_dia">Ganancias del día</string>
     <string name="ganancias_de_la_semana">Ganancias de la semana</string>
     <string name="ganancias_del_mes">Ganancias del mes</string>

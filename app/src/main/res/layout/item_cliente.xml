@@ -1,8 +1,68 @@
 <?xml version='1.0' encoding='utf-8'?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp" app:cardBackgroundColor="@color/tint_tarjeta" app:cardCornerRadius="@dimen/radio_tarjeta" app:strokeWidth="1dp" app:strokeColor="@color/borde" app:cardElevation="0dp" android:clickable="true" android:focusable="true" android:stateListAnimator="@animator/presion_tarjeta" app:rippleColor="@color/onda_oscura">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
-        <TextView android:id="@+id/tvCliNombre" android:layout_width="match_parent" android:layout_height="wrap_content" android:fontFamily="@font/dm_sans_semibold" android:textColor="@color/azul_marino" android:textSize="16sp"/>
-        <TextView android:id="@+id/tvCliTelefono" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textColor="@color/texto_principal" android:textSize="14sp" android:fontFamily="@font/dm_sans_regular"/>
-        <TextView android:id="@+id/tvCliCiudad" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textColor="@color/texto_secundario" android:textSize="13sp" android:fontFamily="@font/dm_sans_regular"/>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/fondo_tarjeta"
+    app:cardCornerRadius="@dimen/radio_ficha"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/borde"
+    app:cardElevation="0dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:rippleColor="@color/onda_oscura">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvCliAvatar"
+            android:layout_width="@dimen/circulo_icono"
+            android:layout_height="@dimen/circulo_icono"
+            android:background="@drawable/bg_avatar_circulo"
+            android:gravity="center"
+            android:fontFamily="@font/dm_sans_bold"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:importantForAccessibility="no" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCliNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_semibold"
+                android:textColor="@color/azul_marino"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvCliTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/texto_principal"
+                android:textSize="14sp"
+                android:fontFamily="@font/dm_sans_regular" />
+
+            <TextView
+                android:id="@+id/tvCliCiudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/texto_secundario"
+                android:textSize="13sp"
+                android:fontFamily="@font/dm_sans_regular" />
+        </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

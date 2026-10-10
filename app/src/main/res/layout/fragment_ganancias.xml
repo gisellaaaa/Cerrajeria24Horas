@@ -18,6 +18,20 @@
             android:orientation="vertical"
             android:padding="@dimen/margen_pantalla">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ganancias_ultimos_7_dias"
+                android:textColor="@color/azul_marino"
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo" />
+
+            <com.example.cerrajeria24horas.util.GraficoGananciasView
+                android:id="@+id/graficoGanancias"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="@dimen/espacio_12"
+                android:layout_marginBottom="@dimen/espacio_8" />
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
