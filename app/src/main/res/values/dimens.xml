@@ -5,7 +5,7 @@
     <dimen name="ancho_maximo_contenido">840dp</dimen>
     <dimen name="ancho_maximo_formulario">600dp</dimen>
     <dimen name="ancho_maximo_acceso">520dp</dimen>
-    <dimen name="logo_acceso">88dp</dimen>
+    <dimen name="logo_acceso">72dp</dimen>
     <dimen name="espacio_acceso_superior">8dp</dimen>
     <!-- Bienvenida (portada con carrusel de servicios). -->
 <dimen name="logo_bienvenida">72dp</dimen>

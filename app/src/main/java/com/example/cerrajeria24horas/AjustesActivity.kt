@@ -14,7 +14,6 @@ import com.example.cerrajeria24horas.util.Interaccion
 import com.example.cerrajeria24horas.util.Movimiento
 import com.example.cerrajeria24horas.util.Preferencias
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
@@ -145,17 +144,30 @@ class AjustesActivity : BaseActivity() {
         ) { abrirAjustePin() }
     }
 
+    /** Botones de tiempo del cierre automático: se redondean como pastillas independientes. */
+    private val botonesSesion = listOf(
+        R.id.btnSesionNunca,
+        R.id.btnSesion5,
+        R.id.btnSesion15,
+        R.id.btnSesion30
+    )
+
     private fun prepararSesion() {
-        val grupo = findViewById<MaterialButtonToggleGroup>(R.id.tgSesion) ?: return
-        grupo.addOnButtonCheckedListener { _, marcadoId, marcado ->
-            if (marcado) Preferencias.guardarTiempoSesion(this, minutosDeSesion(marcadoId))
+        botonesSesion.forEach { id ->
+            findViewById<MaterialButton>(id)?.setOnClickListener {
+                marcarSesion(id)
+                Preferencias.guardarTiempoSesion(this, minutosDeSesion(id))
+            }
         }
         marcarSesion()
     }
 
     private fun marcarSesion() {
-        findViewById<MaterialButtonToggleGroup>(R.id.tgSesion)
-            ?.check(idDeSesion(Preferencias.tiempoSesionMinutos(this)))
+        marcarSesion(idDeSesion(Preferencias.tiempoSesionMinutos(this)))
+    }
+
+    private fun marcarSesion(id: Int) {
+        botonesSesion.forEach { findViewById<MaterialButton>(it)?.isChecked = it == id }
     }
 
     private fun idDeSesion(minutos: Int): Int = when (minutos) {

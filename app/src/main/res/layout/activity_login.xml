@@ -40,8 +40,8 @@
             android:singleLine="true"
             android:ellipsize="none"
             android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="20sp"
-            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="18sp"
+            android:autoSizeMaxTextSize="26sp"
             android:autoSizeStepGranularity="1sp"
             android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloGrande" />
 
@@ -68,7 +68,8 @@
         android:id="@+id/llCuerpoLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/espacio_12"
+        android:layout_marginTop="@dimen/espacio_16"
+        android:layout_marginBottom="@dimen/espacio_12"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/llCabeceraLogin"
         app:layout_constraintBottom_toTopOf="@id/llPieLogin"
@@ -89,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/acceso_cuenta"
-                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Titulo" />
+                android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Subtitulo" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Cerrajeria24Horas.Campo"

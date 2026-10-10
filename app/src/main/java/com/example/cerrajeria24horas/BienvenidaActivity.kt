@@ -49,6 +49,14 @@ class BienvenidaActivity : BaseActivity() {
         indicador = findViewById(R.id.indicadorBienvenida)
         adaptador = BienvenidaServiciosAdapter()
         pager.adapter = adaptador
+        pager.offscreenPageLimit = 3
+        pager.setPageTransformer { pagina, posicion ->
+            val cercania = 1f - kotlin.math.abs(posicion).coerceAtMost(1f)
+            val escala = 0.82f + 0.18f * cercania
+            pagina.scaleX = escala
+            pagina.scaleY = escala
+            pagina.alpha = 0.3f + 0.7f * cercania
+        }
         crearPuntos(indicador, adaptador.total)
 
         pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

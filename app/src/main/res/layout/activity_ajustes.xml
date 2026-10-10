@@ -135,13 +135,12 @@
                     android:textSize="14sp"
                     android:fontFamily="@font/dm_sans_regular" />
 
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/tgSesion"
+                <LinearLayout
+                    android:id="@+id/llSesionTiempos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    app:singleSelection="true"
-                    app:selectionRequired="true">
+                    android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSesionNunca"
@@ -149,7 +148,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/seg_sesion_nunca" />
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:text="@string/seg_sesion_nunca"
+                        app:strokeColor="@color/borde"
+                        app:strokeWidth="1dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSesion5"
@@ -157,7 +160,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/seg_sesion_corto_5" />
+                        android:layout_marginStart="6dp"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:text="@string/seg_sesion_corto_5"
+                        app:strokeColor="@color/borde"
+                        app:strokeWidth="1dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSesion15"
@@ -165,7 +173,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/seg_sesion_corto_15" />
+                        android:layout_marginStart="6dp"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:text="@string/seg_sesion_corto_15"
+                        app:strokeColor="@color/borde"
+                        app:strokeWidth="1dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSesion30"
@@ -173,8 +186,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/seg_sesion_corto_30" />
-                </com.google.android.material.button.MaterialButtonToggleGroup>
+                        android:layout_marginStart="6dp"
+                        android:checkable="true"
+                        android:clickable="true"
+                        android:text="@string/seg_sesion_corto_30"
+                        app:strokeColor="@color/borde"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Privacidad: las filas se agregan desde el código -->

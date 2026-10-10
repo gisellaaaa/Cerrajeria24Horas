@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Página del carrusel de bienvenida: icono en círculo, título y descripción del servicio.
+<!-- Página del carrusel: imagen cuadrada del servicio, título y descripción.
      El ScrollView evita que el texto se corte en pantallas bajas; si sobra espacio, centra. -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,16 +20,16 @@
         android:paddingBottom="@dimen/espacio_8">
 
         <FrameLayout
-            android:id="@+id/carCirculo"
-            android:layout_width="@dimen/circulo_bienvenida"
-            android:layout_height="@dimen/circulo_bienvenida"
-            android:background="@drawable/bg_circulo_onboarding"
+            android:id="@+id/carCuadro"
+            android:layout_width="152dp"
+            android:layout_height="152dp"
+            android:background="@drawable/bg_cuadro_servicio"
             android:elevation="2dp">
 
             <ImageView
                 android:id="@+id/carIcono"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
                 app:tint="@color/azul_marino" />

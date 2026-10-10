@@ -252,7 +252,7 @@
     <string name="bienvenida_etiqueta">Nuestros servicios</string>
     <string name="bienvenida_iniciar_sesion">Iniciar sesión</string>
     <string name="bienvenida_crear_cuenta">Crear cuenta</string>
-    <string name="bienvenida_web">Conoce todos nuestros servicios en cerrajeria24horas.com.co</string>
+    <string name="bienvenida_web">cerrajeria24horas.com.co</string>
     <string name="bienvenida_web_accion">Visitar la página web</string>
     <string name="servicio_carrusel_1_titulo">Duplicación de llaves</string>
     <string name="servicio_carrusel_1_desc">Convencionales, de seguridad, vehiculares, motocicletas y más, con precisión.</string>

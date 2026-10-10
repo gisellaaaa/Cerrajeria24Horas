@@ -49,7 +49,7 @@ class BienvenidaServiciosAdapter :
     val total: Int get() = servicios.size
 
     class ServicioVH(view: View) : RecyclerView.ViewHolder(view) {
-        val circulo: View = view.findViewById(R.id.carCirculo)
+        val cuadro: View = view.findViewById(R.id.carCuadro)
         val icono: ImageView = view.findViewById(R.id.carIcono)
         val titulo: TextView = view.findViewById(R.id.carTitulo)
         val descripcion: TextView = view.findViewById(R.id.carDescripcion)
@@ -70,6 +70,6 @@ class BienvenidaServiciosAdapter :
         holder.titulo.setText(servicio.titulo)
         holder.descripcion.setText(servicio.descripcion)
         val acento = ContextCompat.getColor(contexto, servicio.acento)
-        holder.circulo.backgroundTintList = ColorStateList.valueOf(acento)
+        holder.cuadro.backgroundTintList = ColorStateList.valueOf(acento)
     }
 }

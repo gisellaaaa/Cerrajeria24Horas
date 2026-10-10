@@ -1,4 +1,4 @@
 <resources>
-    <dimen name="logo_acceso">88dp</dimen>
+    <dimen name="logo_acceso">72dp</dimen>
     <dimen name="espacio_acceso_superior">16dp</dimen>
 </resources>
