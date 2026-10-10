@@ -13,7 +13,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.example.cerrajeria24horas.R
+import kotlin.math.min
 
 /**
  * Barra de navegación flotante con una muesca real en el centro, recortada con
@@ -24,6 +26,10 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
+
+    private companion object {
+        const val PESO_ACTIVO = 1.6f
+    }
 
     enum class Destino(val etiquetaRes: Int, val iconoRes: Int) {
         INICIO(R.string.menu_inicio, R.drawable.ic_inicio),
@@ -52,6 +58,10 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
     private val radioBarra = resources.getDimension(R.dimen.radio_barra_navegacion)
 
     private val items = mutableMapOf<Destino, LinearLayout>()
+    private val huecoBarra = resources.getDimension(R.dimen.hueco_barra_navegacion)
+
+    /** Si no caben todas las etiquetas, solo se muestra la del destino activo. */
+    private var etiquetasTodas = false
 
     init {
         setWillNotDraw(false)
@@ -115,8 +125,55 @@ class BarraNavegacionFlotante @JvmOverloads constructor(
                 if (activo) ContextCompat.getDrawable(context, R.drawable.bg_indicador_nav) else null
             icono.imageTintList = ColorStateList.valueOf(color)
             texto.setTextColor(color)
+            texto.visibility = if (activo || etiquetasTodas) View.VISIBLE else View.INVISIBLE
+
+            // El destino activo recibe más ancho cuando las etiquetas están apretadas.
+            val lp = vista.layoutParams
+            if (lp is LinearLayout.LayoutParams) {
+                val peso = if (activo && !etiquetasTodas) PESO_ACTIVO else 1f
+                if (lp.weight != peso) {
+                    lp.weight = peso
+                    vista.layoutParams = lp
+                }
+            }
+            if (activo && !etiquetasTodas) {
+                vista.post { ajustarEtiquetaActiva(vista, texto) }
+            }
         }
     }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        calcularEtiquetas(w)
+        aplicar(destinoActual)
+    }
+
+    /** Decide si todas las etiquetas caben; si no, se mostrará solo la del destino activo. */
+    private fun calcularEtiquetas(anchoBarra: Int) {
+        if (anchoBarra <= 0) return
+        val pintura = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+            typeface = ResourcesCompat.getFont(context, R.font.dm_sans_medium)
+            textSize = 12f * resources.displayMetrics.scaledDensity
+        }
+        val anchoMaximo = Destino.values().maxOf { d ->
+            pintura.measureText(context.getString(d.etiquetaRes))
+        }
+        val util = (anchoBarra - huecoBarra).coerceAtLeast(0f)
+        val anchoItemDerecha = util / 2f / 3f
+        val anchoItemIzquierda = util / 2f / 2f
+        val menor = min(anchoItemIzquierda, anchoItemDerecha)
+        etiquetasTodas = menor >= anchoMaximo + dp(10f)
+    }
+
+    /** Oculta la etiqueta activa si ni siquiera ella cabe, para no cortar nunca el texto. */
+    private fun ajustarEtiquetaActiva(vista: View, texto: TextView) {
+        if (etiquetasTodas || vista.width <= 0) return
+        val anchoTexto = texto.paint.measureText(texto.text?.toString().orEmpty())
+        texto.visibility =
+            if (vista.width >= anchoTexto + dp(10f)) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun dp(valor: Float): Float = valor * resources.displayMetrics.density
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)

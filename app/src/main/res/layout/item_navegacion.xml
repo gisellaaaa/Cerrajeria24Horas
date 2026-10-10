@@ -8,8 +8,8 @@
     android:focusable="true"
     android:minWidth="@dimen/zona_tactil"
     android:minHeight="@dimen/zona_tactil"
-    android:paddingStart="@dimen/espacio_8"
-    android:paddingEnd="@dimen/espacio_8"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
     android:paddingTop="14dp"
     android:paddingBottom="12dp"
     android:background="?attr/selectableItemBackgroundBorderless">
@@ -34,6 +34,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:maxLines="1"
+        android:ellipsize="none"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="12sp"
+        android:autoSizeStepGranularity="1sp"
+        android:importantForAccessibility="no"
         android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Etiqueta"
         android:textColor="@color/nav_texto_inactivo" />
 </LinearLayout>
