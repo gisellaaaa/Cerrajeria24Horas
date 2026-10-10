@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.cerrajeria24horas.util.FotoPerfil
 import com.example.cerrajeria24horas.util.Interaccion
+import com.example.cerrajeria24horas.util.Movimiento
 import com.example.cerrajeria24horas.util.Preferencias
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.android.material.textfield.TextInputEditText
@@ -57,6 +59,7 @@ class AjustesActivity : BaseActivity() {
 
         mostrarSeguridad()
         mostrarPrivacidad()
+        prepararSesion()
 
         findViewById<View>(R.id.btnAjustesFoto).setOnClickListener {
             selectorFoto.launch(arrayOf("image/*"))
@@ -71,6 +74,8 @@ class AjustesActivity : BaseActivity() {
                 abrirRaiz(LoginActivity::class.java)
             }
         }
+
+        animarEntrada()
     }
 
     override fun onResume() {
@@ -79,6 +84,20 @@ class AjustesActivity : BaseActivity() {
         // Los valores del PIN y del cierre automático pueden haber cambiado.
         mostrarSeguridad()
         mostrarPrivacidad()
+        marcarSesion()
+    }
+
+    /** Aparece cada tarjeta con su desplazamiento escalonado (respeta "Reducir movimiento"). */
+    private fun animarEntrada() {
+        val tarjetas = listOf(
+            R.id.cardCuenta,
+            R.id.cardSeguridad,
+            R.id.cardSesion,
+            R.id.cardPrivacidad,
+            R.id.cardDispositivo,
+            R.id.btnAjustesCerrar
+        ).mapNotNull { findViewById<View>(it) }
+        Movimiento.entradaEscalonada(tarjetas)
     }
 
     /** El botón dice "Agregar" o "Cambiar" según haya foto, y se mantiene al volver a la pantalla. */
@@ -124,39 +143,33 @@ class AjustesActivity : BaseActivity() {
                 else R.string.seg_pin_inactivo
             )
         ) { abrirAjustePin() }
-
-        agregarFila(
-            contenedor,
-            R.drawable.ic_reloj,
-            R.string.seg_sesion_automatica,
-            R.string.seg_sesion_automatica_descripcion,
-            etiquetaSesion()
-        ) { elegirTiempoSesion() }
     }
 
-    private fun etiquetaSesion(): String = when (Preferencias.tiempoSesionMinutos(this)) {
-        5 -> getString(R.string.seg_sesion_5)
-        15 -> getString(R.string.seg_sesion_15)
-        30 -> getString(R.string.seg_sesion_30)
-        else -> getString(R.string.seg_sesion_nunca)
+    private fun prepararSesion() {
+        val grupo = findViewById<MaterialButtonToggleGroup>(R.id.tgSesion) ?: return
+        grupo.addOnButtonCheckedListener { _, marcadoId, marcado ->
+            if (marcado) Preferencias.guardarTiempoSesion(this, minutosDeSesion(marcadoId))
+        }
+        marcarSesion()
     }
 
-    private fun elegirTiempoSesion() {
-        val etiquetas = arrayOf(
-            getString(R.string.seg_sesion_nunca),
-            getString(R.string.seg_sesion_5),
-            getString(R.string.seg_sesion_15),
-            getString(R.string.seg_sesion_30)
-        )
-        val minutos = intArrayOf(0, 5, 15, 30)
-        MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.seg_sesion_automatica)
-            .setItems(etiquetas) { _, cual ->
-                Preferencias.guardarTiempoSesion(this, minutos[cual])
-                mostrarSeguridad()
-            }
-            .setNegativeButton(R.string.cancelar, null)
-            .show()
+    private fun marcarSesion() {
+        findViewById<MaterialButtonToggleGroup>(R.id.tgSesion)
+            ?.check(idDeSesion(Preferencias.tiempoSesionMinutos(this)))
+    }
+
+    private fun idDeSesion(minutos: Int): Int = when (minutos) {
+        5 -> R.id.btnSesion5
+        15 -> R.id.btnSesion15
+        30 -> R.id.btnSesion30
+        else -> R.id.btnSesionNunca
+    }
+
+    private fun minutosDeSesion(id: Int): Int = when (id) {
+        R.id.btnSesion5 -> 5
+        R.id.btnSesion15 -> 15
+        R.id.btnSesion30 -> 30
+        else -> 0
     }
 
     private fun abrirAjustePin() {

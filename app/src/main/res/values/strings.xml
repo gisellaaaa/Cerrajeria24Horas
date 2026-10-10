@@ -202,6 +202,9 @@
     <string name="seg_sesion_5">A los 5 minutos</string>
     <string name="seg_sesion_15">A los 15 minutos</string>
     <string name="seg_sesion_30">A los 30 minutos</string>
+    <string name="seg_sesion_corto_5">5 min</string>
+    <string name="seg_sesion_corto_15">15 min</string>
+    <string name="seg_sesion_corto_30">30 min</string>
     <string name="sesion_cerrada_automatica">Tu sesión se cerró por inactividad.</string>
     <string name="titulo_cambiar_contrasena">Cambiar contraseña</string>
     <string name="contrasena_actual">Contraseña actual</string>

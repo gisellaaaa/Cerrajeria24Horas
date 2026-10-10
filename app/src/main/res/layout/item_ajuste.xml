@@ -17,7 +17,7 @@
         android:layout_width="@dimen/circulo_icono"
         android:layout_height="@dimen/circulo_icono"
         android:padding="11dp"
-        android:background="@drawable/bg_icono_redondo"
+        android:background="@drawable/bg_circulo_acento"
         android:src="@drawable/ic_key"
         app:tint="@color/azul_acento"
         android:contentDescription="@null" />

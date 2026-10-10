@@ -183,6 +183,20 @@ object Movimiento {
         }
     }
 
+    /** Pequeño pulso de escala (por ejemplo, al completar un punto del PIN). */
+    fun pulso(vista: View) {
+        if (!activo(vista.context)) return
+        vista.animate().cancel()
+        vista.scaleX = 1.12f
+        vista.scaleY = 1.12f
+        vista.animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(CORTA)
+            .setInterpolator(decelerar)
+            .start()
+    }
+
     /** Error: sacudida de 250 ms. */
     fun sacudir(view: View) {
         if (!activo(view.context)) return

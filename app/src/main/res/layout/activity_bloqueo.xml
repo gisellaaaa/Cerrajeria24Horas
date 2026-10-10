@@ -10,10 +10,11 @@
     android:background="@drawable/bg_fondo_app">
 
     <ImageView
+        android:id="@+id/ivBloqueoIcono"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:padding="18dp"
-        android:background="@drawable/bg_acento_suave"
+        android:background="@drawable/bg_circulo_acento"
         android:src="@drawable/ic_key"
         app:tint="@color/azul_acento"
         android:contentDescription="@null" />

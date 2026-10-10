@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.res.ResourcesCompat
+import com.example.cerrajeria24horas.util.Movimiento
 import com.example.cerrajeria24horas.util.Preferencias
 import kotlin.math.roundToInt
 
@@ -125,6 +126,7 @@ class BloqueoActivity : BaseActivity() {
         isClickable = true
         isFocusable = true
         setOnClickListener { alPulsar(tecla) }
+        Movimiento.presionar(this)
     }
 
     private fun alPulsar(tecla: String) {
@@ -143,6 +145,7 @@ class BloqueoActivity : BaseActivity() {
                     pinIngresado.append(tecla)
                     tvError.text = ""
                     mostrarPuntos()
+                    Movimiento.pulso(tvPuntos)
                     if (pinIngresado.length == LARGO_PIN) validar()
                 }
             }
@@ -175,10 +178,11 @@ class BloqueoActivity : BaseActivity() {
         } else if (pinNuevo == pinIngresado.toString()) {
             Preferencias.guardarPin(this, pinNuevo)
             Toast.makeText(this, R.string.pin_guardado, Toast.LENGTH_SHORT).show()
-            finish()
+            animarExitoYContinuar { finish() }
         } else {
             pinNuevo = ""
             reiniciar(getString(R.string.pin_no_coincide))
+            Movimiento.sacudir(tvPuntos)
         }
     }
 
@@ -186,19 +190,34 @@ class BloqueoActivity : BaseActivity() {
         if (Preferencias.pinCorrecto(this, pinIngresado.toString())) {
             Preferencias.quitarPin(this)
             Toast.makeText(this, R.string.pin_quitado, Toast.LENGTH_SHORT).show()
-            finish()
+            animarExitoYContinuar { finish() }
         } else {
             reiniciar(getString(R.string.pin_incorrecto))
+            Movimiento.sacudir(tvPuntos)
         }
     }
 
     private fun validarDesbloqueo() {
         if (Preferencias.pinCorrecto(this, pinIngresado.toString())) {
             desbloqueado = true
-            finish()
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            animarExitoYContinuar {
+                finish()
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            }
         } else {
             reiniciar(getString(R.string.pin_incorrecto))
+            Movimiento.sacudir(tvPuntos)
+        }
+    }
+
+    /** Giro de llave con el icono genérico ic_key antes de continuar; si no hay animación, sigue ya. */
+    private fun animarExitoYContinuar(accion: () -> Unit) {
+        val icono = findViewById<android.view.View>(R.id.ivBloqueoIcono)
+        if (icono != null && Movimiento.activo(this)) {
+            Movimiento.girarLlave(icono)
+            icono.postDelayed({ accion() }, Movimiento.LARGA)
+        } else {
+            accion()
         }
     }
 }

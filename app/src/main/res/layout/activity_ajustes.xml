@@ -26,6 +26,7 @@
 
             <!-- Cuenta -->
             <LinearLayout
+                android:id="@+id/cardCuenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -72,6 +73,7 @@
 
             <!-- Seguridad: las filas se agregan desde el código -->
             <LinearLayout
+                android:id="@+id/cardSeguridad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -108,8 +110,76 @@
                     android:orientation="vertical" />
             </LinearLayout>
 
+            <!-- Cierre automático: control segmentado -->
+            <LinearLayout
+                android:id="@+id/cardSesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="@drawable/bg_tarjeta">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seg_sesion_automatica"
+                    android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/seg_sesion_automatica_descripcion"
+                    android:textColor="@color/texto_secundario"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/dm_sans_regular" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/tgSesion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSesionNunca"
+                        style="@style/Cerrajeria24Horas.BotonSegmento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/seg_sesion_nunca" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSesion5"
+                        style="@style/Cerrajeria24Horas.BotonSegmento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/seg_sesion_corto_5" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSesion15"
+                        style="@style/Cerrajeria24Horas.BotonSegmento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/seg_sesion_corto_15" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSesion30"
+                        style="@style/Cerrajeria24Horas.BotonSegmento"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/seg_sesion_corto_30" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+            </LinearLayout>
+
             <!-- Privacidad: las filas se agregan desde el código -->
             <LinearLayout
+                android:id="@+id/cardPrivacidad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -148,6 +218,7 @@
 
             <!-- Avisos y movimiento -->
             <LinearLayout
+                android:id="@+id/cardDispositivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
