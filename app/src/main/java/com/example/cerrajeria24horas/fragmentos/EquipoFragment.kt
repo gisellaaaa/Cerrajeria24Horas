@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -19,6 +20,7 @@ import com.example.cerrajeria24horas.data.FirestoreAPI
 import com.example.cerrajeria24horas.data.RolUsuario
 import com.example.cerrajeria24horas.data.Usuario
 import com.example.cerrajeria24horas.util.Formato
+import com.example.cerrajeria24horas.util.Interfaz
 import com.example.cerrajeria24horas.util.UI
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -85,6 +87,8 @@ class EquipoFragment : Fragment(R.layout.fragment_equipo) {
         dialogo.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogo.setContentView(R.layout.dialogo_agregar_cerrajero)
         dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Con el teclado abierto, el contenido se desplaza en vez de recortar los botones.
+        dialogo.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
         val etNombre = dialogo.findViewById<EditText>(R.id.etMiembroNombre)
         val etCorreo = dialogo.findViewById<EditText>(R.id.etMiembroCorreo)
@@ -130,5 +134,6 @@ class EquipoFragment : Fragment(R.layout.fragment_equipo) {
             }
         }
         dialogo.show()
+        Interfaz.ajustarDialogo(requireActivity(), dialogo, R.id.dlgMiembroContenido)
     }
 }

@@ -1,7 +1,9 @@
 package com.example.cerrajeria24horas.util
 
 import android.app.Activity
+import android.app.Dialog
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Build
 import android.view.View
 import androidx.core.graphics.Insets
@@ -71,5 +73,32 @@ object Interfaz {
             if (right - left != oldRight - oldLeft) aplicarMargenes()
         }
         raiz.post { ViewCompat.requestApplyInsets(raiz) }
+    }
+
+    /**
+     * Ajusta el tamaño de la ventana de un [dialogo] a la pantalla visible: nunca supera el ancho
+     * máximo definido ni el alto disponible, y el [contenidoId] se mide para que, si es más alto
+     * que la pantalla, pueda desplazarse en lugar de recortar sus botones.
+     */
+    fun ajustarDialogo(actividad: Activity, dialogo: Dialog, contenidoId: Int) {
+        val areaVisible = Rect()
+        actividad.window.decorView.getWindowVisibleDisplayFrame(areaVisible)
+        val recursos = actividad.resources
+        val margen = recursos.getDimensionPixelSize(R.dimen.margen_dialogo)
+        val anchoDisponible = areaVisible.width().takeIf { it > 0 }
+            ?: recursos.displayMetrics.widthPixels
+        val altoDisponible = areaVisible.height().takeIf { it > 0 }
+            ?: recursos.displayMetrics.heightPixels
+        val ancho = minOf(
+            recursos.getDimensionPixelSize(R.dimen.ancho_maximo_dialogo),
+            (anchoDisponible - margen * 2).coerceAtLeast(1)
+        )
+        val altoMaximo = (altoDisponible - margen * 2).coerceAtLeast(1)
+        val contenido = dialogo.findViewById<View>(contenidoId) ?: return
+        contenido.measure(
+            View.MeasureSpec.makeMeasureSpec(ancho, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(altoMaximo, View.MeasureSpec.AT_MOST)
+        )
+        dialogo.window?.setLayout(ancho, contenido.measuredHeight)
     }
 }

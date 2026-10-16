@@ -1,112 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dlgMiembroContenido"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@drawable/bg_dialogo">
+    android:background="@drawable/bg_dialogo"
+    android:fillViewport="true"
+    android:clipToOutline="true"
+    android:scrollbars="vertical">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/dlgMiembroContenido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/agregar_cerrajero"
-        android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="@string/equipo_ayuda"
-        android:textColor="@color/texto_secundario"
-        android:textSize="14sp"
-        android:fontFamily="@font/dm_sans_regular" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Cerrajeria24Horas.Campo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="@string/nombre_completo">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMiembroNombre"
-            style="@style/Cerrajeria24Horas.Entrada"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:textColor="@color/texto_principal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:text="@string/agregar_cerrajero"
+            android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.TituloPantalla" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Cerrajeria24Horas.Campo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/correo">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMiembroCorreo"
-            style="@style/Cerrajeria24Horas.Entrada"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:textColor="@color/texto_principal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="6dp"
+            android:text="@string/equipo_ayuda"
+            android:textColor="@color/texto_secundario"
+            android:textSize="14sp"
+            android:fontFamily="@font/dm_sans_regular" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Cerrajeria24Horas.Campo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:hint="@string/miembro_contrasena"
-        app:endIconMode="password_toggle">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMiembroContrasena"
-            style="@style/Cerrajeria24Horas.Entrada"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Cerrajeria24Horas.Campo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColor="@color/texto_principal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="16dp"
+            android:hint="@string/nombre_completo">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/miembro_contrasena_ayuda"
-        android:textColor="@color/texto_secundario"
-        android:textSize="12sp"
-        android:fontFamily="@font/dm_sans_regular" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMiembroNombre"
+                style="@style/Cerrajeria24Horas.Entrada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:textColor="@color/texto_principal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <ProgressBar
-        android:id="@+id/pbMiembro"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="12dp"
-        android:visibility="gone"
-        android:indeterminateTint="@color/azul_acento" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Cerrajeria24Horas.Campo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/correo">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMiembroCancelar"
-        style="@style/Cerrajeria24Horas.BotonDialogoCancelar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="@string/cancelar" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMiembroCorreo"
+                style="@style/Cerrajeria24Horas.Entrada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/texto_principal" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMiembroCrear"
-        style="@style/Cerrajeria24Horas.BotonDialogoConfirmar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/crear_cerrajero" />
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Cerrajeria24Horas.Campo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="@string/miembro_contrasena"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMiembroContrasena"
+                style="@style/Cerrajeria24Horas.Entrada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/texto_principal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/miembro_contrasena_ayuda"
+            android:textColor="@color/texto_secundario"
+            android:textSize="12sp"
+            android:fontFamily="@font/dm_sans_regular" />
+
+        <ProgressBar
+            android:id="@+id/pbMiembro"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/azul_acento" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMiembroCancelar"
+            style="@style/Cerrajeria24Horas.BotonDialogoCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/cancelar" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMiembroCrear"
+            style="@style/Cerrajeria24Horas.BotonDialogoConfirmar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/crear_cerrajero" />
+    </LinearLayout>
+</ScrollView>

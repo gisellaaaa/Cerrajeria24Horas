@@ -62,9 +62,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.Cerrajeria24Horas.Cifra"
                     android:textColor="@color/azul_marino"
-                    android:breakStrategy="simple" />
+                    android:breakStrategy="simple"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="18sp"
+                    app:autoSizeMaxTextSize="34sp"
+                    app:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <LinearLayout

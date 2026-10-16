@@ -3,7 +3,6 @@ package com.example.cerrajeria24horas
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
@@ -123,25 +122,8 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         dialogo.show()
 
-        // Se mide la ventana disponible, no el tamaño total del teléfono.
-        val areaVisible = Rect()
-        window.decorView.getWindowVisibleDisplayFrame(areaVisible)
-        val margen = resources.getDimensionPixelSize(R.dimen.margen_dialogo)
-        val anchoDisponible = areaVisible.width().takeIf { it > 0 }
-            ?: resources.displayMetrics.widthPixels
-        val altoDisponible = areaVisible.height().takeIf { it > 0 }
-            ?: resources.displayMetrics.heightPixels
-        val ancho = minOf(
-            resources.getDimensionPixelSize(R.dimen.ancho_maximo_dialogo),
-            (anchoDisponible - margen * 2).coerceAtLeast(1)
-        )
-        val altoMaximo = (altoDisponible - margen * 2).coerceAtLeast(1)
-        val contenido = dialogo.findViewById<View>(R.id.dlgContenido)
-        contenido.measure(
-            View.MeasureSpec.makeMeasureSpec(ancho, View.MeasureSpec.EXACTLY),
-            View.MeasureSpec.makeMeasureSpec(altoMaximo, View.MeasureSpec.AT_MOST)
-        )
-        // El contenido puede desplazarse si se usa letra grande o poca altura.
-        dialogo.window?.setLayout(ancho, contenido.measuredHeight)
+        // Se mide la ventana disponible, no el tamaño total del teléfono, y el contenido se
+        // desplaza si no cabe para no recortar los botones.
+        Interfaz.ajustarDialogo(this, dialogo, R.id.dlgContenido)
     }
 }

@@ -125,7 +125,10 @@ class ServicioFormActivity : BaseActivity() {
                     this,
                     nombres,
                     if (clientes.isEmpty()) 0 else -1
-                )
+                ).apply {
+                    // La lista desplegable no debe llevar la flecha del selector.
+                    setDropDownViewResource(R.layout.item_selector_opcion)
+                }
 
                 val extraId = intent.getStringExtra(EXTRA_CLIENTE_ID).orEmpty()
                 val extraNombre = intent.getStringExtra(EXTRA_NOMBRE_CLIENTE).orEmpty()
